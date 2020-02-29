@@ -1,0 +1,14 @@
+import { __decorate } from "tslib";
+import { NgModule } from '@angular/core';
+import { NgxGustavguezCoreComponent } from './ngx-gustavguez-core.component';
+let NgxGustavguezCoreModule = class NgxGustavguezCoreModule {
+};
+NgxGustavguezCoreModule = __decorate([
+    NgModule({
+        declarations: [NgxGustavguezCoreComponent],
+        imports: [],
+        exports: [NgxGustavguezCoreComponent]
+    })
+], NgxGustavguezCoreModule);
+export { NgxGustavguezCoreModule };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmd4LWd1c3Rhdmd1ZXotY29yZS5tb2R1bGUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9uZ3gtZ3VzdGF2Z3Vlei1jb3JlLyIsInNvdXJjZXMiOlsibGliL25neC1ndXN0YXZndWV6LWNvcmUubW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBRSwwQkFBMEIsRUFBRSxNQUFNLGlDQUFpQyxDQUFDO0FBVTdFLElBQWEsdUJBQXVCLEdBQXBDLE1BQWEsdUJBQXVCO0NBQUksQ0FBQTtBQUEzQix1QkFBdUI7SUFObkMsUUFBUSxDQUFDO1FBQ1IsWUFBWSxFQUFFLENBQUMsMEJBQTBCLENBQUM7UUFDMUMsT0FBTyxFQUFFLEVBQ1I7UUFDRCxPQUFPLEVBQUUsQ0FBQywwQkFBMEIsQ0FBQztLQUN0QyxDQUFDO0dBQ1csdUJBQXVCLENBQUk7U0FBM0IsdUJBQXVCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmdNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IE5neEd1c3Rhdmd1ZXpDb3JlQ29tcG9uZW50IH0gZnJvbSAnLi9uZ3gtZ3VzdGF2Z3Vlei1jb3JlLmNvbXBvbmVudCc7XG5cblxuXG5ATmdNb2R1bGUoe1xuICBkZWNsYXJhdGlvbnM6IFtOZ3hHdXN0YXZndWV6Q29yZUNvbXBvbmVudF0sXG4gIGltcG9ydHM6IFtcbiAgXSxcbiAgZXhwb3J0czogW05neEd1c3Rhdmd1ZXpDb3JlQ29tcG9uZW50XVxufSlcbmV4cG9ydCBjbGFzcyBOZ3hHdXN0YXZndWV6Q29yZU1vZHVsZSB7IH1cbiJdfQ==
