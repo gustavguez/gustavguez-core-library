@@ -1,6 +1,15 @@
 {
   "name": "ngx-gustavguez-core",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gustavguez/gustavguez-core-library"
+  },
+  "author": { 
+      "name" : "Gustavo Rodríguez", 
+      "email" : "gustavguez@gmail.com", 
+      "url" : "http://gustavorodriguez.com.uy"
+   },
   "peerDependencies": {
     "@angular/common": "^9.0.3",
     "@angular/core": "^9.0.3",
