@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('ngx-gustavguez-core', ['exports', '@angular/core'], factory) :
-    (global = global || self, factory(global['ngx-gustavguez-core'] = {}, global.ng.core));
-}(this, (function (exports, core) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('ngx-gustavguez-core', ['exports', '@angular/core', '@angular/common'], factory) :
+    (global = global || self, factory(global['ngx-gustavguez-core'] = {}, global.ng.core, global.ng.common));
+}(this, (function (exports, core, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -218,30 +218,61 @@
         return value;
     }
 
-    var NgxGustavguezCoreService = /** @class */ (function () {
-        function NgxGustavguezCoreService() {
+    var LoaderComponent = /** @class */ (function () {
+        //Inject services
+        function LoaderComponent() {
         }
-        NgxGustavguezCoreService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function NgxGustavguezCoreService_Factory() { return new NgxGustavguezCoreService(); }, token: NgxGustavguezCoreService, providedIn: "root" });
-        NgxGustavguezCoreService = __decorate([
-            core.Injectable({
-                providedIn: 'root'
+        //On component init
+        LoaderComponent.prototype.ngOnInit = function () {
+        };
+        __decorate([
+            core.Input()
+        ], LoaderComponent.prototype, "loading", void 0);
+        __decorate([
+            core.Input()
+        ], LoaderComponent.prototype, "loadingText", void 0);
+        LoaderComponent = __decorate([
+            core.Component({
+                selector: 'lib-loader',
+                template: "<ng-container *ngIf=\"loading\">\n    <span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n    <span class=\"sr-only\">{{ loadingText ? loadingText : \"Cargando...\" }}</span>\n</ng-container>",
+                styles: [""]
             })
-        ], NgxGustavguezCoreService);
-        return NgxGustavguezCoreService;
+        ], LoaderComponent);
+        return LoaderComponent;
     }());
 
-    var NgxGustavguezCoreComponent = /** @class */ (function () {
-        function NgxGustavguezCoreComponent() {
+    var PopupComponent = /** @class */ (function () {
+        //Inject services
+        function PopupComponent() {
+            this.onClose = new core.EventEmitter();
         }
-        NgxGustavguezCoreComponent.prototype.ngOnInit = function () {
+        //On component init
+        PopupComponent.prototype.ngOnInit = function () {
         };
-        NgxGustavguezCoreComponent = __decorate([
+        //Custome events
+        PopupComponent.prototype.onClosePopup = function () {
+            this.onClose.emit();
+        };
+        __decorate([
+            core.Input()
+        ], PopupComponent.prototype, "state", void 0);
+        __decorate([
+            core.Input()
+        ], PopupComponent.prototype, "titleText", void 0);
+        __decorate([
+            core.Input()
+        ], PopupComponent.prototype, "closeText", void 0);
+        __decorate([
+            core.Output()
+        ], PopupComponent.prototype, "onClose", void 0);
+        PopupComponent = __decorate([
             core.Component({
-                selector: 'ngx-gustavguez-core',
-                template: "\n    <p>\n      ngx-gustavguez-core works!\n    </p>\n  "
+                selector: 'lib-popup',
+                template: "<!-- Modal -->\n<div \n    [class.show]=\"state\"\n    [class.d-block]=\"state\"\n    class=\"modal fade\">\n    <div class=\"modal-dialog\">\n\n        <div class=\"modal-content\">\n\n            <div class=\"modal-header\">\n                <h5 class=\"modal-title\">{{ titleText }}</h5>\n                \n                <button type=\"button\" class=\"close\" (click)=\"onClosePopup()\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n            </div>\n\n            <div class=\"modal-body\">\n                <ng-content></ng-content>\n            </div>\n\n            <div class=\"modal-footer\">\n                <button \n                    (click)=\"onClosePopup()\"\n                    type=\"button\" \n                    class=\"btn btn-secondary\">{{ closeText ? closeText : \"Cerrar\" }}</button>\n            </div>\n        </div>\n    </div>\n</div>\n<div \n    *ngIf=\"state\"\n    class=\"modal-backdrop fade show\"></div>",
+                styles: [""]
             })
-        ], NgxGustavguezCoreComponent);
-        return NgxGustavguezCoreComponent;
+        ], PopupComponent);
+        return PopupComponent;
     }());
 
     var NgxGustavguezCoreModule = /** @class */ (function () {
@@ -249,17 +280,25 @@
         }
         NgxGustavguezCoreModule = __decorate([
             core.NgModule({
-                declarations: [NgxGustavguezCoreComponent],
-                imports: [],
-                exports: [NgxGustavguezCoreComponent]
+                declarations: [
+                    LoaderComponent,
+                    PopupComponent
+                ],
+                imports: [
+                    common.CommonModule
+                ],
+                exports: [
+                    LoaderComponent,
+                    PopupComponent
+                ]
             })
         ], NgxGustavguezCoreModule);
         return NgxGustavguezCoreModule;
     }());
 
-    exports.NgxGustavguezCoreComponent = NgxGustavguezCoreComponent;
+    exports.LoaderComponent = LoaderComponent;
     exports.NgxGustavguezCoreModule = NgxGustavguezCoreModule;
-    exports.NgxGustavguezCoreService = NgxGustavguezCoreService;
+    exports.PopupComponent = PopupComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
-import { NgxGustavguezCoreComponent } from './ngx-gustavguez-core.component';
+import { CommonModule } from '@angular/common';
 
-
+import { LoaderComponent } from './structure/loader/loader.component';
+import { PopupComponent } from './structure/popup/popup.component';
 
 @NgModule({
-  declarations: [NgxGustavguezCoreComponent],
-  imports: [
-  ],
-  exports: [NgxGustavguezCoreComponent]
+    declarations: [
+        LoaderComponent,
+        PopupComponent
+    ],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        LoaderComponent,
+        PopupComponent
+    ]
 })
 export class NgxGustavguezCoreModule { }
