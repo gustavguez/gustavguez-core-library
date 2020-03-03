@@ -2,7 +2,7 @@ import { __decorate } from 'tslib';
 import { Input, Component, EventEmitter, Output, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-let LoaderComponent = class LoaderComponent {
+let NgxGustavguezLoaderComponent = class NgxGustavguezLoaderComponent {
     //Inject services
     constructor() { }
     //On component init
@@ -11,19 +11,19 @@ let LoaderComponent = class LoaderComponent {
 };
 __decorate([
     Input()
-], LoaderComponent.prototype, "loading", void 0);
+], NgxGustavguezLoaderComponent.prototype, "loading", void 0);
 __decorate([
     Input()
-], LoaderComponent.prototype, "loadingText", void 0);
-LoaderComponent = __decorate([
+], NgxGustavguezLoaderComponent.prototype, "loadingText", void 0);
+NgxGustavguezLoaderComponent = __decorate([
     Component({
-        selector: 'lib-loader',
+        selector: 'ngx-gustavguez-loader',
         template: "<ng-container *ngIf=\"loading\">\n    <span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n    <span class=\"sr-only\">{{ loadingText ? loadingText : \"Cargando...\" }}</span>\n</ng-container>",
         styles: [""]
     })
-], LoaderComponent);
+], NgxGustavguezLoaderComponent);
 
-let PopupComponent = class PopupComponent {
+let NgxGustavguezPopupComponent = class NgxGustavguezPopupComponent {
     //Inject services
     constructor() {
         this.onClose = new EventEmitter();
@@ -38,38 +38,38 @@ let PopupComponent = class PopupComponent {
 };
 __decorate([
     Input()
-], PopupComponent.prototype, "state", void 0);
+], NgxGustavguezPopupComponent.prototype, "state", void 0);
 __decorate([
     Input()
-], PopupComponent.prototype, "titleText", void 0);
+], NgxGustavguezPopupComponent.prototype, "titleText", void 0);
 __decorate([
     Input()
-], PopupComponent.prototype, "closeText", void 0);
+], NgxGustavguezPopupComponent.prototype, "closeText", void 0);
 __decorate([
     Output()
-], PopupComponent.prototype, "onClose", void 0);
-PopupComponent = __decorate([
+], NgxGustavguezPopupComponent.prototype, "onClose", void 0);
+NgxGustavguezPopupComponent = __decorate([
     Component({
-        selector: 'lib-popup',
+        selector: 'ngx-gustavguez-popup',
         template: "<!-- Modal -->\n<div \n    [class.show]=\"state\"\n    [class.d-block]=\"state\"\n    class=\"modal fade\">\n    <div class=\"modal-dialog\">\n\n        <div class=\"modal-content\">\n\n            <div class=\"modal-header\">\n                <h5 class=\"modal-title\">{{ titleText }}</h5>\n                \n                <button type=\"button\" class=\"close\" (click)=\"onClosePopup()\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n            </div>\n\n            <div class=\"modal-body\">\n                <ng-content></ng-content>\n            </div>\n\n            <div class=\"modal-footer\">\n                <button \n                    (click)=\"onClosePopup()\"\n                    type=\"button\" \n                    class=\"btn btn-secondary\">{{ closeText ? closeText : \"Cerrar\" }}</button>\n            </div>\n        </div>\n    </div>\n</div>\n<div \n    *ngIf=\"state\"\n    class=\"modal-backdrop fade show\"></div>",
         styles: [""]
     })
-], PopupComponent);
+], NgxGustavguezPopupComponent);
 
 let NgxGustavguezCoreModule = class NgxGustavguezCoreModule {
 };
 NgxGustavguezCoreModule = __decorate([
     NgModule({
         declarations: [
-            LoaderComponent,
-            PopupComponent
+            NgxGustavguezLoaderComponent,
+            NgxGustavguezPopupComponent
         ],
         imports: [
             CommonModule
         ],
         exports: [
-            LoaderComponent,
-            PopupComponent
+            NgxGustavguezLoaderComponent,
+            NgxGustavguezPopupComponent
         ]
     })
 ], NgxGustavguezCoreModule);
@@ -82,5 +82,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { LoaderComponent, NgxGustavguezCoreModule, PopupComponent };
+export { NgxGustavguezCoreModule, NgxGustavguezLoaderComponent, NgxGustavguezPopupComponent };
 //# sourceMappingURL=ngx-gustavguez-core.js.map

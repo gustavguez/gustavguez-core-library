@@ -1,5 +1,5 @@
 import { OnInit, EventEmitter } from '@angular/core';
-export declare class PopupComponent implements OnInit {
+export declare class NgxGustavguezPopupComponent implements OnInit {
     state: boolean;
     titleText: string;
     closeText: string;

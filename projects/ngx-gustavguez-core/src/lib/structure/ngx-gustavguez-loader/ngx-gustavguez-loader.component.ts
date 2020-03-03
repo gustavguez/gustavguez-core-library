@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: 'lib-loader',
-    templateUrl: './loader.component.html',
-    styleUrls: ['./loader.component.scss']
+  selector: 'ngx-gustavguez-loader',
+  templateUrl: './ngx-gustavguez-loader.component.html',
+  styleUrls: ['./ngx-gustavguez-loader.component.scss']
 })
-export class LoaderComponent implements OnInit {
+export class NgxGustavguezLoaderComponent implements OnInit {
     //Inputs
     @Input() loading: boolean;
     @Input() loadingText: string;

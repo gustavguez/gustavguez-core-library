@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-    selector: 'lib-popup',
-    templateUrl: './popup.component.html',
-    styleUrls: ['./popup.component.scss']
+    selector: 'ngx-gustavguez-popup',
+    templateUrl: './ngx-gustavguez-popup.component.html',
+    styleUrls: ['./ngx-gustavguez-popup.component.scss']
 })
-export class PopupComponent implements OnInit {
+export class NgxGustavguezPopupComponent implements OnInit {
     //Inputs and Outputs
     @Input() state: boolean;
     @Input() titleText: string;
