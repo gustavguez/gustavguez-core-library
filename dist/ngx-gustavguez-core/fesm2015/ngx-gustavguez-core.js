@@ -1,5 +1,7 @@
 import { __decorate } from 'tslib';
 import { Input, Component, EventEmitter, Output, NgModule } from '@angular/core';
+import * as momentImported from 'moment';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 let NgxGustavguezLoaderComponent = class NgxGustavguezLoaderComponent {
@@ -56,6 +58,194 @@ NgxGustavguezPopupComponent = __decorate([
     })
 ], NgxGustavguezPopupComponent);
 
+class ArrayUtility {
+    //Suggest current timezone hours
+    static find(items, id, callback, compareKey) {
+        //Check id key
+        const key = compareKey ? compareKey : 'id';
+        //Check items
+        if (items instanceof Array) {
+            let found = false;
+            //Found it
+            items.every((item, index) => {
+                found = item[key] == id;
+                if (found) {
+                    callback(item, index);
+                }
+                return !found;
+            });
+        }
+    }
+    static each(items, callback) {
+        //Array
+        if (items instanceof Array) {
+            items.forEach((item, index) => {
+                callback(item, index);
+            });
+        }
+        else if (items && (typeof items === 'object')) {
+            //Object
+            for (let index in items) {
+                callback(items[index], index);
+            }
+        }
+    }
+    static every(items, callback) {
+        if (items instanceof Array) {
+            items.every((item, index) => {
+                return callback(item, index);
+            });
+        }
+    }
+    static getDisplayKeys(items, idKey, displayKey) {
+        let displayKeys = {};
+        //Default keys
+        idKey = idKey ? idKey : 'id';
+        displayKey = displayKey ? displayKey : 'name';
+        //Each
+        ArrayUtility.each(items, (obj) => {
+            displayKeys[obj[idKey]] = obj[displayKey];
+        });
+        return displayKeys;
+    }
+    static getSelectedKeys(items) {
+        let selected = [];
+        //Iterate
+        ArrayUtility.each(items, (val, key) => {
+            if (val)
+                selected.push(key);
+        });
+        return selected;
+    }
+    static filter(items, callback) {
+        if (items instanceof Array) {
+            let result = items.filter((item, index) => {
+                return callback(item, index);
+            });
+            return result;
+        }
+    }
+    static map(items, callback) {
+        let result = [];
+        if (items instanceof Array) {
+            result = items.map((item, index) => {
+                return callback(item, index);
+            });
+        }
+        return result;
+    }
+    static sort(items, compareKey) {
+        let result = items.sort((a, b) => {
+            if (a[compareKey] < b[compareKey])
+                return -1;
+            if (a[compareKey] > b[compareKey])
+                return 1;
+            return 0;
+        });
+        return result;
+    }
+    static hasValue(items) {
+        return (items instanceof Array && items.length > 0);
+    }
+}
+
+const moment = momentImported;
+class DateUtility {
+    static todayLocaleString() {
+        const today = moment();
+        return DateUtility.localeString(today);
+    }
+    static todayDateString() {
+        const today = moment();
+        return today.format("YYYY-MM-DD");
+    }
+    static localeString(date) {
+        return date.format("YYYY-MM-DD") + "T" + date.format("HH:mm");
+    }
+    static todayAsPrettyString() {
+        const today = moment();
+        return today.format("DD/MM/YYYY");
+    }
+    static prettyDate(date, displayHour) {
+        const d = moment(date);
+        let str = d.format("DD/MM/YYYY");
+        if (displayHour) {
+            str += " " + DateUtility.prettyHour(date);
+        }
+        return str;
+    }
+    static prettyHour(date) {
+        const d = moment(date);
+        return d.format("HH:mm");
+    }
+}
+
+class FormUtility {
+    /**
+     * Returns a form data object
+     * @param json
+     */
+    static jsonToFormData(json) {
+        let fd = new FormData();
+        for (let key in json) {
+            if (json[key] instanceof Array) {
+                json[key].forEach((j, index) => {
+                    fd.append(key + '[' + index + ']', j);
+                });
+            }
+            else {
+                fd.append(key, json[key]);
+            }
+        }
+        return fd;
+    }
+    /**
+     * Find an Blob or File object in json
+     * @param json
+     */
+    static needFormData(json) {
+        let need = false;
+        for (let key in json) {
+            if (json[key] instanceof File || json[key] instanceof Blob) {
+                need = true;
+                break;
+            }
+        }
+        return need;
+    }
+    /**
+     * Trigger form validations
+     * @param formGroup
+     */
+    static validateAllFormFields(formGroup) {
+        Object.keys(formGroup.controls).forEach(field => {
+            const control = formGroup.get(field);
+            if (control instanceof FormControl) {
+                control.markAsTouched({ onlySelf: true });
+            }
+            else if (control instanceof FormGroup) {
+                this.validateAllFormFields(control);
+            }
+        });
+    }
+}
+
+class NumberUtility {
+    static format(val) {
+        const valStr = val.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        return valStr.substring(0, valStr.length - 3);
+    }
+}
+
+class StringUtility {
+    static randomString() {
+        return Math.random().toString(36).substring(2, 12);
+    }
+    static padLeft(val, digits) {
+        return val.toString().padStart(digits, "0");
+    }
+}
+
 let NgxGustavguezCoreModule = class NgxGustavguezCoreModule {
 };
 NgxGustavguezCoreModule = __decorate([
@@ -65,7 +255,8 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezPopupComponent
         ],
         imports: [
-            CommonModule
+            CommonModule,
+            ReactiveFormsModule
         ],
         exports: [
             NgxGustavguezLoaderComponent,
@@ -74,9 +265,7 @@ NgxGustavguezCoreModule = __decorate([
     })
 ], NgxGustavguezCoreModule);
 
-/*
- * Public API Surface of ngx-gustavguez-core
- */
+//Structure components
 
 /**
  * Generated bundle index. Do not edit.
