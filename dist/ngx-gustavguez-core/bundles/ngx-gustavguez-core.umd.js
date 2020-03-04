@@ -504,9 +504,14 @@
         return NgxGustavguezCoreModule;
     }());
 
+    exports.ArrayUtility = ArrayUtility;
+    exports.DateUtility = DateUtility;
+    exports.FormUtility = FormUtility;
     exports.NgxGustavguezCoreModule = NgxGustavguezCoreModule;
     exports.NgxGustavguezLoaderComponent = NgxGustavguezLoaderComponent;
     exports.NgxGustavguezPopupComponent = NgxGustavguezPopupComponent;
+    exports.NumberUtility = NumberUtility;
+    exports.StringUtility = StringUtility;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

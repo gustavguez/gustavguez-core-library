@@ -1,4 +1,4 @@
-export default class ArrayUtility {
+export declare class ArrayUtility {
     static find(items: any[], id: any, callback: Function, compareKey?: string): void;
     static each(items: any, callback: Function): void;
     static every(items: any[], callback: Function): void;

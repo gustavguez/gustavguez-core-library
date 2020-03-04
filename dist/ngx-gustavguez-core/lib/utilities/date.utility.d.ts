@@ -1,4 +1,4 @@
-export default class DateUtility {
+export declare class DateUtility {
     static todayLocaleString(): string;
     static todayDateString(): string;
     static localeString(date: any): string;

@@ -2,7 +2,7 @@ import * as momentImported from 'moment';
 
 const moment = momentImported;
 
-export default class DateUtility {
+export class DateUtility {
 
     static todayLocaleString(): string {
         const today: any = moment();

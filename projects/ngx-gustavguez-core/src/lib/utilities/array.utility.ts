@@ -1,4 +1,4 @@
-export default class ArrayUtility {
+export class ArrayUtility {
 	
 	//Suggest current timezone hours
 	static find(items: any[], id: any, callback: Function, compareKey?: string): void{

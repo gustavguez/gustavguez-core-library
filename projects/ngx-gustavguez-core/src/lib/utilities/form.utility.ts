@@ -1,6 +1,6 @@
 import { FormGroup, FormControl } from "@angular/forms";
 
-export default class FormUtility {
+export class FormUtility {
 	
 	/**
 	 * Returns a form data object

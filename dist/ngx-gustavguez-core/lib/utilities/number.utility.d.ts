@@ -1,3 +1,3 @@
-export default class NumberUtility {
+export declare class NumberUtility {
     static format(val: number): string;
 }

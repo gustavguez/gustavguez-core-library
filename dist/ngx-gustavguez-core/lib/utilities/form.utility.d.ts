@@ -1,5 +1,5 @@
 import { FormGroup } from "@angular/forms";
-export default class FormUtility {
+export declare class FormUtility {
     /**
      * Returns a form data object
      * @param json

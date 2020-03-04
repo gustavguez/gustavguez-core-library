@@ -271,5 +271,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { NgxGustavguezCoreModule, NgxGustavguezLoaderComponent, NgxGustavguezPopupComponent };
+export { ArrayUtility, DateUtility, FormUtility, NgxGustavguezCoreModule, NgxGustavguezLoaderComponent, NgxGustavguezPopupComponent, NumberUtility, StringUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map
