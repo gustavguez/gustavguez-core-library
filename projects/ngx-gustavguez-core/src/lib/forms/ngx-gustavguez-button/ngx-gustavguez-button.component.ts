@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'lib-ngx-gustavguez-button',
+  selector: 'ngx-gustavguez-button',
   templateUrl: './ngx-gustavguez-button.component.html',
   styleUrls: ['./ngx-gustavguez-button.component.scss']
 })

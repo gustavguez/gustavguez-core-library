@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'lib-ngx-gustavguez-input-holder',
+  selector: 'ngx-gustavguez-input-holder',
   templateUrl: './ngx-gustavguez-input-holder.component.html',
   styleUrls: ['./ngx-gustavguez-input-holder.component.scss']
 })
