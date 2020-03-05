@@ -1,0 +1,15 @@
+import { __decorate } from "tslib";
+import { Pipe } from '@angular/core';
+import { DateUtility } from '../utilities/date.utility';
+let PrettyHourPipe = class PrettyHourPipe {
+    transform(value, ...args) {
+        return DateUtility.prettyHour(value);
+    }
+};
+PrettyHourPipe = __decorate([
+    Pipe({
+        name: 'prettyHour'
+    })
+], PrettyHourPipe);
+export { PrettyHourPipe };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJldHR5LWhvdXIucGlwZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL25neC1ndXN0YXZndWV6LWNvcmUvIiwic291cmNlcyI6WyJsaWIvcGlwZXMvcHJldHR5LWhvdXIucGlwZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsT0FBTyxFQUFFLElBQUksRUFBaUIsTUFBTSxlQUFlLENBQUM7QUFDcEQsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLDJCQUEyQixDQUFDO0FBS3hELElBQWEsY0FBYyxHQUEzQixNQUFhLGNBQWM7SUFFekIsU0FBUyxDQUFDLEtBQVUsRUFBRSxHQUFHLElBQVc7UUFDbEMsT0FBTyxXQUFXLENBQUMsVUFBVSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQ3ZDLENBQUM7Q0FFRixDQUFBO0FBTlksY0FBYztJQUgxQixJQUFJLENBQUM7UUFDSixJQUFJLEVBQUUsWUFBWTtLQUNuQixDQUFDO0dBQ1csY0FBYyxDQU0xQjtTQU5ZLGNBQWMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBQaXBlLCBQaXBlVHJhbnNmb3JtIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBEYXRlVXRpbGl0eSB9IGZyb20gJy4uL3V0aWxpdGllcy9kYXRlLnV0aWxpdHknO1xuXG5AUGlwZSh7XG4gIG5hbWU6ICdwcmV0dHlIb3VyJ1xufSlcbmV4cG9ydCBjbGFzcyBQcmV0dHlIb3VyUGlwZSBpbXBsZW1lbnRzIFBpcGVUcmFuc2Zvcm0ge1xuXG4gIHRyYW5zZm9ybSh2YWx1ZTogYW55LCAuLi5hcmdzOiBhbnlbXSk6IGFueSB7XG4gICAgcmV0dXJuIERhdGVVdGlsaXR5LnByZXR0eUhvdXIodmFsdWUpO1xuICB9XG5cbn1cbiJdfQ==

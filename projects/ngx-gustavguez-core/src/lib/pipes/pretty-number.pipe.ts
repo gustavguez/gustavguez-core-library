@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { NumberUtility } from 'ngx-gustavguez-core';
+import { NumberUtility } from '../utilities/number.utility';
 
 @Pipe({
   name: 'prettyNumber'

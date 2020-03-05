@@ -1,7 +1,9 @@
 import { __decorate } from 'tslib';
-import { Input, Component, EventEmitter, Output, NgModule } from '@angular/core';
+import { Input, Component, EventEmitter, Output, Pipe, ɵɵdefineInjectable, ɵɵinject, Injectable, NgModule } from '@angular/core';
 import * as momentImported from 'moment';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 var NgxGustavguezLoaderComponent = /** @class */ (function () {
@@ -268,6 +270,214 @@ var StringUtility = /** @class */ (function () {
     return StringUtility;
 }());
 
+var PrettyDatePipe = /** @class */ (function () {
+    function PrettyDatePipe() {
+    }
+    PrettyDatePipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return DateUtility.prettyDate(value, args.length ? args[0] : true);
+    };
+    PrettyDatePipe = __decorate([
+        Pipe({
+            name: 'prettyDate'
+        })
+    ], PrettyDatePipe);
+    return PrettyDatePipe;
+}());
+
+var PrettyHourPipe = /** @class */ (function () {
+    function PrettyHourPipe() {
+    }
+    PrettyHourPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return DateUtility.prettyHour(value);
+    };
+    PrettyHourPipe = __decorate([
+        Pipe({
+            name: 'prettyHour'
+        })
+    ], PrettyHourPipe);
+    return PrettyHourPipe;
+}());
+
+var PrettyNumberPipe = /** @class */ (function () {
+    function PrettyNumberPipe() {
+    }
+    PrettyNumberPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return value ? NumberUtility.format(value) : '';
+    };
+    PrettyNumberPipe = __decorate([
+        Pipe({
+            name: 'prettyNumber'
+        })
+    ], PrettyNumberPipe);
+    return PrettyNumberPipe;
+}());
+
+var ApiResponseModel = /** @class */ (function () {
+    function ApiResponseModel(data) {
+        this.data = data;
+    }
+    ApiResponseModel.prototype.hasData = function () {
+        return (this.data && Object.keys(this.data).length > 0);
+    };
+    return ApiResponseModel;
+}());
+
+var ApiService = /** @class */ (function () {
+    //Service constructor
+    function ApiService(httpClient) {
+        this.httpClient = httpClient;
+    }
+    //Setters
+    ApiService.prototype.setApiURL = function (apiURL) {
+        this.apiURL = apiURL;
+    };
+    ApiService.prototype.setAccessToken = function (accessToken) {
+        this.accessToken = accessToken;
+    };
+    //Fetch
+    ApiService.prototype.fetchData = function (uri, params) {
+        //Check cache of observables
+        var _this = this;
+        //Get options
+        var httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            }),
+            params: params
+        };
+        //Do request
+        return this.httpClient
+            .get(this.apiURL + uri, httpOptions)
+            .pipe(
+        //Map response
+        map(function (response) {
+            //Return api response model
+            return _this.parseResponse(response);
+        }));
+    };
+    //Fetch
+    ApiService.prototype.getObj = function (uri, id) {
+        //Check cache of observables
+        var _this = this;
+        //Get options
+        var httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            })
+        };
+        //Do request
+        return this.httpClient
+            .get(this.apiURL + uri + (id ? '/' + id : ''), httpOptions)
+            .pipe(
+        //Map response
+        map(function (response) {
+            //Return api response model
+            return _this.parseResponse(response);
+        }));
+    };
+    //Update an object using PATCH
+    ApiService.prototype.partialUpdateObj = function (uri, id, obj) {
+        var _this = this;
+        //Post options
+        var httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            })
+        };
+        //Url
+        var url = this.apiURL + uri + '/' + id;
+        //Do request
+        return this.httpClient
+            .patch(url, obj, httpOptions)
+            .pipe(
+        //Map response
+        map(function (response) {
+            //Return api response model
+            return _this.parseResponse(response);
+        }));
+    };
+    //Delete an object using DELETE
+    ApiService.prototype.deleteObj = function (uri, id) {
+        //Post options
+        var httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            })
+        };
+        //Url
+        var url = this.apiURL + uri + (id ? '/' + id : '');
+        //Do request
+        return this.httpClient
+            .delete(url, httpOptions)
+            .pipe(
+        //Map response
+        map(function (response) {
+            //Return api response model
+            return true;
+        }));
+    };
+    //Create an object with POST
+    ApiService.prototype.createObj = function (uri, obj) {
+        var _this = this;
+        //Post options
+        var httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            })
+        };
+        //Url
+        var url = this.apiURL + uri;
+        //check form data
+        if (FormUtility.needFormData(obj)) {
+            obj = FormUtility.jsonToFormData(obj);
+        }
+        //Do request
+        return this.httpClient
+            .post(url, obj, httpOptions)
+            .pipe(
+        //Map response
+        map(function (response) {
+            //Return api response model
+            return _this.parseResponse(response);
+        }));
+    };
+    //Parse response
+    ApiService.prototype.parseResponse = function (response) {
+        //Current response
+        var resp = new ApiResponseModel();
+        //CHECK RESPONSE
+        if (response
+            && response.data) {
+            //Load data
+            resp.data = response.data;
+        }
+        //Return api response model
+        return resp;
+    };
+    ApiService.ctorParameters = function () { return [
+        { type: HttpClient }
+    ]; };
+    ApiService.ɵprov = ɵɵdefineInjectable({ factory: function ApiService_Factory() { return new ApiService(ɵɵinject(HttpClient)); }, token: ApiService, providedIn: "root" });
+    ApiService = __decorate([
+        Injectable({
+            providedIn: "root"
+        })
+    ], ApiService);
+    return ApiService;
+}());
+
 var NgxGustavguezCoreModule = /** @class */ (function () {
     function NgxGustavguezCoreModule() {
     }
@@ -275,7 +485,10 @@ var NgxGustavguezCoreModule = /** @class */ (function () {
         NgModule({
             declarations: [
                 NgxGustavguezLoaderComponent,
-                NgxGustavguezPopupComponent
+                NgxGustavguezPopupComponent,
+                PrettyDatePipe,
+                PrettyHourPipe,
+                PrettyNumberPipe
             ],
             imports: [
                 CommonModule,
@@ -283,7 +496,10 @@ var NgxGustavguezCoreModule = /** @class */ (function () {
             ],
             exports: [
                 NgxGustavguezLoaderComponent,
-                NgxGustavguezPopupComponent
+                NgxGustavguezPopupComponent,
+                PrettyDatePipe,
+                PrettyHourPipe,
+                PrettyNumberPipe
             ]
         })
     ], NgxGustavguezCoreModule);
@@ -296,5 +512,5 @@ var NgxGustavguezCoreModule = /** @class */ (function () {
  * Generated bundle index. Do not edit.
  */
 
-export { ArrayUtility, DateUtility, FormUtility, NgxGustavguezCoreModule, NgxGustavguezLoaderComponent, NgxGustavguezPopupComponent, NumberUtility, StringUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezCoreModule, NgxGustavguezLoaderComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map

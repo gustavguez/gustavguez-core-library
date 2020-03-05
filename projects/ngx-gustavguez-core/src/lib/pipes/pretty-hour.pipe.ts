@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DateUtility } from 'ngx-gustavguez-core';
+import { DateUtility } from '../utilities/date.utility';
 
 @Pipe({
   name: 'prettyHour'

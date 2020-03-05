@@ -1,0 +1,15 @@
+import { __decorate } from "tslib";
+import { Pipe } from '@angular/core';
+import { NumberUtility } from '../utilities/number.utility';
+let PrettyNumberPipe = class PrettyNumberPipe {
+    transform(value, ...args) {
+        return value ? NumberUtility.format(value) : '';
+    }
+};
+PrettyNumberPipe = __decorate([
+    Pipe({
+        name: 'prettyNumber'
+    })
+], PrettyNumberPipe);
+export { PrettyNumberPipe };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJldHR5LW51bWJlci5waXBlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vbmd4LWd1c3Rhdmd1ZXotY29yZS8iLCJzb3VyY2VzIjpbImxpYi9waXBlcy9wcmV0dHktbnVtYmVyLnBpcGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLE9BQU8sRUFBRSxJQUFJLEVBQWlCLE1BQU0sZUFBZSxDQUFDO0FBQ3BELE9BQU8sRUFBRSxhQUFhLEVBQUUsTUFBTSw2QkFBNkIsQ0FBQztBQUs1RCxJQUFhLGdCQUFnQixHQUE3QixNQUFhLGdCQUFnQjtJQUUzQixTQUFTLENBQUMsS0FBVSxFQUFFLEdBQUcsSUFBVztRQUNsQyxPQUFPLEtBQUssQ0FBQyxDQUFDLENBQUMsYUFBYSxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQSxDQUFDLENBQUMsRUFBRSxDQUFDO0lBQ2pELENBQUM7Q0FFRixDQUFBO0FBTlksZ0JBQWdCO0lBSDVCLElBQUksQ0FBQztRQUNKLElBQUksRUFBRSxjQUFjO0tBQ3JCLENBQUM7R0FDVyxnQkFBZ0IsQ0FNNUI7U0FOWSxnQkFBZ0IiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBQaXBlLCBQaXBlVHJhbnNmb3JtIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBOdW1iZXJVdGlsaXR5IH0gZnJvbSAnLi4vdXRpbGl0aWVzL251bWJlci51dGlsaXR5JztcblxuQFBpcGUoe1xuICBuYW1lOiAncHJldHR5TnVtYmVyJ1xufSlcbmV4cG9ydCBjbGFzcyBQcmV0dHlOdW1iZXJQaXBlIGltcGxlbWVudHMgUGlwZVRyYW5zZm9ybSB7XG5cbiAgdHJhbnNmb3JtKHZhbHVlOiBhbnksIC4uLmFyZ3M6IGFueVtdKTogYW55IHtcbiAgICByZXR1cm4gdmFsdWUgPyBOdW1iZXJVdGlsaXR5LmZvcm1hdCh2YWx1ZSk6ICcnO1xuICB9XG5cbn1cbiJdfQ==

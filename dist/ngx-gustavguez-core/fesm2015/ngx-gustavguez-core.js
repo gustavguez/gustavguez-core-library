@@ -1,7 +1,9 @@
 import { __decorate } from 'tslib';
-import { Input, Component, EventEmitter, Output, NgModule } from '@angular/core';
+import { Input, Component, EventEmitter, Output, Pipe, ɵɵdefineInjectable, ɵɵinject, Injectable, NgModule } from '@angular/core';
 import * as momentImported from 'moment';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 let NgxGustavguezLoaderComponent = class NgxGustavguezLoaderComponent {
@@ -246,13 +248,197 @@ class StringUtility {
     }
 }
 
+let PrettyDatePipe = class PrettyDatePipe {
+    transform(value, ...args) {
+        return DateUtility.prettyDate(value, args.length ? args[0] : true);
+    }
+};
+PrettyDatePipe = __decorate([
+    Pipe({
+        name: 'prettyDate'
+    })
+], PrettyDatePipe);
+
+let PrettyHourPipe = class PrettyHourPipe {
+    transform(value, ...args) {
+        return DateUtility.prettyHour(value);
+    }
+};
+PrettyHourPipe = __decorate([
+    Pipe({
+        name: 'prettyHour'
+    })
+], PrettyHourPipe);
+
+let PrettyNumberPipe = class PrettyNumberPipe {
+    transform(value, ...args) {
+        return value ? NumberUtility.format(value) : '';
+    }
+};
+PrettyNumberPipe = __decorate([
+    Pipe({
+        name: 'prettyNumber'
+    })
+], PrettyNumberPipe);
+
+class ApiResponseModel {
+    constructor(data) {
+        this.data = data;
+    }
+    hasData() {
+        return (this.data && Object.keys(this.data).length > 0);
+    }
+}
+
+let ApiService = class ApiService {
+    //Service constructor
+    constructor(httpClient) {
+        this.httpClient = httpClient;
+    }
+    //Setters
+    setApiURL(apiURL) {
+        this.apiURL = apiURL;
+    }
+    setAccessToken(accessToken) {
+        this.accessToken = accessToken;
+    }
+    //Fetch
+    fetchData(uri, params) {
+        //Check cache of observables
+        //Get options
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            }),
+            params: params
+        };
+        //Do request
+        return this.httpClient
+            .get(this.apiURL + uri, httpOptions)
+            .pipe(
+        //Map response
+        map((response) => {
+            //Return api response model
+            return this.parseResponse(response);
+        }));
+    }
+    //Fetch
+    getObj(uri, id) {
+        //Check cache of observables
+        //Get options
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            })
+        };
+        //Do request
+        return this.httpClient
+            .get(this.apiURL + uri + (id ? '/' + id : ''), httpOptions)
+            .pipe(
+        //Map response
+        map((response) => {
+            //Return api response model
+            return this.parseResponse(response);
+        }));
+    }
+    //Update an object using PATCH
+    partialUpdateObj(uri, id, obj) {
+        //Post options
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            })
+        };
+        //Url
+        const url = this.apiURL + uri + '/' + id;
+        //Do request
+        return this.httpClient
+            .patch(url, obj, httpOptions)
+            .pipe(
+        //Map response
+        map((response) => {
+            //Return api response model
+            return this.parseResponse(response);
+        }));
+    }
+    //Delete an object using DELETE
+    deleteObj(uri, id) {
+        //Post options
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            })
+        };
+        //Url
+        const url = this.apiURL + uri + (id ? '/' + id : '');
+        //Do request
+        return this.httpClient
+            .delete(url, httpOptions)
+            .pipe(
+        //Map response
+        map((response) => {
+            //Return api response model
+            return true;
+        }));
+    }
+    //Create an object with POST
+    createObj(uri, obj) {
+        //Post options
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.accessToken
+            })
+        };
+        //Url
+        const url = this.apiURL + uri;
+        //check form data
+        if (FormUtility.needFormData(obj)) {
+            obj = FormUtility.jsonToFormData(obj);
+        }
+        //Do request
+        return this.httpClient
+            .post(url, obj, httpOptions)
+            .pipe(
+        //Map response
+        map((response) => {
+            //Return api response model
+            return this.parseResponse(response);
+        }));
+    }
+    //Parse response
+    parseResponse(response) {
+        //Current response
+        let resp = new ApiResponseModel();
+        //CHECK RESPONSE
+        if (response
+            && response.data) {
+            //Load data
+            resp.data = response.data;
+        }
+        //Return api response model
+        return resp;
+    }
+};
+ApiService.ctorParameters = () => [
+    { type: HttpClient }
+];
+ApiService.ɵprov = ɵɵdefineInjectable({ factory: function ApiService_Factory() { return new ApiService(ɵɵinject(HttpClient)); }, token: ApiService, providedIn: "root" });
+ApiService = __decorate([
+    Injectable({
+        providedIn: "root"
+    })
+], ApiService);
+
 let NgxGustavguezCoreModule = class NgxGustavguezCoreModule {
 };
 NgxGustavguezCoreModule = __decorate([
     NgModule({
         declarations: [
             NgxGustavguezLoaderComponent,
-            NgxGustavguezPopupComponent
+            NgxGustavguezPopupComponent,
+            PrettyDatePipe,
+            PrettyHourPipe,
+            PrettyNumberPipe
         ],
         imports: [
             CommonModule,
@@ -260,7 +446,10 @@ NgxGustavguezCoreModule = __decorate([
         ],
         exports: [
             NgxGustavguezLoaderComponent,
-            NgxGustavguezPopupComponent
+            NgxGustavguezPopupComponent,
+            PrettyDatePipe,
+            PrettyHourPipe,
+            PrettyNumberPipe
         ]
     })
 ], NgxGustavguezCoreModule);
@@ -271,5 +460,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ArrayUtility, DateUtility, FormUtility, NgxGustavguezCoreModule, NgxGustavguezLoaderComponent, NgxGustavguezPopupComponent, NumberUtility, StringUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezCoreModule, NgxGustavguezLoaderComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map
