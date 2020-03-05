@@ -690,6 +690,58 @@
         return ApiService;
     }());
 
+    var NgxGustavguezButtonComponent = /** @class */ (function () {
+        //Inject services
+        function NgxGustavguezButtonComponent() {
+        }
+        //On component init
+        NgxGustavguezButtonComponent.prototype.ngOnInit = function () {
+        };
+        __decorate([
+            core.Input()
+        ], NgxGustavguezButtonComponent.prototype, "text", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezButtonComponent.prototype, "loadingText", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezButtonComponent.prototype, "loading", void 0);
+        NgxGustavguezButtonComponent = __decorate([
+            core.Component({
+                selector: 'lib-ngx-gustavguez-button',
+                template: "<button \n    type=\"submit\" \n    class=\"btn btn-primary btn-block\">\n    <span *ngIf=\"!loading\">{{ text }}</span>\n\n    <ngx-gustavguez-loader \n        [loadingText]=\"loadingText\"\n        [loading]=\"loading\"></ngx-gustavguez-loader>\n</button>",
+                styles: [""]
+            })
+        ], NgxGustavguezButtonComponent);
+        return NgxGustavguezButtonComponent;
+    }());
+
+    var NgxGustavguezInputHolderComponent = /** @class */ (function () {
+        //Inject services
+        function NgxGustavguezInputHolderComponent() {
+        }
+        //On component init
+        NgxGustavguezInputHolderComponent.prototype.ngOnInit = function () {
+        };
+        __decorate([
+            core.Input()
+        ], NgxGustavguezInputHolderComponent.prototype, "form", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezInputHolderComponent.prototype, "controlName", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezInputHolderComponent.prototype, "requiredErrorText", void 0);
+        NgxGustavguezInputHolderComponent = __decorate([
+            core.Component({
+                selector: 'lib-ngx-gustavguez-input-holder',
+                template: "<div class=\"form-group\">\n    <!-- CONTAINER -->\n    <ng-content></ng-content>\n\n    <!-- VALIDATIONS -->\n    <div class=\"text-danger\" *ngIf=\"form\">\n        <small *ngIf=\"\n                form.get(controlName).touched \n                && form.get(controlName).errors\n                && form.get(controlName).errors.required\">\n            {{ requiredErrorText ? requiredErrorText : \"Este campo es requerido\"  }}\n        </small>\n    </div>\n</div>",
+                styles: [""]
+            })
+        ], NgxGustavguezInputHolderComponent);
+        return NgxGustavguezInputHolderComponent;
+    }());
+
     var NgxGustavguezCoreModule = /** @class */ (function () {
         function NgxGustavguezCoreModule() {
         }
@@ -700,7 +752,9 @@
                     NgxGustavguezPopupComponent,
                     PrettyDatePipe,
                     PrettyHourPipe,
-                    PrettyNumberPipe
+                    PrettyNumberPipe,
+                    NgxGustavguezButtonComponent,
+                    NgxGustavguezInputHolderComponent
                 ],
                 imports: [
                     common.CommonModule,
@@ -711,7 +765,9 @@
                     NgxGustavguezPopupComponent,
                     PrettyDatePipe,
                     PrettyHourPipe,
-                    PrettyNumberPipe
+                    PrettyNumberPipe,
+                    NgxGustavguezButtonComponent,
+                    NgxGustavguezInputHolderComponent
                 ]
             })
         ], NgxGustavguezCoreModule);
@@ -723,7 +779,9 @@
     exports.ArrayUtility = ArrayUtility;
     exports.DateUtility = DateUtility;
     exports.FormUtility = FormUtility;
+    exports.NgxGustavguezButtonComponent = NgxGustavguezButtonComponent;
     exports.NgxGustavguezCoreModule = NgxGustavguezCoreModule;
+    exports.NgxGustavguezInputHolderComponent = NgxGustavguezInputHolderComponent;
     exports.NgxGustavguezLoaderComponent = NgxGustavguezLoaderComponent;
     exports.NgxGustavguezPopupComponent = NgxGustavguezPopupComponent;
     exports.NumberUtility = NumberUtility;

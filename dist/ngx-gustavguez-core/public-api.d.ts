@@ -11,4 +11,6 @@ export * from './lib/pipes/pretty-number.pipe';
 export * from './lib/api/api-response.model';
 export * from './lib/api/json-model.interface';
 export * from './lib/api/api.service';
+export * from './lib/forms/ngx-gustavguez-button/ngx-gustavguez-button.component';
+export * from './lib/forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-holder.component';
 export * from './lib/ngx-gustavguez-core.module';
