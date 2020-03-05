@@ -9,5 +9,10 @@ export * from './lib/utilities/form.utility';
 export * from './lib/utilities/number.utility';
 export * from './lib/utilities/string.utility';
 
+//Pipes
+export * from './lib/pipes/pretty-date.pipe';
+export * from './lib/pipes/pretty-hour.pipe';
+export * from './lib/pipes/pretty-number.pipe';
+
 //Lib module
 export * from './lib/ngx-gustavguez-core.module';
