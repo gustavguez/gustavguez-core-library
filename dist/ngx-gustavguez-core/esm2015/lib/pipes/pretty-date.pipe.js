@@ -1,0 +1,15 @@
+import { __decorate } from "tslib";
+import { Pipe } from '@angular/core';
+import { DateUtility } from '../utilities/date.utility';
+let PrettyDatePipe = class PrettyDatePipe {
+    transform(value, ...args) {
+        return DateUtility.prettyDate(value, args.length ? args[0] : true);
+    }
+};
+PrettyDatePipe = __decorate([
+    Pipe({
+        name: 'prettyDate'
+    })
+], PrettyDatePipe);
+export { PrettyDatePipe };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJldHR5LWRhdGUucGlwZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL25neC1ndXN0YXZndWV6LWNvcmUvIiwic291cmNlcyI6WyJsaWIvcGlwZXMvcHJldHR5LWRhdGUucGlwZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsT0FBTyxFQUFFLElBQUksRUFBaUIsTUFBTSxlQUFlLENBQUM7QUFDcEQsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLDJCQUEyQixDQUFDO0FBS3hELElBQWEsY0FBYyxHQUEzQixNQUFhLGNBQWM7SUFFekIsU0FBUyxDQUFDLEtBQVUsRUFBRSxHQUFHLElBQVc7UUFDbEMsT0FBTyxXQUFXLENBQUMsVUFBVSxDQUFDLEtBQUssRUFBRSxJQUFJLENBQUMsTUFBTSxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDO0lBQ3JFLENBQUM7Q0FFRixDQUFBO0FBTlksY0FBYztJQUgxQixJQUFJLENBQUM7UUFDSixJQUFJLEVBQUUsWUFBWTtLQUNuQixDQUFDO0dBQ1csY0FBYyxDQU0xQjtTQU5ZLGNBQWMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBQaXBlLCBQaXBlVHJhbnNmb3JtIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBEYXRlVXRpbGl0eSB9IGZyb20gJy4uL3V0aWxpdGllcy9kYXRlLnV0aWxpdHknO1xuXG5AUGlwZSh7XG4gIG5hbWU6ICdwcmV0dHlEYXRlJ1xufSlcbmV4cG9ydCBjbGFzcyBQcmV0dHlEYXRlUGlwZSBpbXBsZW1lbnRzIFBpcGVUcmFuc2Zvcm0ge1xuXG4gIHRyYW5zZm9ybSh2YWx1ZTogYW55LCAuLi5hcmdzOiBhbnlbXSk6IGFueSB7XG4gICAgcmV0dXJuIERhdGVVdGlsaXR5LnByZXR0eURhdGUodmFsdWUsIGFyZ3MubGVuZ3RoID8gYXJnc1swXSA6IHRydWUpO1xuICB9XG5cbn1cbiJdfQ==

@@ -1,0 +1,31 @@
+{
+  "name": "ngx-gustavguez-core",
+  "version": "1.0.10",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gustavguez/gustavguez-core-library"
+  },
+  "author": {
+    "name": "Gustavo Rodríguez",
+    "email": "gustavguez@gmail.com",
+    "url": "http://gustavorodriguez.com.uy"
+  },
+  "peerDependencies": {
+    "@angular/common": "^9.0.3",
+    "@angular/core": "^9.0.3",
+    "tslib": "^1.10.0"
+  },
+  "dependencies": {
+    "moment": "^2.24.0"
+  },
+  "main": "bundles/ngx-gustavguez-core.umd.js",
+  "module": "fesm5/ngx-gustavguez-core.js",
+  "es2015": "fesm2015/ngx-gustavguez-core.js",
+  "esm5": "esm5/ngx-gustavguez-core.js",
+  "esm2015": "esm2015/ngx-gustavguez-core.js",
+  "fesm5": "fesm5/ngx-gustavguez-core.js",
+  "fesm2015": "fesm2015/ngx-gustavguez-core.js",
+  "typings": "ngx-gustavguez-core.d.ts",
+  "metadata": "ngx-gustavguez-core.metadata.json",
+  "sideEffects": false
+}
