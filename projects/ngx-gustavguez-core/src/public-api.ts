@@ -14,6 +14,11 @@ export * from './lib/pipes/pretty-date.pipe';
 export * from './lib/pipes/pretty-hour.pipe';
 export * from './lib/pipes/pretty-number.pipe';
 
+//Core
+export * from './lib/core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.component';
+export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
+export * from './lib/core/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
+
 //Api
 export * from './lib/api/api-response.model';
 export * from './lib/api/json-model.interface';

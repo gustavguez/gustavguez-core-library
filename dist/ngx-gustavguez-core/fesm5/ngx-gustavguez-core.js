@@ -324,6 +324,57 @@ var PrettyNumberPipe = /** @class */ (function () {
     return PrettyNumberPipe;
 }());
 
+var NgxGustavguezMainContainerComponent = /** @class */ (function () {
+    //Inject services
+    function NgxGustavguezMainContainerComponent() {
+    }
+    //On component init
+    NgxGustavguezMainContainerComponent.prototype.ngOnInit = function () {
+    };
+    NgxGustavguezMainContainerComponent = __decorate([
+        Component({
+            selector: 'ngx-gustavguez-main-container',
+            template: "<div class=\"sidebar-mini layout-fixed layout-navbar-fixed\">\n    \n</div>",
+            styles: [""]
+        })
+    ], NgxGustavguezMainContainerComponent);
+    return NgxGustavguezMainContainerComponent;
+}());
+
+var NgxGustavguezMainSidebarComponent = /** @class */ (function () {
+    //Inject services
+    function NgxGustavguezMainSidebarComponent() {
+    }
+    //On component init
+    NgxGustavguezMainSidebarComponent.prototype.ngOnInit = function () {
+    };
+    NgxGustavguezMainSidebarComponent = __decorate([
+        Component({
+            selector: 'ngx-gustavguez-main-sidebar',
+            template: "<aside class=\"main-sidebar sidebar-dark-primary elevation-4\">\n    <!-- Brand Logo -->\n    <a href=\"#\" class=\"brand-link\">\n        <img src=\"../assets/images/logo.png\" alt=\"AdminLTE Logo\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">Mis Finanzas</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img src=\"http://api.gustavorodriguez.com.uy/uploads/images/avatar_gus.jpeg\"\n                    class=\"img-circle elevation-2\" alt=\"User Image\">\n            </div>\n            <div class=\"info\">\n                <a href=\"#\" class=\"d-block\">Gustavo Rodriguez</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul class=\"nav nav-pills nav-sidebar flex-column\" data-widget=\"treeview\" role=\"menu\"\n                data-accordion=\"false\">\n\n                <li class=\"nav-header\">MULTI LEVEL EXAMPLE</li>\n                <li class=\"nav-item\">\n                    <a href=\"#\" class=\"nav-link\">\n                        <i class=\"fas fa-circle nav-icon\"></i>\n                        <p>Level 1</p>\n                    </a>\n                </li>\n                <li class=\"nav-item has-treeview menu-open\">\n                    <a href=\"#\" class=\"nav-link\">\n                        <i class=\"nav-icon fas fa-circle\"></i>\n                        <p>\n                            Level 1\n                            <i class=\"right fas fa-angle-left\"></i>\n                        </p>\n                    </a>\n                    <ul class=\"nav nav-treeview\" style=\"display: block;\">\n                        <li class=\"nav-item\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>Level 2</p>\n                            </a>\n                        </li>\n                        <li class=\"nav-item has-treeview menu-open\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>\n                                    Level 2\n                                    <i class=\"right fas fa-angle-left\"></i>\n                                </p>\n                            </a>\n                            <ul class=\"nav nav-treeview\" style=\"display: block;\">\n                                <li class=\"nav-item\">\n                                    <a href=\"#\" class=\"nav-link\">\n                                        <i class=\"far fa-dot-circle nav-icon\"></i>\n                                        <p>Level 3</p>\n                                    </a>\n                                </li>\n                                <li class=\"nav-item\">\n                                    <a href=\"#\" class=\"nav-link\">\n                                        <i class=\"far fa-dot-circle nav-icon\"></i>\n                                        <p>Level 3</p>\n                                    </a>\n                                </li>\n                                <li class=\"nav-item\">\n                                    <a href=\"#\" class=\"nav-link\">\n                                        <i class=\"far fa-dot-circle nav-icon\"></i>\n                                        <p>Level 3</p>\n                                    </a>\n                                </li>\n                            </ul>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>Level 2</p>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                <li class=\"nav-item\">\n                    <a href=\"#\" class=\"nav-link\">\n                        <i class=\"fas fa-circle nav-icon\"></i>\n                        <p>Level 1</p>\n                    </a>\n                </li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>",
+            styles: [""]
+        })
+    ], NgxGustavguezMainSidebarComponent);
+    return NgxGustavguezMainSidebarComponent;
+}());
+
+var NgxGustavguezNavComponent = /** @class */ (function () {
+    //Inject services
+    function NgxGustavguezNavComponent() {
+    }
+    //On component init
+    NgxGustavguezNavComponent.prototype.ngOnInit = function () {
+    };
+    NgxGustavguezNavComponent = __decorate([
+        Component({
+            selector: 'ngx-gustavguez-nav',
+            template: "<!-- NAV -->\n<nav class=\"main-header navbar navbar-expand navbar-white navbar-light\">\n    <!-- Left navbar links -->\n    <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" data-widget=\"pushmenu\" href=\"#\"><i class=\"fas fa-bars\"></i></a>\n        </li>\n    </ul>\n\n    <!-- Right navbar links -->\n    <ul class=\"navbar-nav ml-auto\">\n        <!-- Notifications Dropdown Menu -->\n        <li class=\"nav-item dropdown\">\n            <a class=\"nav-link\" data-toggle=\"dropdown\" href=\"#\">\n                <i class=\"fas fa-cog\"></i>\n            </a>\n\n            <!-- .show to display -->\n            <div class=\"dropdown-menu dropdown-menu-lg dropdown-menu-right\">\n                <span class=\"dropdown-item dropdown-header\">Men\u00FA de usuario</span>\n                <div class=\"dropdown-divider\"></div>\n                <a href=\"#\" class=\"dropdown-item\">\n                    <i class=\"fas fa-sign-out-alt\"></i> Cerrar sesi\u00F3n\n                </a>\n            </div>\n        </li>\n    </ul>\n</nav>",
+            styles: [""]
+        })
+    ], NgxGustavguezNavComponent);
+    return NgxGustavguezNavComponent;
+}());
+
 var ApiResponseModel = /** @class */ (function () {
     function ApiResponseModel(data) {
         this.data = data;
@@ -536,26 +587,32 @@ var NgxGustavguezCoreModule = /** @class */ (function () {
     NgxGustavguezCoreModule = __decorate([
         NgModule({
             declarations: [
-                NgxGustavguezLoaderComponent,
-                NgxGustavguezPopupComponent,
                 PrettyDatePipe,
                 PrettyHourPipe,
                 PrettyNumberPipe,
+                NgxGustavguezLoaderComponent,
+                NgxGustavguezPopupComponent,
                 NgxGustavguezButtonComponent,
-                NgxGustavguezInputHolderComponent
+                NgxGustavguezInputHolderComponent,
+                NgxGustavguezMainContainerComponent,
+                NgxGustavguezNavComponent,
+                NgxGustavguezMainSidebarComponent,
             ],
             imports: [
                 CommonModule,
                 ReactiveFormsModule
             ],
             exports: [
-                NgxGustavguezLoaderComponent,
-                NgxGustavguezPopupComponent,
                 PrettyDatePipe,
                 PrettyHourPipe,
                 PrettyNumberPipe,
+                NgxGustavguezLoaderComponent,
+                NgxGustavguezPopupComponent,
                 NgxGustavguezButtonComponent,
-                NgxGustavguezInputHolderComponent
+                NgxGustavguezInputHolderComponent,
+                NgxGustavguezMainContainerComponent,
+                NgxGustavguezNavComponent,
+                NgxGustavguezMainSidebarComponent,
             ]
         })
     ], NgxGustavguezCoreModule);
@@ -568,5 +625,5 @@ var NgxGustavguezCoreModule = /** @class */ (function () {
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerComponent, NgxGustavguezMainSidebarComponent, NgxGustavguezNavComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map
