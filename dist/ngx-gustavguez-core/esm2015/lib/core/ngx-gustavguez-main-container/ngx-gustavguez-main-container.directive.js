@@ -1,0 +1,24 @@
+import { __decorate } from "tslib";
+import { Directive, HostBinding } from '@angular/core';
+let NgxGustavguezMainContainerDirective = class NgxGustavguezMainContainerDirective {
+    //Inject services
+    constructor() {
+        //Modes
+        this.baseClasses = 'sidebar-mini layout-fixed layout-navbar-fixed';
+    }
+    //On component init
+    ngOnInit() {
+        //Set base classes to host classes
+        this.hostClasses = this.baseClasses;
+    }
+};
+__decorate([
+    HostBinding('class')
+], NgxGustavguezMainContainerDirective.prototype, "hostClasses", void 0);
+NgxGustavguezMainContainerDirective = __decorate([
+    Directive({
+        selector: '[ngxGustavguezMainContainer]'
+    })
+], NgxGustavguezMainContainerDirective);
+export { NgxGustavguezMainContainerDirective };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmd4LWd1c3Rhdmd1ZXotbWFpbi1jb250YWluZXIuZGlyZWN0aXZlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vbmd4LWd1c3Rhdmd1ZXotY29yZS8iLCJzb3VyY2VzIjpbImxpYi9jb3JlL25neC1ndXN0YXZndWV6LW1haW4tY29udGFpbmVyL25neC1ndXN0YXZndWV6LW1haW4tY29udGFpbmVyLmRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxXQUFXLEVBQVUsTUFBTSxlQUFlLENBQUM7QUFLL0QsSUFBYSxtQ0FBbUMsR0FBaEQsTUFBYSxtQ0FBbUM7SUFPNUMsaUJBQWlCO0lBQ2pCO1FBSkEsT0FBTztRQUNQLGdCQUFXLEdBQVcsK0NBQStDLENBQUM7SUFHdEQsQ0FBQztJQUVqQixtQkFBbUI7SUFDbkIsUUFBUTtRQUNKLGtDQUFrQztRQUNsQyxJQUFJLENBQUMsV0FBVyxHQUFHLElBQUksQ0FBQyxXQUFXLENBQUM7SUFDeEMsQ0FBQztDQUVKLENBQUE7QUFkeUI7SUFBckIsV0FBVyxDQUFDLE9BQU8sQ0FBQzt3RUFBcUI7QUFGakMsbUNBQW1DO0lBSC9DLFNBQVMsQ0FBQztRQUNQLFFBQVEsRUFBRSw4QkFBOEI7S0FDM0MsQ0FBQztHQUNXLG1DQUFtQyxDQWdCL0M7U0FoQlksbUNBQW1DIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlyZWN0aXZlLCBIb3N0QmluZGluZywgT25Jbml0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBEaXJlY3RpdmUoe1xuICAgIHNlbGVjdG9yOiAnW25neEd1c3Rhdmd1ZXpNYWluQ29udGFpbmVyXSdcbn0pXG5leHBvcnQgY2xhc3MgTmd4R3VzdGF2Z3Vlek1haW5Db250YWluZXJEaXJlY3RpdmUgaW1wbGVtZW50cyBPbkluaXQge1xuICAgIC8vSG9zdCBiaW5kaW5nXG4gICAgQEhvc3RCaW5kaW5nKCdjbGFzcycpIGhvc3RDbGFzc2VzOiBzdHJpbmc7XG5cbiAgICAvL01vZGVzXG4gICAgYmFzZUNsYXNzZXM6IHN0cmluZyA9ICdzaWRlYmFyLW1pbmkgbGF5b3V0LWZpeGVkIGxheW91dC1uYXZiYXItZml4ZWQnO1xuXG4gICAgLy9JbmplY3Qgc2VydmljZXNcbiAgICBjb25zdHJ1Y3RvcigpIHsgfVxuXG4gICAgLy9PbiBjb21wb25lbnQgaW5pdFxuICAgIG5nT25Jbml0KCkge1xuICAgICAgICAvL1NldCBiYXNlIGNsYXNzZXMgdG8gaG9zdCBjbGFzc2VzXG4gICAgICAgIHRoaXMuaG9zdENsYXNzZXMgPSB0aGlzLmJhc2VDbGFzc2VzO1xuICAgIH1cblxufVxuIl19

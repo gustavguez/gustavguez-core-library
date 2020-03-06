@@ -15,7 +15,7 @@ export * from './lib/pipes/pretty-hour.pipe';
 export * from './lib/pipes/pretty-number.pipe';
 
 //Core
-export * from './lib/core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.component';
+export * from './lib/core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
 export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
 export * from './lib/core/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
 

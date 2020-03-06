@@ -536,21 +536,26 @@
         return PrettyNumberPipe;
     }());
 
-    var NgxGustavguezMainContainerComponent = /** @class */ (function () {
+    var NgxGustavguezMainContainerDirective = /** @class */ (function () {
         //Inject services
-        function NgxGustavguezMainContainerComponent() {
+        function NgxGustavguezMainContainerDirective() {
+            //Modes
+            this.baseClasses = 'sidebar-mini layout-fixed layout-navbar-fixed';
         }
         //On component init
-        NgxGustavguezMainContainerComponent.prototype.ngOnInit = function () {
+        NgxGustavguezMainContainerDirective.prototype.ngOnInit = function () {
+            //Set base classes to host classes
+            this.hostClasses = this.baseClasses;
         };
-        NgxGustavguezMainContainerComponent = __decorate([
-            core.Component({
-                selector: 'ngx-gustavguez-main-container',
-                template: "<div class=\"sidebar-mini layout-fixed layout-navbar-fixed\">\n    \n</div>",
-                styles: [""]
+        __decorate([
+            core.HostBinding('class')
+        ], NgxGustavguezMainContainerDirective.prototype, "hostClasses", void 0);
+        NgxGustavguezMainContainerDirective = __decorate([
+            core.Directive({
+                selector: '[ngxGustavguezMainContainer]'
             })
-        ], NgxGustavguezMainContainerComponent);
-        return NgxGustavguezMainContainerComponent;
+        ], NgxGustavguezMainContainerDirective);
+        return NgxGustavguezMainContainerDirective;
     }());
 
     var NgxGustavguezMainSidebarComponent = /** @class */ (function () {
@@ -806,9 +811,9 @@
                     NgxGustavguezPopupComponent,
                     NgxGustavguezButtonComponent,
                     NgxGustavguezInputHolderComponent,
-                    NgxGustavguezMainContainerComponent,
                     NgxGustavguezNavComponent,
                     NgxGustavguezMainSidebarComponent,
+                    NgxGustavguezMainContainerDirective,
                 ],
                 imports: [
                     common.CommonModule,
@@ -822,9 +827,9 @@
                     NgxGustavguezPopupComponent,
                     NgxGustavguezButtonComponent,
                     NgxGustavguezInputHolderComponent,
-                    NgxGustavguezMainContainerComponent,
                     NgxGustavguezNavComponent,
                     NgxGustavguezMainSidebarComponent,
+                    NgxGustavguezMainContainerDirective,
                 ]
             })
         ], NgxGustavguezCoreModule);
@@ -840,7 +845,7 @@
     exports.NgxGustavguezCoreModule = NgxGustavguezCoreModule;
     exports.NgxGustavguezInputHolderComponent = NgxGustavguezInputHolderComponent;
     exports.NgxGustavguezLoaderComponent = NgxGustavguezLoaderComponent;
-    exports.NgxGustavguezMainContainerComponent = NgxGustavguezMainContainerComponent;
+    exports.NgxGustavguezMainContainerDirective = NgxGustavguezMainContainerDirective;
     exports.NgxGustavguezMainSidebarComponent = NgxGustavguezMainSidebarComponent;
     exports.NgxGustavguezNavComponent = NgxGustavguezNavComponent;
     exports.NgxGustavguezPopupComponent = NgxGustavguezPopupComponent;

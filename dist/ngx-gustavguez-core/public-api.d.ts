@@ -8,7 +8,7 @@ export * from './lib/utilities/string.utility';
 export * from './lib/pipes/pretty-date.pipe';
 export * from './lib/pipes/pretty-hour.pipe';
 export * from './lib/pipes/pretty-number.pipe';
-export * from './lib/core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.component';
+export * from './lib/core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
 export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
 export * from './lib/core/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
 export * from './lib/api/api-response.model';

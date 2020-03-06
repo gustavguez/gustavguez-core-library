@@ -7,12 +7,14 @@ import { PrettyDatePipe } from './pipes/pretty-date.pipe';
 import { PrettyHourPipe } from './pipes/pretty-hour.pipe';
 import { PrettyNumberPipe } from './pipes/pretty-number.pipe';
 
+//Directives
+import { NgxGustavguezMainContainerDirective } from './core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
+
 //Components
 import { NgxGustavguezLoaderComponent } from './structure/ngx-gustavguez-loader/ngx-gustavguez-loader.component';
 import { NgxGustavguezPopupComponent } from './structure/ngx-gustavguez-popup/ngx-gustavguez-popup.component';
 import { NgxGustavguezButtonComponent } from './forms/ngx-gustavguez-button/ngx-gustavguez-button.component';
 import { NgxGustavguezInputHolderComponent } from './forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-holder.component';
-import { NgxGustavguezMainContainerComponent } from './core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.component';
 import { NgxGustavguezNavComponent } from './core/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
 import { NgxGustavguezMainSidebarComponent } from './core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
 
@@ -25,9 +27,9 @@ import { NgxGustavguezMainSidebarComponent } from './core/ngx-gustavguez-main-si
         NgxGustavguezPopupComponent,
         NgxGustavguezButtonComponent,
         NgxGustavguezInputHolderComponent,
-        NgxGustavguezMainContainerComponent,
         NgxGustavguezNavComponent,
         NgxGustavguezMainSidebarComponent,
+        NgxGustavguezMainContainerDirective,
     ],
     imports: [
         CommonModule,
@@ -41,9 +43,9 @@ import { NgxGustavguezMainSidebarComponent } from './core/ngx-gustavguez-main-si
         NgxGustavguezPopupComponent,
         NgxGustavguezButtonComponent,
         NgxGustavguezInputHolderComponent,
-        NgxGustavguezMainContainerComponent,
         NgxGustavguezNavComponent,
         NgxGustavguezMainSidebarComponent,
+        NgxGustavguezMainContainerDirective,
     ]
 })
 export class NgxGustavguezCoreModule { }

@@ -1,5 +1,5 @@
 import { __decorate } from 'tslib';
-import { Input, Component, EventEmitter, Output, Pipe, ɵɵdefineInjectable, ɵɵinject, Injectable, NgModule } from '@angular/core';
+import { Input, Component, EventEmitter, Output, Pipe, HostBinding, Directive, ɵɵdefineInjectable, ɵɵinject, Injectable, NgModule } from '@angular/core';
 import * as momentImported from 'moment';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -281,20 +281,26 @@ PrettyNumberPipe = __decorate([
     })
 ], PrettyNumberPipe);
 
-let NgxGustavguezMainContainerComponent = class NgxGustavguezMainContainerComponent {
+let NgxGustavguezMainContainerDirective = class NgxGustavguezMainContainerDirective {
     //Inject services
-    constructor() { }
+    constructor() {
+        //Modes
+        this.baseClasses = 'sidebar-mini layout-fixed layout-navbar-fixed';
+    }
     //On component init
     ngOnInit() {
+        //Set base classes to host classes
+        this.hostClasses = this.baseClasses;
     }
 };
-NgxGustavguezMainContainerComponent = __decorate([
-    Component({
-        selector: 'ngx-gustavguez-main-container',
-        template: "<div class=\"sidebar-mini layout-fixed layout-navbar-fixed\">\n    \n</div>",
-        styles: [""]
+__decorate([
+    HostBinding('class')
+], NgxGustavguezMainContainerDirective.prototype, "hostClasses", void 0);
+NgxGustavguezMainContainerDirective = __decorate([
+    Directive({
+        selector: '[ngxGustavguezMainContainer]'
     })
-], NgxGustavguezMainContainerComponent);
+], NgxGustavguezMainContainerDirective);
 
 let NgxGustavguezMainSidebarComponent = class NgxGustavguezMainSidebarComponent {
     //Inject services
@@ -534,9 +540,9 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezPopupComponent,
             NgxGustavguezButtonComponent,
             NgxGustavguezInputHolderComponent,
-            NgxGustavguezMainContainerComponent,
             NgxGustavguezNavComponent,
             NgxGustavguezMainSidebarComponent,
+            NgxGustavguezMainContainerDirective,
         ],
         imports: [
             CommonModule,
@@ -550,9 +556,9 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezPopupComponent,
             NgxGustavguezButtonComponent,
             NgxGustavguezInputHolderComponent,
-            NgxGustavguezMainContainerComponent,
             NgxGustavguezNavComponent,
             NgxGustavguezMainSidebarComponent,
+            NgxGustavguezMainContainerDirective,
         ]
     })
 ], NgxGustavguezCoreModule);
@@ -563,5 +569,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerComponent, NgxGustavguezMainSidebarComponent, NgxGustavguezNavComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezNavComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map
