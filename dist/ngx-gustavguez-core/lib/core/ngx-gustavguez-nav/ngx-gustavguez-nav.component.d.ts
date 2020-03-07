@@ -9,7 +9,7 @@ export declare class NgxGustavguezNavComponent implements OnInit {
     userMenuState: boolean;
     constructor(ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService);
     ngOnInit(): void;
-    onToggleMenu(): void;
-    onToggleUserMenu(): void;
-    onLogoutClick(): void;
+    onToggleMenu(event: MouseEvent): void;
+    onToggleUserMenu(event: MouseEvent): void;
+    onLogoutClick(event: MouseEvent): void;
 }

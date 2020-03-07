@@ -347,15 +347,45 @@ NgxGustavguezMainContainerDirective = __decorate([
 
 let NgxGustavguezMainSidebarComponent = class NgxGustavguezMainSidebarComponent {
     //Inject services
-    constructor() { }
+    constructor() {
+        //Outputs
+        this.onMenuItem = new EventEmitter();
+    }
     //On component init
     ngOnInit() {
     }
+    //Custom events
+    onMenuItemClick(event, mouseItem) {
+        event.preventDefault();
+        //Emit click for now
+        this.onMenuItem.emit(mouseItem);
+    }
 };
+__decorate([
+    Input()
+], NgxGustavguezMainSidebarComponent.prototype, "brandTitle", void 0);
+__decorate([
+    Input()
+], NgxGustavguezMainSidebarComponent.prototype, "brandImg", void 0);
+__decorate([
+    Input()
+], NgxGustavguezMainSidebarComponent.prototype, "userIsLogged", void 0);
+__decorate([
+    Input()
+], NgxGustavguezMainSidebarComponent.prototype, "userAvatar", void 0);
+__decorate([
+    Input()
+], NgxGustavguezMainSidebarComponent.prototype, "userName", void 0);
+__decorate([
+    Input()
+], NgxGustavguezMainSidebarComponent.prototype, "menuItems", void 0);
+__decorate([
+    Output()
+], NgxGustavguezMainSidebarComponent.prototype, "onMenuItem", void 0);
 NgxGustavguezMainSidebarComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-main-sidebar',
-        template: "<aside class=\"main-sidebar sidebar-dark-primary elevation-4\">\n    <!-- Brand Logo -->\n    <a href=\"#\" class=\"brand-link\">\n        <img src=\"../assets/images/logo.png\" alt=\"AdminLTE Logo\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">Mis Finanzas</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img src=\"http://api.gustavorodriguez.com.uy/uploads/images/avatar_gus.jpeg\"\n                    class=\"img-circle elevation-2\" alt=\"User Image\">\n            </div>\n            <div class=\"info\">\n                <a href=\"#\" class=\"d-block\">Gustavo Rodriguez</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul class=\"nav nav-pills nav-sidebar flex-column\" data-widget=\"treeview\" role=\"menu\"\n                data-accordion=\"false\">\n\n                <li class=\"nav-header\">MULTI LEVEL EXAMPLE</li>\n                <li class=\"nav-item\">\n                    <a href=\"#\" class=\"nav-link\">\n                        <i class=\"fas fa-circle nav-icon\"></i>\n                        <p>Level 1</p>\n                    </a>\n                </li>\n                <li class=\"nav-item has-treeview menu-open\">\n                    <a href=\"#\" class=\"nav-link\">\n                        <i class=\"nav-icon fas fa-circle\"></i>\n                        <p>\n                            Level 1\n                            <i class=\"right fas fa-angle-left\"></i>\n                        </p>\n                    </a>\n                    <ul class=\"nav nav-treeview\" style=\"display: block;\">\n                        <li class=\"nav-item\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>Level 2</p>\n                            </a>\n                        </li>\n                        <li class=\"nav-item has-treeview menu-open\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>\n                                    Level 2\n                                    <i class=\"right fas fa-angle-left\"></i>\n                                </p>\n                            </a>\n                            <ul class=\"nav nav-treeview\" style=\"display: block;\">\n                                <li class=\"nav-item\">\n                                    <a href=\"#\" class=\"nav-link\">\n                                        <i class=\"far fa-dot-circle nav-icon\"></i>\n                                        <p>Level 3</p>\n                                    </a>\n                                </li>\n                                <li class=\"nav-item\">\n                                    <a href=\"#\" class=\"nav-link\">\n                                        <i class=\"far fa-dot-circle nav-icon\"></i>\n                                        <p>Level 3</p>\n                                    </a>\n                                </li>\n                                <li class=\"nav-item\">\n                                    <a href=\"#\" class=\"nav-link\">\n                                        <i class=\"far fa-dot-circle nav-icon\"></i>\n                                        <p>Level 3</p>\n                                    </a>\n                                </li>\n                            </ul>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>Level 2</p>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                <li class=\"nav-item\">\n                    <a href=\"#\" class=\"nav-link\">\n                        <i class=\"fas fa-circle nav-icon\"></i>\n                        <p>Level 1</p>\n                    </a>\n                </li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>",
+        template: "<aside class=\"main-sidebar sidebar-dark-primary elevation-4\">\n    <!-- Brand Logo -->\n    <a class=\"brand-link\">\n        <img \n            [src]=\"brandImg\" \n            [alt]=\"brandTitle\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">{{ brandTitle }}</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div \n            *ngIf=\"userIsLogged\"\n            class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img \n                    [src]=\"userAvatar\"\n                    [alt]=\"userName\"\n                    class=\"img-circle elevation-2\">\n            </div>\n            <div class=\"info\">\n                <a class=\"d-block\">{{ userName }}</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul \n                *ngIf=\"menuItems\"\n                class=\"nav nav-pills nav-sidebar flex-column\" \n                data-widget=\"treeview\" \n                role=\"menu\">\n\n                <li class=\"nav-header\">Men\u00FA</li>\n\n                <li class=\"nav-item has-treeview menu-open\" *ngFor=\"let menuItem of menuItems\">\n                    <a \n                        (click)=\"onMenuItemClick($event, menuItem)\"\n                        href=\"#\" \n                        class=\"nav-link\">\n                        <i class=\"nav-icon {{ menuItem.icon }}\"></i>\n                        <p>\n                            {{ menuItem.display }}\n                            <i class=\"right fas fa-angle-left\"></i>\n                        </p>\n                    </a>\n\n                    <ul class=\"nav nav-treeview\" style=\"display: block;\" *ngIf=\"false\">\n                        <li class=\"nav-item\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>Level 2</p>\n                            </a>\n                        </li>\n                        <li class=\"nav-item has-treeview menu-open\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>\n                                    Level 2\n                                    <i class=\"right fas fa-angle-left\"></i>\n                                </p>\n                            </a>\n                            \n                        </li>\n                        <li class=\"nav-item\">\n                            <a href=\"#\" class=\"nav-link\">\n                                <i class=\"far fa-circle nav-icon\"></i>\n                                <p>Level 2</p>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>",
         styles: [""]
     })
 ], NgxGustavguezMainSidebarComponent);
@@ -371,13 +401,16 @@ let NgxGustavguezNavComponent = class NgxGustavguezNavComponent {
     ngOnInit() {
     }
     //Custom events
-    onToggleMenu() {
+    onToggleMenu(event) {
+        event.preventDefault();
         this.ngxGustavguezMainSidebarService.toggleState();
     }
-    onToggleUserMenu() {
+    onToggleUserMenu(event) {
+        event.preventDefault();
         this.userMenuState = !this.userMenuState;
     }
-    onLogoutClick() {
+    onLogoutClick(event) {
+        event.preventDefault();
         //Emit logout
         this.onLogout.emit();
         //Close user menu
@@ -402,7 +435,7 @@ __decorate([
 NgxGustavguezNavComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-nav',
-        template: "<!-- NAV -->\n<nav class=\"main-header navbar navbar-expand navbar-white navbar-light\">\n    <!-- Left navbar links -->\n    <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n            <a \n                (click)=\"onToggleMenu()\"\n                class=\"nav-link\" \n                data-widget=\"pushmenu\">\n                <i class=\"fas fa-bars\"></i>\n            </a>\n        </li>\n    </ul>\n\n    <!-- Right navbar links -->\n    <ul class=\"navbar-nav ml-auto\" *ngIf=\"userIsLogged\">\n        <!-- Notifications Dropdown Menu -->\n        <li class=\"nav-item dropdown\">\n\n            <a \n                (click)=\"onToggleUserMenu()\"\n                class=\"nav-link\" \n                data-toggle=\"dropdown\">\n                <i class=\"fas fa-cog\"></i>\n            </a>\n\n            <!-- .show to display -->\n            <div class=\"dropdown-menu dropdown-menu-lg dropdown-menu-right\">\n                <span class=\"dropdown-item dropdown-header\">{{ userMenuText ? userMenuText : \"Men\u00FA de usuario\" }}</span>\n                <div class=\"dropdown-divider\"></div>\n                <a \n                    class=\"dropdown-item\" \n                    (click)=\"onLogoutClick()\">\n                    <i class=\"fas fa-sign-out-alt\"></i> {{ userMenuLogoutText ? userMenuLogoutText : \"Cerrar sesi\u00F3n\" }}\n                </a>\n            </div>\n        </li>\n    </ul>\n</nav>",
+        template: "<!-- NAV -->\n<nav class=\"main-header navbar navbar-expand navbar-white navbar-light\">\n    <!-- Left navbar links -->\n    <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n            <a  \n                href=\"#\"\n                (click)=\"onToggleMenu($event)\"\n                class=\"nav-link\" \n                data-widget=\"pushmenu\">\n                <i class=\"fas fa-bars\"></i>\n            </a>\n        </li>\n    </ul>\n\n    <!-- Right navbar links -->\n    <ul class=\"navbar-nav ml-auto\" *ngIf=\"userIsLogged\">\n        <!-- Notifications Dropdown Menu -->\n        <li class=\"nav-item dropdown\">\n\n            <a \n                href=\"#\"\n                (click)=\"onToggleUserMenu($event)\"\n                class=\"nav-link\" \n                data-toggle=\"dropdown\">\n                <i class=\"fas fa-cog\"></i>\n            </a>\n\n            <!-- .show to display -->\n            <div \n                [class.show]=\"userMenuState\"\n                class=\"dropdown-menu dropdown-menu-lg dropdown-menu-right\">\n                <span class=\"dropdown-item dropdown-header\">{{ userMenuText ? userMenuText : \"Men\u00FA de usuario\" }}</span>\n                <div class=\"dropdown-divider\"></div>\n                <a \n                    href=\"#\"\n                    class=\"dropdown-item\" \n                    (click)=\"onLogoutClick($event)\">\n                    <i class=\"fas fa-sign-out-alt\"></i> {{ userMenuLogoutText ? userMenuLogoutText : \"Cerrar sesi\u00F3n\" }}\n                </a>\n            </div>\n        </li>\n    </ul>\n</nav>",
         styles: [""]
     })
 ], NgxGustavguezNavComponent);
