@@ -1,5 +1,5 @@
 import { __decorate } from 'tslib';
-import { Input, Component, EventEmitter, Output, Pipe, HostBinding, Directive, ɵɵdefineInjectable, ɵɵinject, Injectable, NgModule } from '@angular/core';
+import { Input, Component, EventEmitter, Output, Pipe, ɵɵdefineInjectable, Injectable, HostBinding, Directive, ɵɵinject, NgModule } from '@angular/core';
 import * as momentImported from 'moment';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -281,18 +281,61 @@ PrettyNumberPipe = __decorate([
     })
 ], PrettyNumberPipe);
 
+let NgxGustavguezMainSidebarService = class NgxGustavguezMainSidebarService {
+    constructor() {
+        //Properties
+        this.onChangeState = new EventEmitter();
+        this.onToggleState = new EventEmitter();
+    }
+    //Public methods
+    changeState(state) {
+        this.onChangeState.emit(state);
+    }
+    toggleState() {
+        this.onToggleState.emit();
+    }
+};
+NgxGustavguezMainSidebarService.ɵprov = ɵɵdefineInjectable({ factory: function NgxGustavguezMainSidebarService_Factory() { return new NgxGustavguezMainSidebarService(); }, token: NgxGustavguezMainSidebarService, providedIn: "root" });
+NgxGustavguezMainSidebarService = __decorate([
+    Injectable({
+        providedIn: "root"
+    })
+], NgxGustavguezMainSidebarService);
+
 let NgxGustavguezMainContainerDirective = class NgxGustavguezMainContainerDirective {
     //Inject services
-    constructor() {
-        //Modes
+    constructor(ngxGustavguezMainSidebarService) {
+        this.ngxGustavguezMainSidebarService = ngxGustavguezMainSidebarService;
         this.baseClasses = 'sidebar-mini layout-fixed layout-navbar-fixed';
     }
     //On component init
     ngOnInit() {
         //Set base classes to host classes
-        this.hostClasses = this.baseClasses;
+        this.loadHostClasses();
+        //Watch sidebarState change
+        this.ngxGustavguezMainSidebarService.onChangeState.subscribe((state) => {
+            this.loadHostClasses(state);
+        });
+        this.ngxGustavguezMainSidebarService.onToggleState.subscribe(() => {
+            this.loadHostClasses(!this.state);
+        });
+    }
+    //Private helper methods
+    loadHostClasses(state) {
+        //Backup state
+        this.state = state;
+        //Check state
+        if (state) {
+            this.hostClasses = this.baseClasses + " sidebar-collapse";
+        }
+        else {
+            this.hostClasses = this.baseClasses;
+        }
     }
 };
+NgxGustavguezMainContainerDirective.ctorParameters = () => [
+    { type: NgxGustavguezMainSidebarService }
+];
 __decorate([
     HostBinding('class')
 ], NgxGustavguezMainContainerDirective.prototype, "hostClasses", void 0);
@@ -319,15 +362,47 @@ NgxGustavguezMainSidebarComponent = __decorate([
 
 let NgxGustavguezNavComponent = class NgxGustavguezNavComponent {
     //Inject services
-    constructor() { }
+    constructor(ngxGustavguezMainSidebarService) {
+        this.ngxGustavguezMainSidebarService = ngxGustavguezMainSidebarService;
+        //Outputs
+        this.onLogout = new EventEmitter();
+    }
     //On component init
     ngOnInit() {
     }
+    //Custom events
+    onToggleMenu() {
+        this.ngxGustavguezMainSidebarService.toggleState();
+    }
+    onToggleUserMenu() {
+        this.userMenuState = !this.userMenuState;
+    }
+    onLogoutClick() {
+        //Emit logout
+        this.onLogout.emit();
+        //Close user menu
+        this.userMenuState = false;
+    }
 };
+NgxGustavguezNavComponent.ctorParameters = () => [
+    { type: NgxGustavguezMainSidebarService }
+];
+__decorate([
+    Input()
+], NgxGustavguezNavComponent.prototype, "userIsLogged", void 0);
+__decorate([
+    Input()
+], NgxGustavguezNavComponent.prototype, "userMenuText", void 0);
+__decorate([
+    Input()
+], NgxGustavguezNavComponent.prototype, "userMenuLogoutText", void 0);
+__decorate([
+    Output()
+], NgxGustavguezNavComponent.prototype, "onLogout", void 0);
 NgxGustavguezNavComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-nav',
-        template: "<!-- NAV -->\n<nav class=\"main-header navbar navbar-expand navbar-white navbar-light\">\n    <!-- Left navbar links -->\n    <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" data-widget=\"pushmenu\" href=\"#\"><i class=\"fas fa-bars\"></i></a>\n        </li>\n    </ul>\n\n    <!-- Right navbar links -->\n    <ul class=\"navbar-nav ml-auto\">\n        <!-- Notifications Dropdown Menu -->\n        <li class=\"nav-item dropdown\">\n            <a class=\"nav-link\" data-toggle=\"dropdown\" href=\"#\">\n                <i class=\"fas fa-cog\"></i>\n            </a>\n\n            <!-- .show to display -->\n            <div class=\"dropdown-menu dropdown-menu-lg dropdown-menu-right\">\n                <span class=\"dropdown-item dropdown-header\">Men\u00FA de usuario</span>\n                <div class=\"dropdown-divider\"></div>\n                <a href=\"#\" class=\"dropdown-item\">\n                    <i class=\"fas fa-sign-out-alt\"></i> Cerrar sesi\u00F3n\n                </a>\n            </div>\n        </li>\n    </ul>\n</nav>",
+        template: "<!-- NAV -->\n<nav class=\"main-header navbar navbar-expand navbar-white navbar-light\">\n    <!-- Left navbar links -->\n    <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n            <a \n                (click)=\"onToggleMenu()\"\n                class=\"nav-link\" \n                data-widget=\"pushmenu\" \n                href=\"#\"><i class=\"fas fa-bars\"></i>\n            </a>\n        </li>\n    </ul>\n\n    <!-- Right navbar links -->\n    <ul class=\"navbar-nav ml-auto\" *ngIf=\"userIsLogged\">\n        <!-- Notifications Dropdown Menu -->\n        <li class=\"nav-item dropdown\">\n\n            <a \n                (click)=\"onToggleUserMenu()\"\n                class=\"nav-link\" \n                data-toggle=\"dropdown\">\n                <i class=\"fas fa-cog\"></i>\n            </a>\n\n            <!-- .show to display -->\n            <div class=\"dropdown-menu dropdown-menu-lg dropdown-menu-right\">\n                <span class=\"dropdown-item dropdown-header\">{{ userMenuText ? userMenuText : \"Men\u00FA de usuario\" }}</span>\n                <div class=\"dropdown-divider\"></div>\n                <a \n                    class=\"dropdown-item\" \n                    (click)=\"onLogoutClick()\">\n                    <i class=\"fas fa-sign-out-alt\"></i> {{ userMenuLogoutText ? userMenuLogoutText : \"Cerrar sesi\u00F3n\" }}\n                </a>\n            </div>\n        </li>\n    </ul>\n</nav>",
         styles: [""]
     })
 ], NgxGustavguezNavComponent);
@@ -569,5 +644,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezNavComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezNavComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map
