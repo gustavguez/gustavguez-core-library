@@ -3,8 +3,7 @@ import { NgxGustavguezMainSidebarService } from '../ngx-gustavguez-main-sidebar/
 export declare class NgxGustavguezMainContainerDirective implements OnInit {
     private ngxGustavguezMainSidebarService;
     hostClasses: string;
-    state: boolean;
-    baseClasses: string;
+    classes: string[];
     constructor(ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService);
     ngOnInit(): void;
     private loadHostClasses;

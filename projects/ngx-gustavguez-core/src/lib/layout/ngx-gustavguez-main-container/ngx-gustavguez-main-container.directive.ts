@@ -50,11 +50,14 @@ export class NgxGustavguezMainContainerDirective implements OnInit {
             this.classes.splice(indexClassOpen, 1);
         }
 
-        //Check state
-        if(WindowUtility.isSmallScreen()) {
-            if (openState) this.classes.push('sidebar-open');
-        } else {
-            if (collapseState) this.classes.push('sidebar-collapse');
+        //Check state to add sidebaropen class
+        if(WindowUtility.isSmallScreen() && openState) {
+            this.classes.push('sidebar-open');
+        } 
+        
+        //Check to add collapse class
+        if(!WindowUtility.isSmallScreen() && collapseState) {
+            this.classes.push('sidebar-collapse');
         }
 
         //Load classes

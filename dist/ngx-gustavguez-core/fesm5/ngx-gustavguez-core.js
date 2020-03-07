@@ -270,6 +270,15 @@ var StringUtility = /** @class */ (function () {
     return StringUtility;
 }());
 
+var WindowUtility = /** @class */ (function () {
+    function WindowUtility() {
+    }
+    WindowUtility.isSmallScreen = function () {
+        return window.innerWidth < 768;
+    };
+    return WindowUtility;
+}());
+
 var PrettyDatePipe = /** @class */ (function () {
     function PrettyDatePipe() {
     }
@@ -350,32 +359,49 @@ var NgxGustavguezMainContainerDirective = /** @class */ (function () {
     //Inject services
     function NgxGustavguezMainContainerDirective(ngxGustavguezMainSidebarService) {
         this.ngxGustavguezMainSidebarService = ngxGustavguezMainSidebarService;
-        this.baseClasses = 'sidebar-mini layout-fixed layout-navbar-fixed';
+        //Modes
+        this.classes = [
+            'sidebar-mini',
+            'layout-fixed',
+            'layout-navbar-fixed'
+        ];
     }
     //On component init
     NgxGustavguezMainContainerDirective.prototype.ngOnInit = function () {
         var _this = this;
         //Set base classes to host classes
-        this.loadHostClasses();
+        this.loadHostClasses(false);
         //Watch sidebarState change
         this.ngxGustavguezMainSidebarService.onChangeState.subscribe(function (state) {
             _this.loadHostClasses(state);
         });
         this.ngxGustavguezMainSidebarService.onToggleState.subscribe(function () {
-            _this.loadHostClasses(!_this.state);
+            _this.loadHostClasses();
         });
     };
     //Private helper methods
     NgxGustavguezMainContainerDirective.prototype.loadHostClasses = function (state) {
-        //Backup state
-        this.state = state;
-        //Check state
-        if (state) {
-            this.hostClasses = this.baseClasses + " sidebar-collapse sidebar-open";
+        var indexClassCollapse = this.classes.indexOf('sidebar-collapse');
+        var indexClassOpen = this.classes.indexOf('sidebar-open');
+        var openState = (state === undefined && indexClassOpen === -1) || state;
+        var collapseState = (state === undefined && indexClassCollapse === -1) || state;
+        //Remove from array
+        if (indexClassCollapse > -1) {
+            this.classes.splice(indexClassCollapse, 1);
         }
-        else {
-            this.hostClasses = this.baseClasses;
+        if (indexClassOpen > -1) {
+            this.classes.splice(indexClassOpen, 1);
         }
+        //Check state to add sidebaropen class
+        if (WindowUtility.isSmallScreen() && openState) {
+            this.classes.push('sidebar-open');
+        }
+        //Check to add collapse class
+        if (!WindowUtility.isSmallScreen() && collapseState) {
+            this.classes.push('sidebar-collapse');
+        }
+        //Load classes
+        this.hostClasses = this.classes.join(' ');
     };
     NgxGustavguezMainContainerDirective.ctorParameters = function () { return [
         { type: NgxGustavguezMainSidebarService }
@@ -393,12 +419,15 @@ var NgxGustavguezMainContainerDirective = /** @class */ (function () {
 
 var NgxGustavguezMainSidebarComponent = /** @class */ (function () {
     //Inject services
-    function NgxGustavguezMainSidebarComponent() {
+    function NgxGustavguezMainSidebarComponent(ngxGustavguezMainSidebarService) {
+        this.ngxGustavguezMainSidebarService = ngxGustavguezMainSidebarService;
         //Outputs
         this.onMenuItem = new EventEmitter();
     }
     //On component init
     NgxGustavguezMainSidebarComponent.prototype.ngOnInit = function () {
+        //Init vars
+        this.menuItemsStates = {};
     };
     //Custom events
     NgxGustavguezMainSidebarComponent.prototype.onMenuItemClick = function (event, menuItem) {
@@ -411,12 +440,21 @@ var NgxGustavguezMainSidebarComponent = /** @class */ (function () {
         else {
             //Emit click for now
             this.onMenuItem.emit(menuItem);
+            //Close sidebar
+            this.ngxGustavguezMainSidebarService.changeState(false);
         }
     };
     NgxGustavguezMainSidebarComponent.prototype.onBrandLink = function (event) {
         event.preventDefault();
-        //Do nothing for now
+        //Close sidebar
+        this.ngxGustavguezMainSidebarService.changeState(false);
     };
+    NgxGustavguezMainSidebarComponent.prototype.onCloseSidebar = function () {
+        this.ngxGustavguezMainSidebarService.changeState(false);
+    };
+    NgxGustavguezMainSidebarComponent.ctorParameters = function () { return [
+        { type: NgxGustavguezMainSidebarService }
+    ]; };
     __decorate([
         Input()
     ], NgxGustavguezMainSidebarComponent.prototype, "brandTitle", void 0);
@@ -441,7 +479,7 @@ var NgxGustavguezMainSidebarComponent = /** @class */ (function () {
     NgxGustavguezMainSidebarComponent = __decorate([
         Component({
             selector: 'ngx-gustavguez-main-sidebar',
-            template: "<aside class=\"main-sidebar sidebar-dark-primary elevation-4\">\n    <!-- Brand Logo -->\n    <a \n        href=\"#\"\n        class=\"brand-link\"\n        (click)=\"onBrandLink($event)\">\n        <img \n            *ngIf=\"brandImg\"\n            [src]=\"brandImg\" \n            [alt]=\"brandTitle\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">{{ brandTitle }}</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div \n            *ngIf=\"userIsLogged\"\n            class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img \n                    *ngIf=\"userAvatar\"\n                    [src]=\"userAvatar\"\n                    [alt]=\"userName\"\n                    class=\"img-circle elevation-2\">\n            </div>\n            <div class=\"info\">\n                <a class=\"d-block\">{{ userName }}</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul \n                *ngIf=\"menuItems\"\n                class=\"nav nav-pills nav-sidebar flex-column\" \n                data-widget=\"treeview\" \n                role=\"menu\">\n\n                <li class=\"nav-header\">Men\u00FA</li>\n\n                <li \n                    [class.menu-open]=\"menuItemsStates[menuItem.id]\"\n                    [class.active]=\"menuItem.isActive\"\n                    class=\"nav-item has-treeview menu-open\" \n                    *ngFor=\"let menuItem of menuItems\">\n                    <a \n                        (click)=\"onMenuItemClick($event, menuItem)\"\n                        href=\"#\" \n                        class=\"nav-link\">\n                        <i class=\"nav-icon {{ menuItem.icon }}\"></i>\n                        <p>\n                            {{ menuItem.display }}\n                            <i class=\"right fas fa-angle-left\"></i>\n                        </p>\n                    </a>\n\n                    <ng-container *ngIf=\"menuItem.childs\">\n                        <ul \n                            [style.display]=\"menuItemsStates[menuItem.id] ? 'block' : 'none'\"\n                            class=\"nav nav-treeview\">\n                            <li \n                                class=\"nav-item\" menuItemStates\n                                [class.active]=\"child.isActive\"\n                                *ngFor=\"let child of menuItem.childs\">\n                                <a \n                                    (click)=\"onMenuItemClick($event, child)\"\n                                    href=\"#\" \n                                    class=\"nav-link\">\n                                    <i class=\"nav-icon {{ child.icon }}\"></i>\n                                    <p>{{ child.display }}</p>\n                                </a>\n                            </li>\n                        </ul>\n                    </ng-container>\n                </li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>",
+            template: "<aside class=\"main-sidebar sidebar-dark-primary\">\n    <!-- Brand Logo -->\n    <a \n        href=\"#\"\n        class=\"brand-link\"\n        (click)=\"onBrandLink($event)\">\n        <img \n            *ngIf=\"brandImg\"\n            [src]=\"brandImg\" \n            [alt]=\"brandTitle\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">{{ brandTitle }}</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div \n            *ngIf=\"userIsLogged\"\n            class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img \n                    *ngIf=\"userAvatar\"\n                    [src]=\"userAvatar\"\n                    [alt]=\"userName\"\n                    class=\"img-circle elevation-2\">\n            </div>\n            <div class=\"info\">\n                <a class=\"d-block\">{{ userName }}</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul \n                *ngIf=\"menuItems\"\n                class=\"nav nav-pills nav-sidebar flex-column\" \n                data-widget=\"treeview\" \n                role=\"menu\">\n\n                <li class=\"nav-header\">Men\u00FA</li>\n\n                <li \n                    [class.menu-open]=\"menuItemsStates[menuItem.id]\"\n                    [class.active]=\"menuItem.isActive\"\n                    class=\"nav-item has-treeview\" \n                    *ngFor=\"let menuItem of menuItems\">\n                    <a \n                        (click)=\"onMenuItemClick($event, menuItem)\"\n                        href=\"#\" \n                        class=\"nav-link\">\n                        <i class=\"nav-icon {{ menuItem.icon }}\"></i>\n                        <p>\n                            {{ menuItem.display }}\n                            <i class=\"right fas fa-angle-left\"></i>\n                        </p>\n                    </a>\n\n                    <ng-container *ngIf=\"menuItem.childs\">\n                        <ul \n                            [style.display]=\"menuItemsStates[menuItem.id] ? 'block' : 'none'\"\n                            class=\"nav nav-treeview\">\n                            <li \n                                class=\"nav-item\" menuItemStates\n                                [class.active]=\"child.isActive\"\n                                *ngFor=\"let child of menuItem.childs\">\n                                <a \n                                    (click)=\"onMenuItemClick($event, child)\"\n                                    href=\"#\" \n                                    class=\"nav-link\">\n                                    <i class=\"nav-icon {{ child.icon }}\"></i>\n                                    <p>{{ child.display }}</p>\n                                </a>\n                            </li>\n                        </ul>\n                    </ng-container>\n                </li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>\n<div id=\"sidebar-overlay\" (click)=\"onCloseSidebar()\"></div>",
             styles: [""]
         })
     ], NgxGustavguezMainSidebarComponent);
@@ -760,5 +798,5 @@ var NgxGustavguezCoreModule = /** @class */ (function () {
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezMenuItem, NgxGustavguezNavComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezMenuItem, NgxGustavguezNavComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map
