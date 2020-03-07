@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+                "src/assets/fontawesome/css/all.min.css",
+                "node_modules/admin-lte/dist/css/adminlte.min.css",
+                "src/styles.scss"
             ],
             "scripts": []
           },

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxGustavguezMenuItem } from 'projects/ngx-gustavguez-core/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'gustavguez-core-library';
+
+    //Models
+    menuItems: NgxGustavguezMenuItem
+    
+    //Custom events
+    onLogout(){
+        console.log("logout");
+    }
 }
