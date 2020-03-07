@@ -1,6 +1,7 @@
 //Structure components
 export * from './lib/structure/ngx-gustavguez-loader/ngx-gustavguez-loader.component';
 export * from './lib/structure/ngx-gustavguez-popup/ngx-gustavguez-popup.component';
+export * from './lib/structure/ngx-gustavguez-page-header/ngx-gustavguez-page-header.component';
 
 //Utilities
 export * from './lib/utilities/array.utility';
@@ -21,7 +22,6 @@ export * from './lib/layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-side
 export * from './lib/layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.service';
 export * from './lib/layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-menu-item.model';
 export * from './lib/layout/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
-
 
 //Api
 export * from './lib/api/api-response.model';

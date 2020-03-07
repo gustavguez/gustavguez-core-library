@@ -17,6 +17,7 @@ import { NgxGustavguezButtonComponent } from './forms/ngx-gustavguez-button/ngx-
 import { NgxGustavguezInputHolderComponent } from './forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-holder.component';
 import { NgxGustavguezNavComponent } from './layout/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
 import { NgxGustavguezMainSidebarComponent } from './layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
+import { NgxGustavguezPageHeaderComponent } from './structure/ngx-gustavguez-page-header/ngx-gustavguez-page-header.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { NgxGustavguezMainSidebarComponent } from './layout/ngx-gustavguez-main-
         NgxGustavguezNavComponent,
         NgxGustavguezMainSidebarComponent,
         NgxGustavguezMainContainerDirective,
+        NgxGustavguezPageHeaderComponent,
     ],
     imports: [
         CommonModule,
@@ -46,6 +48,7 @@ import { NgxGustavguezMainSidebarComponent } from './layout/ngx-gustavguez-main-
         NgxGustavguezNavComponent,
         NgxGustavguezMainSidebarComponent,
         NgxGustavguezMainContainerDirective,
+        NgxGustavguezPageHeaderComponent
     ]
 })
 export class NgxGustavguezCoreModule { }
