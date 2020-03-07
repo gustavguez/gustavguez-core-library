@@ -4,5 +4,6 @@ export declare class NgxGustavguezMenuItem {
     action?: string[];
     childs?: NgxGustavguezMenuItem[];
     id: string;
+    isActive: boolean;
     constructor(display?: string, icon?: string, action?: string[], childs?: NgxGustavguezMenuItem[]);
 }

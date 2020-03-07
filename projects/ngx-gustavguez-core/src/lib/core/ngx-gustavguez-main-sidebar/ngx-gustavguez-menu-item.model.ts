@@ -3,6 +3,7 @@ import { StringUtility } from '../../utilities/string.utility';
 export class NgxGustavguezMenuItem {
 
     public id: string;
+    public isActive: boolean;
     
     constructor(
         public display?: string,

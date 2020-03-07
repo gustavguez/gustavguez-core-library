@@ -39,7 +39,11 @@
 
                 <li class="nav-header">Menú</li>
 
-                <li class="nav-item has-treeview menu-open" *ngFor="let menuItem of menuItems">
+                <li 
+                    [class.menu-open]="menuItemsStates[menuItem.id]"
+                    [class.active]="menuItem.isActive"
+                    class="nav-item has-treeview menu-open" 
+                    *ngFor="let menuItem of menuItems">
                     <a 
                         (click)="onMenuItemClick($event, menuItem)"
                         href="#" 
@@ -51,30 +55,24 @@
                         </p>
                     </a>
 
-                    <ul class="nav nav-treeview" style="display: block;" *ngIf="false">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Level 2</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Level 2
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Level 2</p>
-                            </a>
-                        </li>
-                    </ul>
+                    <ng-container *ngIf="menuItem.childs">
+                        <ul 
+                            [style.display]="menuItemsStates[menuItem.id] ? 'block' : 'none'"
+                            class="nav nav-treeview">
+                            <li 
+                                class="nav-item" menuItemStates
+                                [class.active]="child.isActive"
+                                *ngFor="let child of menuItem.childs">
+                                <a 
+                                    (click)="onMenuItemClick($event, child)"
+                                    href="#" 
+                                    class="nav-link">
+                                    <i class="nav-icon {{ child.icon }}"></i>
+                                    <p>{{ child.display }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </ng-container>
                 </li>
 
             </ul>

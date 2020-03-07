@@ -8,8 +8,9 @@ export declare class NgxGustavguezMainSidebarComponent implements OnInit {
     userName: string;
     menuItems: NgxGustavguezMenuItem[];
     onMenuItem: EventEmitter<NgxGustavguezMenuItem>;
+    menuItemsStates: any;
     constructor();
     ngOnInit(): void;
-    onMenuItemClick(event: MouseEvent, mouseItem: NgxGustavguezMenuItem): void;
+    onMenuItemClick(event: MouseEvent, menuItem: NgxGustavguezMenuItem): void;
     onBrandLink(event: MouseEvent): void;
 }

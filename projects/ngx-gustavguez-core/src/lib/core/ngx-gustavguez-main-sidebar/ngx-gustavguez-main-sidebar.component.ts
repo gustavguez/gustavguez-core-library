@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgxGustavguezMenuItem } from './ngx-gustavguez-menu-item.model';
+import { ArrayUtility } from '../../utilities/array.utility';
 
 @Component({
     selector: 'ngx-gustavguez-main-sidebar',
@@ -18,6 +19,8 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
     //Outputs
     @Output() onMenuItem: EventEmitter<NgxGustavguezMenuItem> = new EventEmitter();
     
+    //Models
+    menuItemsStates: any;
 
     //Inject services
     constructor() { }
@@ -27,10 +30,16 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
     }
 
     //Custom events
-    onMenuItemClick(event: MouseEvent, mouseItem: NgxGustavguezMenuItem) {
+    onMenuItemClick(event: MouseEvent, menuItem: NgxGustavguezMenuItem) {
         event.preventDefault();
-        //Emit click for now
-        this.onMenuItem.emit(mouseItem);
+        //Check
+        if(ArrayUtility.hasValue(menuItem.childs)) {
+            //Toggle state
+            this.menuItemsStates[menuItem.id] = !this.menuItemsStates[menuItem.id];
+        } else {
+            //Emit click for now
+            this.onMenuItem.emit(menuItem);
+        }
     }
 
     onBrandLink(event: MouseEvent) {

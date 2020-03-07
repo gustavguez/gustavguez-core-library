@@ -38,7 +38,7 @@ export class NgxGustavguezMainContainerDirective implements OnInit {
 
         //Check state
         if(state) {
-            this.hostClasses = this.baseClasses + " sidebar-collapse";
+            this.hostClasses = this.baseClasses + " sidebar-collapse sidebar-open";
         } else {
             this.hostClasses = this.baseClasses;
         }
