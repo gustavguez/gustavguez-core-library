@@ -1,5 +1,8 @@
 export * from './lib/structure/ngx-gustavguez-loader/ngx-gustavguez-loader.component';
 export * from './lib/structure/ngx-gustavguez-popup/ngx-gustavguez-popup.component';
+export * from './lib/structure/ngx-gustavguez-page-header/ngx-gustavguez-page-header.component';
+export * from './lib/structure/ngx-gustavguez-card/ngx-gustavguez-card.component';
+export * from './lib/structure/ngx-gustavguez-info-box/ngx-gustavguez-info-box.component';
 export * from './lib/utilities/array.utility';
 export * from './lib/utilities/date.utility';
 export * from './lib/utilities/form.utility';
@@ -19,4 +22,5 @@ export * from './lib/api/json-model.interface';
 export * from './lib/api/api.service';
 export * from './lib/forms/ngx-gustavguez-button/ngx-gustavguez-button.component';
 export * from './lib/forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-holder.component';
+export * from './lib/ngx-gustavguez-status.enum';
 export * from './lib/ngx-gustavguez-core.module';

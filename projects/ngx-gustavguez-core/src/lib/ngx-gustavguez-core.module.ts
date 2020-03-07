@@ -18,6 +18,8 @@ import { NgxGustavguezInputHolderComponent } from './forms/ngx-gustavguez-input-
 import { NgxGustavguezNavComponent } from './layout/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
 import { NgxGustavguezMainSidebarComponent } from './layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
 import { NgxGustavguezPageHeaderComponent } from './structure/ngx-gustavguez-page-header/ngx-gustavguez-page-header.component';
+import { NgxGustavguezInfoBoxComponent } from './structure/ngx-gustavguez-info-box/ngx-gustavguez-info-box.component';
+import { NgxGustavguezCardComponent } from './structure/ngx-gustavguez-card/ngx-gustavguez-card.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +34,8 @@ import { NgxGustavguezPageHeaderComponent } from './structure/ngx-gustavguez-pag
         NgxGustavguezMainSidebarComponent,
         NgxGustavguezMainContainerDirective,
         NgxGustavguezPageHeaderComponent,
+        NgxGustavguezInfoBoxComponent,
+        NgxGustavguezCardComponent,
     ],
     imports: [
         CommonModule,
@@ -48,7 +52,9 @@ import { NgxGustavguezPageHeaderComponent } from './structure/ngx-gustavguez-pag
         NgxGustavguezNavComponent,
         NgxGustavguezMainSidebarComponent,
         NgxGustavguezMainContainerDirective,
-        NgxGustavguezPageHeaderComponent
+        NgxGustavguezPageHeaderComponent,
+        NgxGustavguezInfoBoxComponent,
+        NgxGustavguezCardComponent
     ]
 })
 export class NgxGustavguezCoreModule { }

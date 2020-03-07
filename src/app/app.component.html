@@ -23,62 +23,53 @@
         <ngx-gustavguez-page-header text="Dashboard"></ngx-gustavguez-page-header>
 
         <!-- Main content -->
-        <section class="content" *ngIf="false">
+        <section class="content">
             <div class="container-fluid">
                 <h5 class="mb-2">Movimientos de hoy (05/03/2020)</h5>
                 <div class="row">
 
                     <div class="col-md-6 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info"><i class="fas fa-dollar-sign"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Total movimientos</span>
-                                <span class="info-box-number">$ 1.200</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
+                        <ngx-gustavguez-info-box 
+                            [status]="'danger'"
+                            [text]="'Total movimientos'"
+                            [number]="'$ 5.450'"
+                            [icon]="'fas fa-dollar-sign'"></ngx-gustavguez-info-box>
                     </div>
 
-                    <!-- /.col -->
                     <div class="col-md-6 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="fas fa-chart-pie"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Cantidad de movimientos</span>
-                                <span class="info-box-number">58</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
+                        <ngx-gustavguez-info-box 
+                            [status]="'danger'"
+                            [text]="'Total movimientos'"
+                            [number]="'$ 5.450'"
+                            [icon]="'fas fa-dollar-sign'"></ngx-gustavguez-info-box>
                     </div>
-                    <!-- /.col -->
+
+                    <div class="col-md-6 col-sm-6 col-12">
+                        <ngx-gustavguez-info-box 
+                            [status]="'danger'"
+                            [text]="'Total movimientos'"
+                            [number]="'$ 5.450'"
+                            [icon]="'fas fa-dollar-sign'"></ngx-gustavguez-info-box>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-12">
+                        <ngx-gustavguez-info-box 
+                            [status]="'danger'"
+                            [text]="'Total movimientos'"
+                            [number]="'$ 5.450'"
+                            [icon]="'fas fa-dollar-sign'"></ngx-gustavguez-info-box>
+                    </div>
                 </div>
-                <!-- /.row -->
 
                 <div class="row">
                     <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                        <h5 class="card-title">Monthly Recap Report</h5>
-
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                        
-                        </div>
-                        <!-- /.card-footer -->
+                        <ngx-gustavguez-card 
+                            [title]="'Mi titulo'">
+                            <h2>Probando body</h2>
+                        </ngx-gustavguez-card>
                     </div>
-                    <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
                 </div>
-
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
-
     </div>
 </div>

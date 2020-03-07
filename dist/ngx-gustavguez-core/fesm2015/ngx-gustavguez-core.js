@@ -60,6 +60,69 @@ NgxGustavguezPopupComponent = __decorate([
     })
 ], NgxGustavguezPopupComponent);
 
+let NgxGustavguezPageHeaderComponent = class NgxGustavguezPageHeaderComponent {
+    //Inject services
+    constructor() { }
+    //On component init
+    ngOnInit() {
+    }
+};
+__decorate([
+    Input()
+], NgxGustavguezPageHeaderComponent.prototype, "text", void 0);
+NgxGustavguezPageHeaderComponent = __decorate([
+    Component({
+        selector: 'ngx-gustavguez-page-header',
+        template: "<section class=\"content-header\">\n    <div class=\"container-fluid\">\n        <div class=\"row mb-2\">\n            <div class=\"col-sm-6\">\n                <h1>{{ text }}</h1>\n            </div>\n        </div>\n    </div><!-- /.container-fluid -->\n</section>",
+        styles: [""]
+    })
+], NgxGustavguezPageHeaderComponent);
+
+let NgxGustavguezCardComponent = class NgxGustavguezCardComponent {
+    //Inject services
+    constructor() { }
+    //On component init
+    ngOnInit() {
+    }
+};
+__decorate([
+    Input()
+], NgxGustavguezCardComponent.prototype, "title", void 0);
+NgxGustavguezCardComponent = __decorate([
+    Component({
+        selector: 'ngx-gustavguez-card',
+        template: "<div class=\"card\">\n    <div class=\"card-header\">\n        <h5 class=\"card-title\">{{ title }}</h5>\n    </div>\n\n    <div class=\"card-body\">\n        <ng-content></ng-content>\n    </div>\n</div>",
+        styles: [""]
+    })
+], NgxGustavguezCardComponent);
+
+let NgxGustavguezInfoBoxComponent = class NgxGustavguezInfoBoxComponent {
+    //Inject services
+    constructor() { }
+    //On component init
+    ngOnInit() {
+    }
+};
+__decorate([
+    Input()
+], NgxGustavguezInfoBoxComponent.prototype, "text", void 0);
+__decorate([
+    Input()
+], NgxGustavguezInfoBoxComponent.prototype, "number", void 0);
+__decorate([
+    Input()
+], NgxGustavguezInfoBoxComponent.prototype, "status", void 0);
+__decorate([
+    Input()
+], NgxGustavguezInfoBoxComponent.prototype, "icon", void 0);
+NgxGustavguezInfoBoxComponent = __decorate([
+    Component({
+        selector: 'ngx-gustavguez-info-box',
+        template: "<div class=\"info-box\">\n    <span class=\"info-box-icon bg-{{ status }}\">\n        <i class=\"{{ icon }}\"></i>\n    </span>\n\n    <div class=\"info-box-content\">\n        <span class=\"info-box-text\">{{ text }}</span>\n        <span class=\"info-box-number\">{{ number }}</span>\n    </div>\n</div>",
+        styles: [""]
+    })
+], NgxGustavguezInfoBoxComponent);
+
 class ArrayUtility {
     //Suggest current timezone hours
     static find(items, id, callback, compareKey) {
@@ -692,6 +755,18 @@ NgxGustavguezInputHolderComponent = __decorate([
     })
 ], NgxGustavguezInputHolderComponent);
 
+var NgxGustavguezStatusEnum;
+(function (NgxGustavguezStatusEnum) {
+    NgxGustavguezStatusEnum["PRIMARY"] = "primary";
+    NgxGustavguezStatusEnum["SECONDARY"] = "secondary";
+    NgxGustavguezStatusEnum["SUCCESS"] = "success";
+    NgxGustavguezStatusEnum["DANGER"] = "danger";
+    NgxGustavguezStatusEnum["WARNING"] = "warning";
+    NgxGustavguezStatusEnum["INFO"] = "info";
+    NgxGustavguezStatusEnum["LIGHT"] = "light";
+    NgxGustavguezStatusEnum["DARK"] = "dark";
+})(NgxGustavguezStatusEnum || (NgxGustavguezStatusEnum = {}));
+
 let NgxGustavguezCoreModule = class NgxGustavguezCoreModule {
 };
 NgxGustavguezCoreModule = __decorate([
@@ -707,6 +782,9 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezNavComponent,
             NgxGustavguezMainSidebarComponent,
             NgxGustavguezMainContainerDirective,
+            NgxGustavguezPageHeaderComponent,
+            NgxGustavguezInfoBoxComponent,
+            NgxGustavguezCardComponent,
         ],
         imports: [
             CommonModule,
@@ -723,6 +801,9 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezNavComponent,
             NgxGustavguezMainSidebarComponent,
             NgxGustavguezMainContainerDirective,
+            NgxGustavguezPageHeaderComponent,
+            NgxGustavguezInfoBoxComponent,
+            NgxGustavguezCardComponent
         ]
     })
 ], NgxGustavguezCoreModule);
@@ -733,5 +814,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCoreModule, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezMenuItem, NgxGustavguezNavComponent, NgxGustavguezPopupComponent, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezMenuItem, NgxGustavguezNavComponent, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezStatusEnum, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map

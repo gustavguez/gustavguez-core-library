@@ -275,6 +275,75 @@
         return NgxGustavguezPopupComponent;
     }());
 
+    var NgxGustavguezPageHeaderComponent = /** @class */ (function () {
+        //Inject services
+        function NgxGustavguezPageHeaderComponent() {
+        }
+        //On component init
+        NgxGustavguezPageHeaderComponent.prototype.ngOnInit = function () {
+        };
+        __decorate([
+            core.Input()
+        ], NgxGustavguezPageHeaderComponent.prototype, "text", void 0);
+        NgxGustavguezPageHeaderComponent = __decorate([
+            core.Component({
+                selector: 'ngx-gustavguez-page-header',
+                template: "<section class=\"content-header\">\n    <div class=\"container-fluid\">\n        <div class=\"row mb-2\">\n            <div class=\"col-sm-6\">\n                <h1>{{ text }}</h1>\n            </div>\n        </div>\n    </div><!-- /.container-fluid -->\n</section>",
+                styles: [""]
+            })
+        ], NgxGustavguezPageHeaderComponent);
+        return NgxGustavguezPageHeaderComponent;
+    }());
+
+    var NgxGustavguezCardComponent = /** @class */ (function () {
+        //Inject services
+        function NgxGustavguezCardComponent() {
+        }
+        //On component init
+        NgxGustavguezCardComponent.prototype.ngOnInit = function () {
+        };
+        __decorate([
+            core.Input()
+        ], NgxGustavguezCardComponent.prototype, "title", void 0);
+        NgxGustavguezCardComponent = __decorate([
+            core.Component({
+                selector: 'ngx-gustavguez-card',
+                template: "<div class=\"card\">\n    <div class=\"card-header\">\n        <h5 class=\"card-title\">{{ title }}</h5>\n    </div>\n\n    <div class=\"card-body\">\n        <ng-content></ng-content>\n    </div>\n</div>",
+                styles: [""]
+            })
+        ], NgxGustavguezCardComponent);
+        return NgxGustavguezCardComponent;
+    }());
+
+    var NgxGustavguezInfoBoxComponent = /** @class */ (function () {
+        //Inject services
+        function NgxGustavguezInfoBoxComponent() {
+        }
+        //On component init
+        NgxGustavguezInfoBoxComponent.prototype.ngOnInit = function () {
+        };
+        __decorate([
+            core.Input()
+        ], NgxGustavguezInfoBoxComponent.prototype, "text", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezInfoBoxComponent.prototype, "number", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezInfoBoxComponent.prototype, "status", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezInfoBoxComponent.prototype, "icon", void 0);
+        NgxGustavguezInfoBoxComponent = __decorate([
+            core.Component({
+                selector: 'ngx-gustavguez-info-box',
+                template: "<div class=\"info-box\">\n    <span class=\"info-box-icon bg-{{ status }}\">\n        <i class=\"{{ icon }}\"></i>\n    </span>\n\n    <div class=\"info-box-content\">\n        <span class=\"info-box-text\">{{ text }}</span>\n        <span class=\"info-box-number\">{{ number }}</span>\n    </div>\n</div>",
+                styles: [""]
+            })
+        ], NgxGustavguezInfoBoxComponent);
+        return NgxGustavguezInfoBoxComponent;
+    }());
+
     var ArrayUtility = /** @class */ (function () {
         function ArrayUtility() {
         }
@@ -966,6 +1035,18 @@
         return NgxGustavguezInputHolderComponent;
     }());
 
+
+    (function (NgxGustavguezStatusEnum) {
+        NgxGustavguezStatusEnum["PRIMARY"] = "primary";
+        NgxGustavguezStatusEnum["SECONDARY"] = "secondary";
+        NgxGustavguezStatusEnum["SUCCESS"] = "success";
+        NgxGustavguezStatusEnum["DANGER"] = "danger";
+        NgxGustavguezStatusEnum["WARNING"] = "warning";
+        NgxGustavguezStatusEnum["INFO"] = "info";
+        NgxGustavguezStatusEnum["LIGHT"] = "light";
+        NgxGustavguezStatusEnum["DARK"] = "dark";
+    })(exports.NgxGustavguezStatusEnum || (exports.NgxGustavguezStatusEnum = {}));
+
     var NgxGustavguezCoreModule = /** @class */ (function () {
         function NgxGustavguezCoreModule() {
         }
@@ -982,6 +1063,9 @@
                     NgxGustavguezNavComponent,
                     NgxGustavguezMainSidebarComponent,
                     NgxGustavguezMainContainerDirective,
+                    NgxGustavguezPageHeaderComponent,
+                    NgxGustavguezInfoBoxComponent,
+                    NgxGustavguezCardComponent,
                 ],
                 imports: [
                     common.CommonModule,
@@ -998,6 +1082,9 @@
                     NgxGustavguezNavComponent,
                     NgxGustavguezMainSidebarComponent,
                     NgxGustavguezMainContainerDirective,
+                    NgxGustavguezPageHeaderComponent,
+                    NgxGustavguezInfoBoxComponent,
+                    NgxGustavguezCardComponent
                 ]
             })
         ], NgxGustavguezCoreModule);
@@ -1010,7 +1097,9 @@
     exports.DateUtility = DateUtility;
     exports.FormUtility = FormUtility;
     exports.NgxGustavguezButtonComponent = NgxGustavguezButtonComponent;
+    exports.NgxGustavguezCardComponent = NgxGustavguezCardComponent;
     exports.NgxGustavguezCoreModule = NgxGustavguezCoreModule;
+    exports.NgxGustavguezInfoBoxComponent = NgxGustavguezInfoBoxComponent;
     exports.NgxGustavguezInputHolderComponent = NgxGustavguezInputHolderComponent;
     exports.NgxGustavguezLoaderComponent = NgxGustavguezLoaderComponent;
     exports.NgxGustavguezMainContainerDirective = NgxGustavguezMainContainerDirective;
@@ -1018,6 +1107,7 @@
     exports.NgxGustavguezMainSidebarService = NgxGustavguezMainSidebarService;
     exports.NgxGustavguezMenuItem = NgxGustavguezMenuItem;
     exports.NgxGustavguezNavComponent = NgxGustavguezNavComponent;
+    exports.NgxGustavguezPageHeaderComponent = NgxGustavguezPageHeaderComponent;
     exports.NgxGustavguezPopupComponent = NgxGustavguezPopupComponent;
     exports.NumberUtility = NumberUtility;
     exports.PrettyDatePipe = PrettyDatePipe;
