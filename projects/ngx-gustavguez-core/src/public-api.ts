@@ -18,7 +18,9 @@ export * from './lib/pipes/pretty-number.pipe';
 export * from './lib/core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
 export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
 export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.service';
+export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-menu-item.model';
 export * from './lib/core/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
+
 
 //Api
 export * from './lib/api/api-response.model';

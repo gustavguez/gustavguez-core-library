@@ -1,7 +1,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a class="brand-link">
+    <a 
+        href="#"
+        class="brand-link"
+        (click)="onBrandLink($event)">
         <img 
+            *ngIf="brandImg"
             [src]="brandImg" 
             [alt]="brandTitle"
             class="brand-image img-circle elevation-3" style="opacity: .95">
@@ -15,6 +19,7 @@
             class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img 
+                    *ngIf="userAvatar"
                     [src]="userAvatar"
                     [alt]="userName"
                     class="img-circle elevation-2">

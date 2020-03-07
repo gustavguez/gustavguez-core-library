@@ -1,5 +1,5 @@
 import { OnInit, EventEmitter } from '@angular/core';
-import { NgxGustavguezMenuItem } from './ngx-gutavguez-menu-item.model';
+import { NgxGustavguezMenuItem } from './ngx-gustavguez-menu-item.model';
 export declare class NgxGustavguezMainSidebarComponent implements OnInit {
     brandTitle: string;
     brandImg: string;
@@ -11,4 +11,5 @@ export declare class NgxGustavguezMainSidebarComponent implements OnInit {
     constructor();
     ngOnInit(): void;
     onMenuItemClick(event: MouseEvent, mouseItem: NgxGustavguezMenuItem): void;
+    onBrandLink(event: MouseEvent): void;
 }

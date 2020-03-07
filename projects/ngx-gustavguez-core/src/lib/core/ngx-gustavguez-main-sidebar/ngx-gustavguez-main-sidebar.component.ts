@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgxGustavguezMenuItem } from './ngx-gutavguez-menu-item.model';
+import { NgxGustavguezMenuItem } from './ngx-gustavguez-menu-item.model';
 
 @Component({
     selector: 'ngx-gustavguez-main-sidebar',
@@ -31,6 +31,11 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
         event.preventDefault();
         //Emit click for now
         this.onMenuItem.emit(mouseItem);
+    }
+
+    onBrandLink(event: MouseEvent) {
+        event.preventDefault();
+        //Do nothing for now
     }
 
 }
