@@ -8,18 +8,19 @@ export * from './lib/utilities/date.utility';
 export * from './lib/utilities/form.utility';
 export * from './lib/utilities/number.utility';
 export * from './lib/utilities/string.utility';
+export * from './lib/utilities/window.utility';
 
 //Pipes
 export * from './lib/pipes/pretty-date.pipe';
 export * from './lib/pipes/pretty-hour.pipe';
 export * from './lib/pipes/pretty-number.pipe';
 
-//Core
-export * from './lib/core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
-export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
-export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.service';
-export * from './lib/core/ngx-gustavguez-main-sidebar/ngx-gustavguez-menu-item.model';
-export * from './lib/core/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
+//Layout
+export * from './lib/layout/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
+export * from './lib/layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
+export * from './lib/layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.service';
+export * from './lib/layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-menu-item.model';
+export * from './lib/layout/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
 
 
 //Api

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { NgxGustavguezMenuItem } from './ngx-gustavguez-menu-item.model';
+import { NgxGustavguezMainSidebarService } from './ngx-gustavguez-main-sidebar.service';
 import { ArrayUtility } from '../../utilities/array.utility';
 
 @Component({
@@ -23,10 +25,14 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
     menuItemsStates: any;
 
     //Inject services
-    constructor() { }
+    constructor(
+        private ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService
+    ) { }
 
     //On component init
     ngOnInit(): void {
+        //Init vars
+        this.menuItemsStates = {};
     }
 
     //Custom events
@@ -39,12 +45,20 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
         } else {
             //Emit click for now
             this.onMenuItem.emit(menuItem);
+
+            //Close sidebar
+            this.ngxGustavguezMainSidebarService.changeState(false);
         }
     }
 
     onBrandLink(event: MouseEvent) {
         event.preventDefault();
-        //Do nothing for now
+        //Close sidebar
+        this.ngxGustavguezMainSidebarService.changeState(false);
+    }
+
+    onCloseSidebar(){
+        this.ngxGustavguezMainSidebarService.changeState(false);
     }
 
 }

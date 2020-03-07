@@ -9,10 +9,29 @@ import { NgxGustavguezMenuItem } from 'projects/ngx-gustavguez-core/src/public-a
 export class AppComponent {
 
     //Models
-    menuItems: NgxGustavguezMenuItem
+    menuItems: NgxGustavguezMenuItem[] = [
+        new NgxGustavguezMenuItem("Menú padre 1", "fas fa-hand-holding-usd", null, [
+            new NgxGustavguezMenuItem("Menú hijo 1", "fas fa-home"),
+            new NgxGustavguezMenuItem("Menú hijo 1", "fas fa-home"),
+            new NgxGustavguezMenuItem("Menú hijo 1", "fas fa-home"),
+        ]),
+        new NgxGustavguezMenuItem("Menú padre 2", "fas fa-hand-holding-usd", null, [
+            new NgxGustavguezMenuItem("Menú hijo 2", "fas fa-home"),
+            new NgxGustavguezMenuItem("Menú hijo 2", "fas fa-home")
+        ]),
+        new NgxGustavguezMenuItem("Menú padre 3", "fas fa-hand-holding-usd", null, [
+            new NgxGustavguezMenuItem("Menú hijo 3", "fas fa-home"),
+            new NgxGustavguezMenuItem("Menú hijo 3", "fas fa-home"),
+            new NgxGustavguezMenuItem("Menú hijo 3", "fas fa-home"),
+        ]),
+    ]
     
     //Custom events
     onLogout(){
         console.log("logout");
+    }
+
+    onMenuItem(item: NgxGustavguezMenuItem) {
+        item.isActive = !item.isActive;
     }
 }

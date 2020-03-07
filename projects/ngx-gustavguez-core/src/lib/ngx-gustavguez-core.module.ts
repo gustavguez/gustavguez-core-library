@@ -8,15 +8,15 @@ import { PrettyHourPipe } from './pipes/pretty-hour.pipe';
 import { PrettyNumberPipe } from './pipes/pretty-number.pipe';
 
 //Directives
-import { NgxGustavguezMainContainerDirective } from './core/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
+import { NgxGustavguezMainContainerDirective } from './layout/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
 
 //Components
 import { NgxGustavguezLoaderComponent } from './structure/ngx-gustavguez-loader/ngx-gustavguez-loader.component';
 import { NgxGustavguezPopupComponent } from './structure/ngx-gustavguez-popup/ngx-gustavguez-popup.component';
 import { NgxGustavguezButtonComponent } from './forms/ngx-gustavguez-button/ngx-gustavguez-button.component';
 import { NgxGustavguezInputHolderComponent } from './forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-holder.component';
-import { NgxGustavguezNavComponent } from './core/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
-import { NgxGustavguezMainSidebarComponent } from './core/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
+import { NgxGustavguezNavComponent } from './layout/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
+import { NgxGustavguezMainSidebarComponent } from './layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.component';
 
 @NgModule({
     declarations: [
