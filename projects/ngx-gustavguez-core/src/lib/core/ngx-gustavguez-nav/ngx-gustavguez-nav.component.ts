@@ -28,15 +28,18 @@ export class NgxGustavguezNavComponent implements OnInit {
     }
 
     //Custom events
-    onToggleMenu(){
+    onToggleMenu(event: MouseEvent){
+        event.preventDefault();
         this.ngxGustavguezMainSidebarService.toggleState();
     }
 
-    onToggleUserMenu(){
+    onToggleUserMenu(event: MouseEvent){
+        event.preventDefault();
         this.userMenuState = !this.userMenuState;
     }
 
-    onLogoutClick(){
+    onLogoutClick(event: MouseEvent){
+        event.preventDefault();
         //Emit logout
         this.onLogout.emit();
 
