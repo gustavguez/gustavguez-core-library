@@ -11,6 +11,14 @@
                 <i class="fas fa-bars"></i>
             </a>
         </li>
+        <li class="nav-item d-lg-none" *ngIf="brandTitle">
+            <a 
+                href="#" 
+                class="nav-link"
+                (click)="onBrandLink($event)">
+                {{ brandTitle }}
+            </a>
+        </li>
     </ul>
 
     <!-- Right navbar links -->

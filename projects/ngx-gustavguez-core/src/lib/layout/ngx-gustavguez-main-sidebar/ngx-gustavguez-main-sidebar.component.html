@@ -37,10 +37,10 @@
                 data-widget="treeview" 
                 role="menu">
 
-                <li class="nav-header">Menú</li>
+                <li class="nav-header">MENÚ</li>
 
                 <li 
-                    [class.menu-open]="menuItemsStates[menuItem.id]"
+                    [class.menu-open]="menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined"
                     [class.active]="menuItem.isActive"
                     class="nav-item has-treeview" 
                     *ngFor="let menuItem of menuItems">
@@ -57,7 +57,7 @@
 
                     <ng-container *ngIf="menuItem.childs">
                         <ul 
-                            [style.display]="menuItemsStates[menuItem.id] ? 'block' : 'none'"
+                            [style.display]="(menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined) ? 'block' : 'none'"
                             class="nav nav-treeview">
                             <li 
                                 class="nav-item" menuItemStates

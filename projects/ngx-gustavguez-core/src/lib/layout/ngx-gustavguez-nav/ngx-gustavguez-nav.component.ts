@@ -9,12 +9,14 @@ import { NgxGustavguezMainSidebarService } from '../ngx-gustavguez-main-sidebar/
 })
 export class NgxGustavguezNavComponent implements OnInit {
     //Inputs
+    @Input() brandTitle: string;
     @Input() userIsLogged: boolean;
     @Input() userMenuText: string;
     @Input() userMenuLogoutText: string;
 
     //Outputs
     @Output() onLogout: EventEmitter<void> = new EventEmitter();
+    @Output() onBrand: EventEmitter<void> = new EventEmitter();
 
     //Models
     userMenuState: boolean;
@@ -45,5 +47,10 @@ export class NgxGustavguezNavComponent implements OnInit {
 
         //Close user menu
         this.userMenuState = false;
+    }
+    
+    onBrandLink(event: MouseEvent) {
+        event.preventDefault();
+        this.onBrand.emit();
     }
 }

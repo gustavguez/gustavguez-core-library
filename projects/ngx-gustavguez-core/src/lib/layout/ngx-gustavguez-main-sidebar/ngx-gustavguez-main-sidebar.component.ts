@@ -38,10 +38,11 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
     //Custom events
     onMenuItemClick(event: MouseEvent, menuItem: NgxGustavguezMenuItem) {
         event.preventDefault();
+
         //Check
         if(ArrayUtility.hasValue(menuItem.childs)) {
             //Toggle state
-            this.menuItemsStates[menuItem.id] = !this.menuItemsStates[menuItem.id];
+            this.menuItemsStates[menuItem.id] = (menuItem.id in this.menuItemsStates) ? !this.menuItemsStates[menuItem.id] : false;
         } else {
             //Emit click for now
             this.onMenuItem.emit(menuItem);
