@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxGustavguezMenuItem } from 'projects/ngx-gustavguez-core/src/public-api';
+import { NgxGustavguezMenuItem, NgxGustavguezToastsService } from 'projects/ngx-gustavguez-core/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,11 @@ import { NgxGustavguezMenuItem } from 'projects/ngx-gustavguez-core/src/public-a
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+    //Inject services
+    constructor(
+        private ngxGustavguezToastsService: NgxGustavguezToastsService
+    ){}
 
     //Models
     menuItems: NgxGustavguezMenuItem[] = [
@@ -33,5 +38,13 @@ export class AppComponent {
 
     onMenuItem(item: NgxGustavguezMenuItem) {
         item.isActive = !item.isActive;
+    }
+
+    onAddToastSuccess() {
+        this.ngxGustavguezToastsService.addSuccess("La noticia se agregó correctamente.");
+    }
+
+    onAddToastError() {
+        this.ngxGustavguezToastsService.addError("Problema al agregar la noticia.");
     }
 }

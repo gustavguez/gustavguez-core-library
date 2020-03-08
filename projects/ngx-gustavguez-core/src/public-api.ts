@@ -4,6 +4,9 @@ export * from './lib/structure/ngx-gustavguez-popup/ngx-gustavguez-popup.compone
 export * from './lib/structure/ngx-gustavguez-page-header/ngx-gustavguez-page-header.component';
 export * from './lib/structure/ngx-gustavguez-card/ngx-gustavguez-card.component';
 export * from './lib/structure/ngx-gustavguez-info-box/ngx-gustavguez-info-box.component';
+export * from './lib/structure/ngx-gustavguez-toasts/ngx-gustavguez-toasts.component';
+export * from './lib/structure/ngx-gustavguez-toasts/ngx-gustavguez-toasts.service';
+export * from './lib/structure/ngx-gustavguez-toasts/ngx-gustavguez-toast.model';
 
 //Utilities
 export * from './lib/utilities/array.utility';

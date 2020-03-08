@@ -344,6 +344,64 @@
         return NgxGustavguezInfoBoxComponent;
     }());
 
+    var StringUtility = /** @class */ (function () {
+        function StringUtility() {
+        }
+        StringUtility.randomString = function () {
+            return Math.random().toString(36).substring(2, 12);
+        };
+        StringUtility.padLeft = function (val, digits) {
+            return val.toString().padStart(digits, "0");
+        };
+        return StringUtility;
+    }());
+
+    var NgxGustavguezToastModel = /** @class */ (function () {
+        function NgxGustavguezToastModel(message, status) {
+            this.message = message;
+            this.status = status;
+            //Generate random id
+            this.id = StringUtility.randomString();
+        }
+        return NgxGustavguezToastModel;
+    }());
+
+
+    (function (NgxGustavguezStatusEnum) {
+        NgxGustavguezStatusEnum["PRIMARY"] = "primary";
+        NgxGustavguezStatusEnum["SECONDARY"] = "secondary";
+        NgxGustavguezStatusEnum["SUCCESS"] = "success";
+        NgxGustavguezStatusEnum["DANGER"] = "danger";
+        NgxGustavguezStatusEnum["WARNING"] = "warning";
+        NgxGustavguezStatusEnum["INFO"] = "info";
+        NgxGustavguezStatusEnum["LIGHT"] = "light";
+        NgxGustavguezStatusEnum["DARK"] = "dark";
+    })(exports.NgxGustavguezStatusEnum || (exports.NgxGustavguezStatusEnum = {}));
+
+    var NgxGustavguezToastsService = /** @class */ (function () {
+        //Inject service
+        function NgxGustavguezToastsService() {
+            //Event emmiters
+            this.onToastAdded = new core.EventEmitter();
+        }
+        //Methods
+        NgxGustavguezToastsService.prototype.addError = function (message) {
+            //Open toast
+            this.onToastAdded.emit(new NgxGustavguezToastModel(message, exports.NgxGustavguezStatusEnum.DANGER));
+        };
+        NgxGustavguezToastsService.prototype.addSuccess = function (message) {
+            //Open toast
+            this.onToastAdded.emit(new NgxGustavguezToastModel(message, exports.NgxGustavguezStatusEnum.SUCCESS));
+        };
+        NgxGustavguezToastsService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function NgxGustavguezToastsService_Factory() { return new NgxGustavguezToastsService(); }, token: NgxGustavguezToastsService, providedIn: "root" });
+        NgxGustavguezToastsService = __decorate([
+            core.Injectable({
+                providedIn: 'root',
+            })
+        ], NgxGustavguezToastsService);
+        return NgxGustavguezToastsService;
+    }());
+
     var ArrayUtility = /** @class */ (function () {
         function ArrayUtility() {
         }
@@ -436,6 +494,60 @@
             return (items instanceof Array && items.length > 0);
         };
         return ArrayUtility;
+    }());
+
+    var NgxGustavguezToastsComponent = /** @class */ (function () {
+        //Inject services
+        function NgxGustavguezToastsComponent(ngxGustavguezToastsService) {
+            this.ngxGustavguezToastsService = ngxGustavguezToastsService;
+            //Models
+            this.toasts = [];
+        }
+        //On component init
+        NgxGustavguezToastsComponent.prototype.ngOnInit = function () {
+            var _this = this;
+            //Watch toast added
+            this.ngxGustavguezToastsService.onToastAdded.subscribe(function (toast) {
+                _this.openToast(toast);
+            });
+        };
+        //Custom events
+        NgxGustavguezToastsComponent.prototype.onCloseToast = function (toast) {
+            this.closeToast(toast);
+        };
+        //Private methods
+        NgxGustavguezToastsComponent.prototype.openToast = function (toast) {
+            var _this = this;
+            //Before push create timeout
+            toast.timerInstance = setTimeout(function () {
+                _this.closeToast(toast);
+            }, 3000);
+            //push
+            this.toasts.unshift(toast);
+        };
+        NgxGustavguezToastsComponent.prototype.closeToast = function (toast) {
+            var _this = this;
+            //Check
+            if (toast instanceof NgxGustavguezToastModel) {
+                ArrayUtility.find(this.toasts, toast.id, function (t, index) {
+                    //Clear timer instance
+                    clearTimeout(t.timerInstance);
+                    //Remove from array
+                    _this.toasts.splice(index, 1);
+                });
+            }
+        };
+        NgxGustavguezToastsComponent.ctorParameters = function () { return [
+            { type: NgxGustavguezToastsService }
+        ]; };
+        NgxGustavguezToastsComponent = __decorate([
+            core.Component({
+                selector: 'ngx-gustavguez-toasts',
+                template: "<div \n    class=\"toasts-top-right fixed mr-2 mt-2\" \n    [style.display]=\" toasts.length ? 'block' : 'none' \">\n    <!-- Then put toasts within -->\n    <div \n        class=\"toast show fade bg-{{ toast.status }}\" \n        *ngFor=\"let toast of toasts; let i = index\">\n        <div class=\"toast-header text-light\">\n\n            <strong class=\"mr-auto\">\n                Alerta\n            </strong>\n\n            <button \n                (click)=\"onCloseToast(toast)\"\n                type=\"button\" \n                class=\"btn btn-link text-light\">\n                <i class=\"fas fa-times\"></i>\n            </button>\n        </div>\n\n        <div class=\"toast-body\">{{ toast.message }}</div>\n    </div>\n</div>",
+                styles: [""]
+            })
+        ], NgxGustavguezToastsComponent);
+        return NgxGustavguezToastsComponent;
     }());
 
     var moment = momentImported;
@@ -537,18 +649,6 @@
             return valStr.substring(0, valStr.length - 3);
         };
         return NumberUtility;
-    }());
-
-    var StringUtility = /** @class */ (function () {
-        function StringUtility() {
-        }
-        StringUtility.randomString = function () {
-            return Math.random().toString(36).substring(2, 12);
-        };
-        StringUtility.padLeft = function (val, digits) {
-            return val.toString().padStart(digits, "0");
-        };
-        return StringUtility;
     }());
 
     var WindowUtility = /** @class */ (function () {
@@ -1046,18 +1146,6 @@
         return NgxGustavguezInputHolderComponent;
     }());
 
-
-    (function (NgxGustavguezStatusEnum) {
-        NgxGustavguezStatusEnum["PRIMARY"] = "primary";
-        NgxGustavguezStatusEnum["SECONDARY"] = "secondary";
-        NgxGustavguezStatusEnum["SUCCESS"] = "success";
-        NgxGustavguezStatusEnum["DANGER"] = "danger";
-        NgxGustavguezStatusEnum["WARNING"] = "warning";
-        NgxGustavguezStatusEnum["INFO"] = "info";
-        NgxGustavguezStatusEnum["LIGHT"] = "light";
-        NgxGustavguezStatusEnum["DARK"] = "dark";
-    })(exports.NgxGustavguezStatusEnum || (exports.NgxGustavguezStatusEnum = {}));
-
     var NgxGustavguezCoreModule = /** @class */ (function () {
         function NgxGustavguezCoreModule() {
         }
@@ -1077,6 +1165,7 @@
                     NgxGustavguezPageHeaderComponent,
                     NgxGustavguezInfoBoxComponent,
                     NgxGustavguezCardComponent,
+                    NgxGustavguezToastsComponent,
                 ],
                 imports: [
                     common.CommonModule,
@@ -1095,7 +1184,8 @@
                     NgxGustavguezMainContainerDirective,
                     NgxGustavguezPageHeaderComponent,
                     NgxGustavguezInfoBoxComponent,
-                    NgxGustavguezCardComponent
+                    NgxGustavguezCardComponent,
+                    NgxGustavguezToastsComponent
                 ]
             })
         ], NgxGustavguezCoreModule);
@@ -1120,6 +1210,9 @@
     exports.NgxGustavguezNavComponent = NgxGustavguezNavComponent;
     exports.NgxGustavguezPageHeaderComponent = NgxGustavguezPageHeaderComponent;
     exports.NgxGustavguezPopupComponent = NgxGustavguezPopupComponent;
+    exports.NgxGustavguezToastModel = NgxGustavguezToastModel;
+    exports.NgxGustavguezToastsComponent = NgxGustavguezToastsComponent;
+    exports.NgxGustavguezToastsService = NgxGustavguezToastsService;
     exports.NumberUtility = NumberUtility;
     exports.PrettyDatePipe = PrettyDatePipe;
     exports.PrettyHourPipe = PrettyHourPipe;

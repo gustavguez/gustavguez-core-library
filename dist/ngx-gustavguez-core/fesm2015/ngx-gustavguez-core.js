@@ -1,5 +1,5 @@
 import { __decorate } from 'tslib';
-import { Input, Component, EventEmitter, Output, Pipe, ɵɵdefineInjectable, Injectable, HostBinding, Directive, ɵɵinject, NgModule } from '@angular/core';
+import { Input, Component, EventEmitter, Output, ɵɵdefineInjectable, Injectable, Pipe, HostBinding, Directive, ɵɵinject, NgModule } from '@angular/core';
 import * as momentImported from 'moment';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -123,6 +123,59 @@ NgxGustavguezInfoBoxComponent = __decorate([
     })
 ], NgxGustavguezInfoBoxComponent);
 
+class StringUtility {
+    static randomString() {
+        return Math.random().toString(36).substring(2, 12);
+    }
+    static padLeft(val, digits) {
+        return val.toString().padStart(digits, "0");
+    }
+}
+
+class NgxGustavguezToastModel {
+    constructor(message, status) {
+        this.message = message;
+        this.status = status;
+        //Generate random id
+        this.id = StringUtility.randomString();
+    }
+}
+
+var NgxGustavguezStatusEnum;
+(function (NgxGustavguezStatusEnum) {
+    NgxGustavguezStatusEnum["PRIMARY"] = "primary";
+    NgxGustavguezStatusEnum["SECONDARY"] = "secondary";
+    NgxGustavguezStatusEnum["SUCCESS"] = "success";
+    NgxGustavguezStatusEnum["DANGER"] = "danger";
+    NgxGustavguezStatusEnum["WARNING"] = "warning";
+    NgxGustavguezStatusEnum["INFO"] = "info";
+    NgxGustavguezStatusEnum["LIGHT"] = "light";
+    NgxGustavguezStatusEnum["DARK"] = "dark";
+})(NgxGustavguezStatusEnum || (NgxGustavguezStatusEnum = {}));
+
+let NgxGustavguezToastsService = class NgxGustavguezToastsService {
+    //Inject service
+    constructor() {
+        //Event emmiters
+        this.onToastAdded = new EventEmitter();
+    }
+    //Methods
+    addError(message) {
+        //Open toast
+        this.onToastAdded.emit(new NgxGustavguezToastModel(message, NgxGustavguezStatusEnum.DANGER));
+    }
+    addSuccess(message) {
+        //Open toast
+        this.onToastAdded.emit(new NgxGustavguezToastModel(message, NgxGustavguezStatusEnum.SUCCESS));
+    }
+};
+NgxGustavguezToastsService.ɵprov = ɵɵdefineInjectable({ factory: function NgxGustavguezToastsService_Factory() { return new NgxGustavguezToastsService(); }, token: NgxGustavguezToastsService, providedIn: "root" });
+NgxGustavguezToastsService = __decorate([
+    Injectable({
+        providedIn: 'root',
+    })
+], NgxGustavguezToastsService);
+
 class ArrayUtility {
     //Suggest current timezone hours
     static find(items, id, callback, compareKey) {
@@ -214,6 +267,56 @@ class ArrayUtility {
     }
 }
 
+let NgxGustavguezToastsComponent = class NgxGustavguezToastsComponent {
+    //Inject services
+    constructor(ngxGustavguezToastsService) {
+        this.ngxGustavguezToastsService = ngxGustavguezToastsService;
+        //Models
+        this.toasts = [];
+    }
+    //On component init
+    ngOnInit() {
+        //Watch toast added
+        this.ngxGustavguezToastsService.onToastAdded.subscribe((toast) => {
+            this.openToast(toast);
+        });
+    }
+    //Custom events
+    onCloseToast(toast) {
+        this.closeToast(toast);
+    }
+    //Private methods
+    openToast(toast) {
+        //Before push create timeout
+        toast.timerInstance = setTimeout(() => {
+            this.closeToast(toast);
+        }, 3000);
+        //push
+        this.toasts.unshift(toast);
+    }
+    closeToast(toast) {
+        //Check
+        if (toast instanceof NgxGustavguezToastModel) {
+            ArrayUtility.find(this.toasts, toast.id, (t, index) => {
+                //Clear timer instance
+                clearTimeout(t.timerInstance);
+                //Remove from array
+                this.toasts.splice(index, 1);
+            });
+        }
+    }
+};
+NgxGustavguezToastsComponent.ctorParameters = () => [
+    { type: NgxGustavguezToastsService }
+];
+NgxGustavguezToastsComponent = __decorate([
+    Component({
+        selector: 'ngx-gustavguez-toasts',
+        template: "<div \n    class=\"toasts-top-right fixed mr-2 mt-2\" \n    [style.display]=\" toasts.length ? 'block' : 'none' \">\n    <!-- Then put toasts within -->\n    <div \n        class=\"toast show fade bg-{{ toast.status }}\" \n        *ngFor=\"let toast of toasts; let i = index\">\n        <div class=\"toast-header text-light\">\n\n            <strong class=\"mr-auto\">\n                Alerta\n            </strong>\n\n            <button \n                (click)=\"onCloseToast(toast)\"\n                type=\"button\" \n                class=\"btn btn-link text-light\">\n                <i class=\"fas fa-times\"></i>\n            </button>\n        </div>\n\n        <div class=\"toast-body\">{{ toast.message }}</div>\n    </div>\n</div>",
+        styles: [""]
+    })
+], NgxGustavguezToastsComponent);
+
 const moment = momentImported;
 class DateUtility {
     static todayLocaleString() {
@@ -299,15 +402,6 @@ class NumberUtility {
     static format(val) {
         const valStr = val.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         return valStr.substring(0, valStr.length - 3);
-    }
-}
-
-class StringUtility {
-    static randomString() {
-        return Math.random().toString(36).substring(2, 12);
-    }
-    static padLeft(val, digits) {
-        return val.toString().padStart(digits, "0");
     }
 }
 
@@ -766,18 +860,6 @@ NgxGustavguezInputHolderComponent = __decorate([
     })
 ], NgxGustavguezInputHolderComponent);
 
-var NgxGustavguezStatusEnum;
-(function (NgxGustavguezStatusEnum) {
-    NgxGustavguezStatusEnum["PRIMARY"] = "primary";
-    NgxGustavguezStatusEnum["SECONDARY"] = "secondary";
-    NgxGustavguezStatusEnum["SUCCESS"] = "success";
-    NgxGustavguezStatusEnum["DANGER"] = "danger";
-    NgxGustavguezStatusEnum["WARNING"] = "warning";
-    NgxGustavguezStatusEnum["INFO"] = "info";
-    NgxGustavguezStatusEnum["LIGHT"] = "light";
-    NgxGustavguezStatusEnum["DARK"] = "dark";
-})(NgxGustavguezStatusEnum || (NgxGustavguezStatusEnum = {}));
-
 let NgxGustavguezCoreModule = class NgxGustavguezCoreModule {
 };
 NgxGustavguezCoreModule = __decorate([
@@ -796,6 +878,7 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezPageHeaderComponent,
             NgxGustavguezInfoBoxComponent,
             NgxGustavguezCardComponent,
+            NgxGustavguezToastsComponent,
         ],
         imports: [
             CommonModule,
@@ -814,7 +897,8 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezMainContainerDirective,
             NgxGustavguezPageHeaderComponent,
             NgxGustavguezInfoBoxComponent,
-            NgxGustavguezCardComponent
+            NgxGustavguezCardComponent,
+            NgxGustavguezToastsComponent
         ]
     })
 ], NgxGustavguezCoreModule);
@@ -825,5 +909,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezMenuItem, NgxGustavguezNavComponent, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezStatusEnum, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezMenuItem, NgxGustavguezNavComponent, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezStatusEnum, NgxGustavguezToastModel, NgxGustavguezToastsComponent, NgxGustavguezToastsService, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map

@@ -1,0 +1,12 @@
+import { StringUtility } from '../../utilities/string.utility';
+var NgxGustavguezToastModel = /** @class */ (function () {
+    function NgxGustavguezToastModel(message, status) {
+        this.message = message;
+        this.status = status;
+        //Generate random id
+        this.id = StringUtility.randomString();
+    }
+    return NgxGustavguezToastModel;
+}());
+export { NgxGustavguezToastModel };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmd4LWd1c3Rhdmd1ZXotdG9hc3QubW9kZWwuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9uZ3gtZ3VzdGF2Z3Vlei1jb3JlLyIsInNvdXJjZXMiOlsibGliL3N0cnVjdHVyZS9uZ3gtZ3VzdGF2Z3Vlei10b2FzdHMvbmd4LWd1c3Rhdmd1ZXotdG9hc3QubW9kZWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsT0FBTyxFQUFFLGFBQWEsRUFBRSxNQUFNLGdDQUFnQyxDQUFDO0FBRS9EO0lBSUksaUNBQ1csT0FBZSxFQUNmLE1BQStCO1FBRC9CLFlBQU8sR0FBUCxPQUFPLENBQVE7UUFDZixXQUFNLEdBQU4sTUFBTSxDQUF5QjtRQUV0QyxvQkFBb0I7UUFDcEIsSUFBSSxDQUFDLEVBQUUsR0FBRyxhQUFhLENBQUMsWUFBWSxFQUFFLENBQUM7SUFDM0MsQ0FBQztJQUNMLDhCQUFDO0FBQUQsQ0FBQyxBQVhELElBV0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOZ3hHdXN0YXZndWV6U3RhdHVzRW51bSB9IGZyb20gJy4uLy4uL25neC1ndXN0YXZndWV6LXN0YXR1cy5lbnVtJztcbmltcG9ydCB7IFN0cmluZ1V0aWxpdHkgfSBmcm9tICcuLi8uLi91dGlsaXRpZXMvc3RyaW5nLnV0aWxpdHknO1xuXG5leHBvcnQgY2xhc3MgTmd4R3VzdGF2Z3VlelRvYXN0TW9kZWwge1xuICAgIHB1YmxpYyBpZDogc3RyaW5nO1xuICAgIHB1YmxpYyB0aW1lckluc3RhbmNlOiBhbnk7XG4gICAgXG4gICAgY29uc3RydWN0b3IoXG4gICAgICAgIHB1YmxpYyBtZXNzYWdlOiBzdHJpbmcsXG4gICAgICAgIHB1YmxpYyBzdGF0dXM6IE5neEd1c3Rhdmd1ZXpTdGF0dXNFbnVtXG4gICAgKXtcbiAgICAgICAgLy9HZW5lcmF0ZSByYW5kb20gaWRcbiAgICAgICAgdGhpcy5pZCA9IFN0cmluZ1V0aWxpdHkucmFuZG9tU3RyaW5nKCk7XG4gICAgfVxufSJdfQ==

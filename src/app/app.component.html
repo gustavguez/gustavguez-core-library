@@ -65,7 +65,9 @@
                     <div class="col-md-12">
                         <ngx-gustavguez-card 
                             [title]="'Mi titulo'">
-                            <h2>Probando body</h2>
+                            
+                            <button class="btn btn-success" (click)="onAddToastSuccess()">TOAST SUCCESS</button>
+                            <button class="btn btn-danger" (click)="onAddToastError()">TOAST ERROR</button>
                         </ngx-gustavguez-card>
                     </div>
                 </div>
@@ -73,3 +75,5 @@
         </section>
     </div>
 </div>
+
+<ngx-gustavguez-toasts></ngx-gustavguez-toasts>
