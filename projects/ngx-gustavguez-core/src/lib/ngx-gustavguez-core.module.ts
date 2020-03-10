@@ -22,6 +22,7 @@ import { NgxGustavguezPageHeaderComponent } from './structure/ngx-gustavguez-pag
 import { NgxGustavguezInfoBoxComponent } from './structure/ngx-gustavguez-info-box/ngx-gustavguez-info-box.component';
 import { NgxGustavguezCardComponent } from './structure/ngx-gustavguez-card/ngx-gustavguez-card.component';
 import { NgxGustavguezToastsComponent } from './structure/ngx-gustavguez-toasts/ngx-gustavguez-toasts.component';
+import { NgxGustavguezNavItemComponent } from './layout/ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { NgxGustavguezToastsComponent } from './structure/ngx-gustavguez-toasts/
         NgxGustavguezInfoBoxComponent,
         NgxGustavguezCardComponent,
         NgxGustavguezToastsComponent,
+        NgxGustavguezNavItemComponent,
     ],
     imports: [
         CommonModule,
@@ -59,7 +61,8 @@ import { NgxGustavguezToastsComponent } from './structure/ngx-gustavguez-toasts/
         NgxGustavguezPageHeaderComponent,
         NgxGustavguezInfoBoxComponent,
         NgxGustavguezCardComponent,
-        NgxGustavguezToastsComponent
+        NgxGustavguezToastsComponent,
+        NgxGustavguezNavItemComponent
     ]
 })
 export class NgxGustavguezCoreModule { }

@@ -1,6 +1,6 @@
 import { StringUtility } from '../../utilities/string.utility';
 
-export class NgxGustavguezMenuItem {
+export class NgxGustavguezNavItemModel {
 
     public id: string;
     
@@ -8,7 +8,7 @@ export class NgxGustavguezMenuItem {
         public display?: string,
         public icon?: string,
         public action?: string,
-        public childs?: NgxGustavguezMenuItem[]
+        public childs?: NgxGustavguezNavItemModel[]
     ){
         this.id = StringUtility.randomString();
     }

@@ -540,8 +540,7 @@ let NgxGustavguezMainSidebarComponent = class NgxGustavguezMainSidebarComponent 
         this.menuItemsStates = {};
     }
     //Custom events
-    onMenuItemClick(event, menuItem) {
-        event.preventDefault();
+    onMenuItemClick(menuItem) {
         //Check
         if (ArrayUtility.hasValue(menuItem.childs)) {
             //Toggle state
@@ -585,20 +584,10 @@ __decorate([
 NgxGustavguezMainSidebarComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-main-sidebar',
-        template: "<aside class=\"main-sidebar sidebar-dark-primary\">\n    <!-- Brand Logo -->\n    <a \n        href=\"#\"\n        class=\"brand-link\"\n        (click)=\"onBrandLink($event)\">\n        <img \n            *ngIf=\"brandImg\"\n            [src]=\"brandImg\" \n            [alt]=\"brandTitle\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">{{ brandTitle }}</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div \n            *ngIf=\"userIsLogged\"\n            class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img \n                    *ngIf=\"userAvatar\"\n                    [src]=\"userAvatar\"\n                    [alt]=\"userName\"\n                    class=\"img-circle elevation-2\">\n            </div>\n            <div class=\"info\">\n                <a class=\"d-block\">{{ userName }}</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul \n                *ngIf=\"menuItems\"\n                class=\"nav nav-pills nav-sidebar flex-column\" \n                data-widget=\"treeview\" \n                role=\"menu\">\n\n                <li class=\"nav-header\">MEN\u00DA</li>\n\n                <li \n                    [class.menu-open]=\"menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined\"\n                    class=\"nav-item has-treeview\" \n                    *ngFor=\"let menuItem of menuItems\">\n                    <a \n                        (click)=\"onMenuItemClick($event, menuItem)\"\n                        href=\"#\" \n                        class=\"nav-link\">\n                        <i class=\"nav-icon {{ menuItem.icon }}\"></i>\n                        <p>\n                            {{ menuItem.display }}\n                            <i class=\"right fas fa-angle-left\"></i>\n                        </p>\n                    </a>\n\n                    <ng-container *ngIf=\"menuItem.childs\">\n                        <ul \n                            [style.display]=\"(menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined) ? 'block' : 'none'\"\n                            class=\"nav nav-treeview\">\n                            <li \n                                class=\"nav-item\" menuItemStates\n                                [class.active]=\"child.isActive\"\n                                *ngFor=\"let child of menuItem.childs\">\n                                <a \n                                    (click)=\"onMenuItemClick($event, child)\"\n                                    [routerLink]=\"child.action\"\n                                    routerLinkActive=\"active\"\n                                    href=\"#\" \n                                    class=\"nav-link\">\n                                    <i class=\"nav-icon {{ child.icon }}\"></i>\n                                    <p>{{ child.display }}</p>\n                                </a>\n                            </li>\n                        </ul>\n                    </ng-container>\n                </li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>\n<div id=\"sidebar-overlay\" (click)=\"onCloseSidebar()\"></div>",
+        template: "<aside class=\"main-sidebar sidebar-dark-primary\">\n    <!-- Brand Logo -->\n    <a \n        href=\"#\"\n        class=\"brand-link\"\n        (click)=\"onBrandLink($event)\">\n        <img \n            *ngIf=\"brandImg\"\n            [src]=\"brandImg\" \n            [alt]=\"brandTitle\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">{{ brandTitle }}</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div \n            *ngIf=\"userIsLogged\"\n            class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img \n                    *ngIf=\"userAvatar\"\n                    [src]=\"userAvatar\"\n                    [alt]=\"userName\"\n                    class=\"img-circle elevation-2\">\n            </div>\n            <div class=\"info\">\n                <a class=\"d-block\">{{ userName }}</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul \n                *ngIf=\"menuItems\"\n                class=\"nav nav-pills nav-sidebar flex-column\" \n                data-widget=\"treeview\" \n                role=\"menu\">\n\n                <li class=\"nav-header\">MEN\u00DA</li>\n\n                <li \n                    [class.menu-open]=\"menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined\"\n                    class=\"nav-item has-treeview\"\n                    ngxGustavguezNavItem\n                    [navItem]=\"menuItem\" \n                    [isParent]=\"true\"\n                    [state]=\"menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined\"\n                    (onNavItem)=\"onMenuItemClick($event)\"\n                    *ngFor=\"let menuItem of menuItems\"></li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>\n<div id=\"sidebar-overlay\" (click)=\"onCloseSidebar()\"></div>",
         styles: [".main-sidebar .nav-treeview{background-color:#2d3339}"]
     })
 ], NgxGustavguezMainSidebarComponent);
-
-class NgxGustavguezMenuItem {
-    constructor(display, icon, action, childs) {
-        this.display = display;
-        this.icon = icon;
-        this.action = action;
-        this.childs = childs;
-        this.id = StringUtility.randomString();
-    }
-}
 
 let NgxGustavguezNavComponent = class NgxGustavguezNavComponent {
     //Inject services
@@ -660,6 +649,50 @@ NgxGustavguezNavComponent = __decorate([
         styles: [""]
     })
 ], NgxGustavguezNavComponent);
+
+class NgxGustavguezNavItemModel {
+    constructor(display, icon, action, childs) {
+        this.display = display;
+        this.icon = icon;
+        this.action = action;
+        this.childs = childs;
+        this.id = StringUtility.randomString();
+    }
+}
+
+let NgxGustavguezNavItemComponent = class NgxGustavguezNavItemComponent {
+    //Inject services
+    constructor() {
+        this.onNavItem = new EventEmitter();
+    }
+    //On component init
+    ngOnInit() {
+    }
+    //Custome events
+    onNavItemClick(event) {
+        event.preventDefault();
+        this.onNavItem.emit(this.navItem);
+    }
+};
+__decorate([
+    Input()
+], NgxGustavguezNavItemComponent.prototype, "navItem", void 0);
+__decorate([
+    Input()
+], NgxGustavguezNavItemComponent.prototype, "isParent", void 0);
+__decorate([
+    Input()
+], NgxGustavguezNavItemComponent.prototype, "state", void 0);
+__decorate([
+    Output()
+], NgxGustavguezNavItemComponent.prototype, "onNavItem", void 0);
+NgxGustavguezNavItemComponent = __decorate([
+    Component({
+        selector: '[ngxGustavguezNavItem]',
+        template: "<a \n    (click)=\"onNavItemClick($event)\"\n    [routerLink]=\"navItem.action\"\n    routerLinkActive=\"active\"\n    href=\"#\" \n    class=\"nav-link\">\n    <i class=\"nav-icon {{ navItem.icon }}\"></i>\n    <p>\n        {{ navItem.display }}\n        <i *ngIf=\"isParent\" class=\"right fas fa-angle-left\"></i>\n    </p>\n</a>\n\n<ng-container *ngIf=\"navItem.childs\">\n    <ul \n        [style.display]=\"state ? 'block' : 'none'\"\n        class=\"nav nav-treeview\">\n        <li \n            class=\"nav-item\"\n            ngxGustavguezNavItem\n            [navItem]=\"child\"\n            *ngFor=\"let child of navItem.childs\"></li>\n    </ul>\n</ng-container>",
+        styles: [""]
+    })
+], NgxGustavguezNavItemComponent);
 
 class ApiResponseModel {
     constructor(data) {
@@ -876,6 +909,7 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezInfoBoxComponent,
             NgxGustavguezCardComponent,
             NgxGustavguezToastsComponent,
+            NgxGustavguezNavItemComponent,
         ],
         imports: [
             CommonModule,
@@ -896,7 +930,8 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezPageHeaderComponent,
             NgxGustavguezInfoBoxComponent,
             NgxGustavguezCardComponent,
-            NgxGustavguezToastsComponent
+            NgxGustavguezToastsComponent,
+            NgxGustavguezNavItemComponent
         ]
     })
 ], NgxGustavguezCoreModule);
@@ -907,5 +942,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezMenuItem, NgxGustavguezNavComponent, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezStatusEnum, NgxGustavguezToastModel, NgxGustavguezToastsComponent, NgxGustavguezToastsService, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezNavComponent, NgxGustavguezNavItemComponent, NgxGustavguezNavItemModel, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezStatusEnum, NgxGustavguezToastModel, NgxGustavguezToastsComponent, NgxGustavguezToastsService, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map

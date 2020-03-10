@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { NgxGustavguezMenuItem } from './ngx-gustavguez-menu-item.model';
 import { NgxGustavguezMainSidebarService } from './ngx-gustavguez-main-sidebar.service';
 import { ArrayUtility } from '../../utilities/array.utility';
+import { NgxGustavguezNavItemModel } from '../ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.model';
 
 @Component({
     selector: 'ngx-gustavguez-main-sidebar',
@@ -16,7 +16,7 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
     @Input() userIsLogged: boolean;
     @Input() userAvatar: string;
     @Input() userName: string;
-    @Input() menuItems: NgxGustavguezMenuItem[];
+    @Input() menuItems: NgxGustavguezNavItemModel[];
 
     //Models
     menuItemsStates: any;
@@ -33,9 +33,7 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
     }
 
     //Custom events
-    onMenuItemClick(event: MouseEvent, menuItem: NgxGustavguezMenuItem) {
-        event.preventDefault();
-
+    onMenuItemClick(menuItem: NgxGustavguezNavItemModel) {
         //Check
         if(ArrayUtility.hasValue(menuItem.childs)) {
             //Toggle state

@@ -41,40 +41,13 @@
 
                 <li 
                     [class.menu-open]="menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined"
-                    class="nav-item has-treeview" 
-                    *ngFor="let menuItem of menuItems">
-                    <a 
-                        (click)="onMenuItemClick($event, menuItem)"
-                        href="#" 
-                        class="nav-link">
-                        <i class="nav-icon {{ menuItem.icon }}"></i>
-                        <p>
-                            {{ menuItem.display }}
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-
-                    <ng-container *ngIf="menuItem.childs">
-                        <ul 
-                            [style.display]="(menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined) ? 'block' : 'none'"
-                            class="nav nav-treeview">
-                            <li 
-                                class="nav-item" menuItemStates
-                                [class.active]="child.isActive"
-                                *ngFor="let child of menuItem.childs">
-                                <a 
-                                    (click)="onMenuItemClick($event, child)"
-                                    [routerLink]="child.action"
-                                    routerLinkActive="active"
-                                    href="#" 
-                                    class="nav-link">
-                                    <i class="nav-icon {{ child.icon }}"></i>
-                                    <p>{{ child.display }}</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </ng-container>
-                </li>
+                    class="nav-item has-treeview"
+                    ngxGustavguezNavItem
+                    [navItem]="menuItem" 
+                    [isParent]="true"
+                    [state]="menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined"
+                    (onNavItem)="onMenuItemClick($event)"
+                    *ngFor="let menuItem of menuItems"></li>
 
             </ul>
         </nav>

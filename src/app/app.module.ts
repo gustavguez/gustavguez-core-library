@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NgxGustavguezCoreModule } from 'projects/ngx-gustavguez-core/src/public-api';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [];
 
 @NgModule({
   declarations: [
@@ -10,6 +13,7 @@ import { NgxGustavguezCoreModule } from 'projects/ngx-gustavguez-core/src/public
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(appRoutes),
     NgxGustavguezCoreModule
   ],
   providers: [],
