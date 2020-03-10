@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { NgxGustavguezToastModel } from './ngx-gustavguez-toast.model';
 import { NgxGustavguezToastsService } from './ngx-gustavguez-toasts.service';
@@ -10,6 +10,9 @@ import { ArrayUtility } from '../../utilities/array.utility';
     styleUrls: ['./ngx-gustavguez-toasts.component.scss']
 })
 export class NgxGustavguezToastsComponent implements OnInit {
+    //Inputs
+    @Input() brandTitle: string;
+
     //Models
     toasts: NgxGustavguezToastModel[] = [];
 
