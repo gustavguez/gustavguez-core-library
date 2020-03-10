@@ -36,10 +36,6 @@ export class AppComponent {
         console.log("logout");
     }
 
-    onMenuItem(item: NgxGustavguezMenuItem) {
-        item.isActive = !item.isActive;
-    }
-
     onAddToastSuccess() {
         this.ngxGustavguezToastsService.addSuccess("La noticia se agregó correctamente.");
     }

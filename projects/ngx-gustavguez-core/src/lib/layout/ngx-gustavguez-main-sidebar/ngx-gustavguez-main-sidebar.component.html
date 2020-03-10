@@ -41,7 +41,6 @@
 
                 <li 
                     [class.menu-open]="menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined"
-                    [class.active]="menuItem.isActive"
                     class="nav-item has-treeview" 
                     *ngFor="let menuItem of menuItems">
                     <a 
@@ -65,6 +64,8 @@
                                 *ngFor="let child of menuItem.childs">
                                 <a 
                                     (click)="onMenuItemClick($event, child)"
+                                    [routerLink]="child.action"
+                                    routerLinkActive="active"
                                     href="#" 
                                     class="nav-link">
                                     <i class="nav-icon {{ child.icon }}"></i>

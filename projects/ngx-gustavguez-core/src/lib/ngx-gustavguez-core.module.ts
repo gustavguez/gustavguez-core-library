@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 //Pipes
 import { PrettyDatePipe } from './pipes/pretty-date.pipe';
@@ -41,6 +42,7 @@ import { NgxGustavguezToastsComponent } from './structure/ngx-gustavguez-toasts/
     ],
     imports: [
         CommonModule,
+        RouterModule,
         ReactiveFormsModule
     ],
     exports: [

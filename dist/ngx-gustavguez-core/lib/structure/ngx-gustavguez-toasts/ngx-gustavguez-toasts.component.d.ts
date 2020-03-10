@@ -3,6 +3,7 @@ import { NgxGustavguezToastModel } from './ngx-gustavguez-toast.model';
 import { NgxGustavguezToastsService } from './ngx-gustavguez-toasts.service';
 export declare class NgxGustavguezToastsComponent implements OnInit {
     private ngxGustavguezToastsService;
+    brandTitle: string;
     toasts: NgxGustavguezToastModel[];
     constructor(ngxGustavguezToastsService: NgxGustavguezToastsService);
     ngOnInit(): void;

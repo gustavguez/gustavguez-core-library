@@ -18,9 +18,6 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
     @Input() userName: string;
     @Input() menuItems: NgxGustavguezMenuItem[];
 
-    //Outputs
-    @Output() onMenuItem: EventEmitter<NgxGustavguezMenuItem> = new EventEmitter();
-    
     //Models
     menuItemsStates: any;
 
@@ -44,9 +41,6 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
             //Toggle state
             this.menuItemsStates[menuItem.id] = (menuItem.id in this.menuItemsStates) ? !this.menuItemsStates[menuItem.id] : false;
         } else {
-            //Emit click for now
-            this.onMenuItem.emit(menuItem);
-
             //Close sidebar
             this.ngxGustavguezMainSidebarService.changeState(false);
         }

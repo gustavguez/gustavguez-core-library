@@ -1,4 +1,4 @@
-import { OnInit, EventEmitter } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { NgxGustavguezMenuItem } from './ngx-gustavguez-menu-item.model';
 import { NgxGustavguezMainSidebarService } from './ngx-gustavguez-main-sidebar.service';
 export declare class NgxGustavguezMainSidebarComponent implements OnInit {
@@ -9,7 +9,6 @@ export declare class NgxGustavguezMainSidebarComponent implements OnInit {
     userAvatar: string;
     userName: string;
     menuItems: NgxGustavguezMenuItem[];
-    onMenuItem: EventEmitter<NgxGustavguezMenuItem>;
     menuItemsStates: any;
     constructor(ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService);
     ngOnInit(): void;
