@@ -23,7 +23,7 @@ __decorate([
 NgxGustavguezLoaderComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-loader',
-        template: "<ng-container *ngIf=\"loading\">\n    <span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n    <span class=\"sr-only\">{{ loadingText ? loadingText : \"Cargando...\" }}</span>\n</ng-container>",
+        template: "<div class=\"row m-5 text-center\" *ngIf=\"loading\">\n    <div class=\"col-12\">\n        <span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n        <span class=\"sr-only\">{{ loadingText ? loadingText : \"Cargando...\" }}</span>\n    </div>\n</div>",
         styles: [""]
     })
 ], NgxGustavguezLoaderComponent);
@@ -657,6 +657,7 @@ class NgxGustavguezNavItemModel {
         this.action = action;
         this.childs = childs;
         this.id = StringUtility.randomString();
+        this.isLink = !ArrayUtility.hasValue(childs);
     }
 }
 
@@ -672,6 +673,9 @@ let NgxGustavguezNavItemComponent = class NgxGustavguezNavItemComponent {
     onNavItemClick(event) {
         event.preventDefault();
         this.onNavItem.emit(this.navItem);
+    }
+    onNavItemChild(child) {
+        this.onNavItem.emit(child);
     }
 };
 __decorate([
@@ -689,7 +693,7 @@ __decorate([
 NgxGustavguezNavItemComponent = __decorate([
     Component({
         selector: '[ngxGustavguezNavItem]',
-        template: "<a \n    (click)=\"onNavItemClick($event)\"\n    [routerLink]=\"navItem.action\"\n    routerLinkActive=\"active\"\n    href=\"#\" \n    class=\"nav-link\">\n    <i class=\"nav-icon {{ navItem.icon }}\"></i>\n    <p>\n        {{ navItem.display }}\n        <i *ngIf=\"isParent\" class=\"right fas fa-angle-left\"></i>\n    </p>\n</a>\n\n<ng-container *ngIf=\"navItem.childs\">\n    <ul \n        [style.display]=\"state ? 'block' : 'none'\"\n        class=\"nav nav-treeview\">\n        <li \n            class=\"nav-item\"\n            ngxGustavguezNavItem\n            [navItem]=\"child\"\n            *ngFor=\"let child of navItem.childs\"></li>\n    </ul>\n</ng-container>",
+        template: "<a \n    *ngIf=\"navItem.isLink\"\n    (click)=\"onNavItemClick($event)\"\n    [routerLink]=\"navItem.action\"\n    routerLinkActive=\"active\"\n    href=\"#\" \n    class=\"nav-link\">\n    <i class=\"nav-icon {{ navItem.icon }}\"></i>\n    <p>\n        {{ navItem.display }}\n        <i *ngIf=\"isParent\" class=\"right fas fa-angle-left\"></i>\n    </p>\n</a>\n\n<a \n    *ngIf=\"!navItem.isLink\"\n    (click)=\"onNavItemClick($event)\"\n    href=\"#\" \n    class=\"nav-link\">\n    <i class=\"nav-icon {{ navItem.icon }}\"></i>\n    <p>\n        {{ navItem.display }}\n        <i *ngIf=\"isParent\" class=\"right fas fa-angle-left\"></i>\n    </p>\n</a>\n\n<ng-container *ngIf=\"navItem.childs\">\n    <ul \n        [style.display]=\"state ? 'block' : 'none'\"\n        class=\"nav nav-treeview\">\n        <li \n            class=\"nav-item\"\n            ngxGustavguezNavItem\n            (onNavItem)=\"onNavItemChild($event)\"\n            [navItem]=\"child\"\n            *ngFor=\"let child of navItem.childs\"></li>\n    </ul>\n</ng-container>",
         styles: [""]
     })
 ], NgxGustavguezNavItemComponent);

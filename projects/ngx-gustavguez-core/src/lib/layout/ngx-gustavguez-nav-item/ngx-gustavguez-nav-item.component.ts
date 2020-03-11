@@ -26,4 +26,8 @@ export class NgxGustavguezNavItemComponent implements OnInit {
         event.preventDefault();
         this.onNavItem.emit(this.navItem);
     }
+
+    onNavItemChild(child: NgxGustavguezNavItemModel){
+        this.onNavItem.emit(child);
+    }
 }

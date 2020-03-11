@@ -8,4 +8,5 @@ export declare class NgxGustavguezNavItemComponent implements OnInit {
     constructor();
     ngOnInit(): void;
     onNavItemClick(event: MouseEvent): void;
+    onNavItemChild(child: NgxGustavguezNavItemModel): void;
 }
