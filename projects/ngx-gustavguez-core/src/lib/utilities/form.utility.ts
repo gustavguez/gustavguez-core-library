@@ -1,20 +1,20 @@
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl } from '@angular/forms';
 
 export class FormUtility {
-	
+
 	/**
 	 * Returns a form data object
-	 * @param json 
+	 * @param json
 	 */
-	static jsonToFormData(json:any): FormData {
-		let fd = new FormData();
+	static jsonToFormData(json: any): FormData {
+		const fd = new FormData();
 
-		for(let key in json){
-			if(json[key] instanceof Array){
-				json[key].forEach((j, index) => {
-					fd.append(key + '[' + index + ']', j)
+		for (const key in json) {
+			if (json[key] instanceof Array) {
+				json[key].forEach((jsonChild: any, index: number) => {
+					fd.append(key + '[' + index + ']', jsonChild);
 				});
-			}else {
+			} else {
 				fd.append(key, json[key]);
 			}
 		}
@@ -23,12 +23,12 @@ export class FormUtility {
 
 	/**
 	 * Find an Blob or File object in json
-	 * @param json 
+	 * @param json
 	 */
-	static needFormData(json: any): boolean{
+	static needFormData(json: any): boolean {
 		let need: boolean = false;
-		for(let key in json){
-			if(json[key] instanceof File || json[key] instanceof Blob){
+		for (const key in json) {
+			if (json[key] instanceof File || json[key] instanceof Blob) {
 				need = true;
 				break;
 			}
@@ -38,16 +38,16 @@ export class FormUtility {
 
 	/**
 	 * Trigger form validations
-	 * @param formGroup 
+	 * @param formGroup
 	 */
-	static validateAllFormFields(formGroup: FormGroup) {
-		Object.keys(formGroup.controls).forEach(field => {
-			const control = formGroup.get(field);           
-			if (control instanceof FormControl) {           
+	static validateAllFormFields(formGroup: FormGroup): void {
+		Object.keys(formGroup.controls).forEach((field: string) => {
+			const control = formGroup.get(field);
+			if (control instanceof FormControl) {
 				control.markAsTouched({ onlySelf: true });
-			} else if (control instanceof FormGroup) {      
-				this.validateAllFormFields(control);          
+			} else if (control instanceof FormGroup) {
+				this.validateAllFormFields(control);
 			}
 		});
-  	}
+	}
 }

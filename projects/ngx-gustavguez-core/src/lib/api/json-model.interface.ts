@@ -1,3 +1,3 @@
 export interface JSONModelInterface {
-    fromJSON(json: any): void;
+	fromJSON(json: any): void;
 }

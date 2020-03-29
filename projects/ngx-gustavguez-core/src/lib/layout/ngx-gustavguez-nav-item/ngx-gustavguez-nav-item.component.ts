@@ -1,33 +1,26 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgxGustavguezNavItemModel } from './ngx-gustavguez-nav-item.model';
 
 @Component({
-    selector: '[ngxGustavguezNavItem]',
-    templateUrl: './ngx-gustavguez-nav-item.component.html',
-    styleUrls: ['./ngx-gustavguez-nav-item.component.scss']
+	selector: '[ngxGustavguezNavItem]',
+	templateUrl: './ngx-gustavguez-nav-item.component.html',
+	styleUrls: ['./ngx-gustavguez-nav-item.component.scss']
 })
-export class NgxGustavguezNavItemComponent implements OnInit {
-    //Inputs
-    @Input() navItem: NgxGustavguezNavItemModel
-    @Input() isParent: boolean;
-    @Input() state: boolean;
+export class NgxGustavguezNavItemComponent {
+	// Inputs
+	@Input() navItem: NgxGustavguezNavItemModel;
+	@Input() isParent: boolean;
+	@Input() state: boolean;
 
-    @Output() onNavItem: EventEmitter<NgxGustavguezNavItemModel> = new EventEmitter();
+	@Output() onNavItem: EventEmitter<NgxGustavguezNavItemModel> = new EventEmitter();
 
-    //Inject services
-    constructor() { }
+	// Custome events
+	onNavItemClick(event: MouseEvent): void {
+		event.preventDefault();
+		this.onNavItem.emit(this.navItem);
+	}
 
-    //On component init
-    ngOnInit(): void {
-    }
-
-    //Custome events
-    onNavItemClick(event: MouseEvent){
-        event.preventDefault();
-        this.onNavItem.emit(this.navItem);
-    }
-
-    onNavItemChild(child: NgxGustavguezNavItemModel){
-        this.onNavItem.emit(child);
-    }
+	onNavItemChild(child: NgxGustavguezNavItemModel): void {
+		this.onNavItem.emit(child);
+	}
 }

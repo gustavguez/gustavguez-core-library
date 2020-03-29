@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-//Pipes
+// Pipes
 import { PrettyDatePipe } from './pipes/pretty-date.pipe';
 import { PrettyHourPipe } from './pipes/pretty-hour.pipe';
 import { PrettyNumberPipe } from './pipes/pretty-number.pipe';
 
-//Directives
+// Directives
 import { NgxGustavguezMainContainerDirective } from './layout/ngx-gustavguez-main-container/ngx-gustavguez-main-container.directive';
 
-//Components
+// Components
 import { NgxGustavguezLoaderComponent } from './structure/ngx-gustavguez-loader/ngx-gustavguez-loader.component';
 import { NgxGustavguezPopupComponent } from './structure/ngx-gustavguez-popup/ngx-gustavguez-popup.component';
 import { NgxGustavguezButtonComponent } from './forms/ngx-gustavguez-button/ngx-gustavguez-button.component';
@@ -25,44 +25,44 @@ import { NgxGustavguezToastsComponent } from './structure/ngx-gustavguez-toasts/
 import { NgxGustavguezNavItemComponent } from './layout/ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.component';
 
 @NgModule({
-    declarations: [
-        PrettyDatePipe,
-        PrettyHourPipe,
-        PrettyNumberPipe,
-        NgxGustavguezLoaderComponent,
-        NgxGustavguezPopupComponent,
-        NgxGustavguezButtonComponent,
-        NgxGustavguezInputHolderComponent,
-        NgxGustavguezNavComponent,
-        NgxGustavguezMainSidebarComponent,
-        NgxGustavguezMainContainerDirective,
-        NgxGustavguezPageHeaderComponent,
-        NgxGustavguezInfoBoxComponent,
-        NgxGustavguezCardComponent,
-        NgxGustavguezToastsComponent,
-        NgxGustavguezNavItemComponent,
-    ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        ReactiveFormsModule
-    ],
-    exports: [
-        PrettyDatePipe,
-        PrettyHourPipe,
-        PrettyNumberPipe,
-        NgxGustavguezLoaderComponent,
-        NgxGustavguezPopupComponent,
-        NgxGustavguezButtonComponent,
-        NgxGustavguezInputHolderComponent,
-        NgxGustavguezNavComponent,
-        NgxGustavguezMainSidebarComponent,
-        NgxGustavguezMainContainerDirective,
-        NgxGustavguezPageHeaderComponent,
-        NgxGustavguezInfoBoxComponent,
-        NgxGustavguezCardComponent,
-        NgxGustavguezToastsComponent,
-        NgxGustavguezNavItemComponent
-    ]
+	declarations: [
+		PrettyDatePipe,
+		PrettyHourPipe,
+		PrettyNumberPipe,
+		NgxGustavguezLoaderComponent,
+		NgxGustavguezPopupComponent,
+		NgxGustavguezButtonComponent,
+		NgxGustavguezInputHolderComponent,
+		NgxGustavguezNavComponent,
+		NgxGustavguezMainSidebarComponent,
+		NgxGustavguezMainContainerDirective,
+		NgxGustavguezPageHeaderComponent,
+		NgxGustavguezInfoBoxComponent,
+		NgxGustavguezCardComponent,
+		NgxGustavguezToastsComponent,
+		NgxGustavguezNavItemComponent,
+	],
+	imports: [
+		CommonModule,
+		RouterModule,
+		ReactiveFormsModule
+	],
+	exports: [
+		PrettyDatePipe,
+		PrettyHourPipe,
+		PrettyNumberPipe,
+		NgxGustavguezLoaderComponent,
+		NgxGustavguezPopupComponent,
+		NgxGustavguezButtonComponent,
+		NgxGustavguezInputHolderComponent,
+		NgxGustavguezNavComponent,
+		NgxGustavguezMainSidebarComponent,
+		NgxGustavguezMainContainerDirective,
+		NgxGustavguezPageHeaderComponent,
+		NgxGustavguezInfoBoxComponent,
+		NgxGustavguezCardComponent,
+		NgxGustavguezToastsComponent,
+		NgxGustavguezNavItemComponent
+	]
 })
 export class NgxGustavguezCoreModule { }

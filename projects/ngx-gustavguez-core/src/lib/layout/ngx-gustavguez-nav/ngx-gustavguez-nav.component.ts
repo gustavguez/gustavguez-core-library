@@ -1,56 +1,52 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { NgxGustavguezMainSidebarService } from '../ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.service';
 
 @Component({
-    selector: 'ngx-gustavguez-nav',
-    templateUrl: './ngx-gustavguez-nav.component.html',
-    styleUrls: ['./ngx-gustavguez-nav.component.scss']
+	selector: 'ngx-gustavguez-nav',
+	templateUrl: './ngx-gustavguez-nav.component.html',
+	styleUrls: ['./ngx-gustavguez-nav.component.scss']
 })
-export class NgxGustavguezNavComponent implements OnInit {
-    //Inputs
-    @Input() brandTitle: string;
-    @Input() userIsLogged: boolean;
-    @Input() userMenuText: string;
-    @Input() userMenuLogoutText: string;
+export class NgxGustavguezNavComponent {
+	// Inputs
+	@Input() brandTitle: string;
+	@Input() userIsLogged: boolean;
+	@Input() userMenuText: string;
+	@Input() userMenuLogoutText: string;
 
-    //Outputs
-    @Output() onLogout: EventEmitter<void> = new EventEmitter();
-    @Output() onBrand: EventEmitter<void> = new EventEmitter();
+	// Outputs
+	@Output() onLogout: EventEmitter<void> = new EventEmitter();
+	@Output() onBrand: EventEmitter<void> = new EventEmitter();
 
-    //Models
-    userMenuState: boolean;
+	// Models
+	userMenuState: boolean;
 
-    //Inject services
-    constructor(
-        private ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService ) { }
+	// Inject services
+	constructor(
+		private ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService) { }
 
-    //On component init
-    ngOnInit(): void {
-    }
+	// Custom events
+	onToggleMenu(event: MouseEvent): void {
+		event.preventDefault();
+		this.ngxGustavguezMainSidebarService.toggleState();
+	}
 
-    //Custom events
-    onToggleMenu(event: MouseEvent){
-        event.preventDefault();
-        this.ngxGustavguezMainSidebarService.toggleState();
-    }
+	onToggleUserMenu(event: MouseEvent): void {
+		event.preventDefault();
+		this.userMenuState = !this.userMenuState;
+	}
 
-    onToggleUserMenu(event: MouseEvent){
-        event.preventDefault();
-        this.userMenuState = !this.userMenuState;
-    }
+	onLogoutClick(event: MouseEvent): void {
+		event.preventDefault();
+		// Emit logout
+		this.onLogout.emit();
 
-    onLogoutClick(event: MouseEvent){
-        event.preventDefault();
-        //Emit logout
-        this.onLogout.emit();
+		// Close user menu
+		this.userMenuState = false;
+	}
 
-        //Close user menu
-        this.userMenuState = false;
-    }
-    
-    onBrandLink(event: MouseEvent) {
-        event.preventDefault();
-        this.onBrand.emit();
-    }
+	onBrandLink(event: MouseEvent): void {
+		event.preventDefault();
+		this.onBrand.emit();
+	}
 }

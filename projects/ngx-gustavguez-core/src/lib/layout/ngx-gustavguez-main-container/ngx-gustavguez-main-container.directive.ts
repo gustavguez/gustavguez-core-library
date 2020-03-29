@@ -1,67 +1,60 @@
 import { Directive, HostBinding, OnInit } from '@angular/core';
 
 import { NgxGustavguezMainSidebarService } from '../ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.service';
-import { WindowUtility } from '../../utilities/window.utility';
 
 @Directive({
-    selector: '[ngxGustavguezMainContainer]'
+	selector: '[ngxGustavguezMainContainer]'
 })
 export class NgxGustavguezMainContainerDirective implements OnInit {
-    //Host binding
-    @HostBinding('class') hostClasses: string;
+	// Host binding
+	@HostBinding('class') hostClasses: string;
 
-    //Modes
-    classes: string[] = [
-        'sidebar-mini',
-        'layout-fixed',
-        'layout-navbar-fixed'
-    ];
+	// Modes
+	classes: string[] = [
+		'sidebar-mini',
+		'layout-fixed',
+		'layout-navbar-fixed'
+	];
+	state: boolean;
 
-    //Inject services
-    constructor(
-        private ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService ) { }
+	// Inject services
+	constructor(
+		private ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService) { }
 
-    //On component init
-    ngOnInit() {
-        //Set base classes to host classes
-        this.loadHostClasses(false);
+	// On component init
+	ngOnInit(): void {
+		// Set base classes to host classes
+		this.loadHostClasses(false);
 
-        //Watch sidebarState change
+		// Watch sidebarState change
 		this.ngxGustavguezMainSidebarService.onChangeState.subscribe((state: boolean) => {
-			this.loadHostClasses(state)
+			this.loadHostClasses(state);
 		});
 		this.ngxGustavguezMainSidebarService.onToggleState.subscribe(() => {
-			this.loadHostClasses();
+			this.loadHostClasses(!this.state);
 		});
-    }
+	}
 
-    //Private helper methods
-    private loadHostClasses(state?: boolean) {
-        const indexClassCollapse: number = this.classes.indexOf('sidebar-collapse');
-        const indexClassOpen: number = this.classes.indexOf('sidebar-open');
-        const openState: boolean = (state === undefined && indexClassOpen === -1) || state;
-        const collapseState: boolean = (state === undefined && indexClassCollapse === -1) || state;
+	// Private helper methods
+	private loadHostClasses(state: boolean): void {
+		// Control index just for control
+		const indexClassCollapse: number = this.classes.indexOf('sidebar-collapse');
+		const indexClassOpen: number = this.classes.indexOf('sidebar-open');
 
-        //Remove from array
-        if(indexClassCollapse > -1){
-            this.classes.splice(indexClassCollapse, 1);
-        }
-        if(indexClassOpen > -1){
-            this.classes.splice(indexClassOpen, 1);
-        }
+		// Load state
+		this.state = state;
 
-        //Check state to add sidebaropen class
-        if(WindowUtility.isSmallScreen() && openState) {
-            this.classes.push('sidebar-open');
-        } 
-        
-        //Check to add collapse class
-        if(!WindowUtility.isSmallScreen() && collapseState) {
-            this.classes.push('sidebar-collapse');
-        }
+		// Check state
+		if (state) {
+			this.classes.push('sidebar-open');
+			this.classes.push('sidebar-collapse');
+		} else {
+			this.classes.splice(indexClassCollapse, 1);
+			this.classes.splice(indexClassOpen, 1);
+		}
 
-        //Load classes
-        this.hostClasses = this.classes.join(' ');
-    }
+		// Load classes
+		this.hostClasses = this.classes.join(' ');
+	}
 
 }
