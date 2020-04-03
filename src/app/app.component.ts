@@ -1,46 +1,42 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { NgxGustavguezNavItemModel, NgxGustavguezToastsService } from 'projects/ngx-gustavguez-core/src/public-api';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
-    //Inject services
-    constructor(
-        private ngxGustavguezToastsService: NgxGustavguezToastsService
-    ){}
+	// Inject services
+	constructor(
+		private router: Router,
+		private ngxGustavguezToastsService: NgxGustavguezToastsService
+	) { }
 
-    //Models
-    menuItems: NgxGustavguezNavItemModel[] = [
-        new NgxGustavguezNavItemModel("Menú padre 1", "fas fa-hand-holding-usd", null, [
-            new NgxGustavguezNavItemModel("Menú hijo 1", "fas fa-home"),
-            new NgxGustavguezNavItemModel("Menú hijo 1", "fas fa-home"),
-            new NgxGustavguezNavItemModel("Menú hijo 1", "fas fa-home"),
-        ]),
-        new NgxGustavguezNavItemModel("Menú padre 2", "fas fa-hand-holding-usd", null, [
-            new NgxGustavguezNavItemModel("Menú hijo 2", "fas fa-home"),
-            new NgxGustavguezNavItemModel("Menú hijo 2", "fas fa-home")
-        ]),
-        new NgxGustavguezNavItemModel("Menú padre 3", "fas fa-hand-holding-usd", null, [
-            new NgxGustavguezNavItemModel("Menú hijo 3", "fas fa-home"),
-            new NgxGustavguezNavItemModel("Menú hijo 3", "fas fa-home"),
-            new NgxGustavguezNavItemModel("Menú hijo 3", "fas fa-home"),
-        ]),
-    ]
-    
-    //Custom events
-    onLogout(){
-        console.log("logout");
-    }
+	// Models
+	menuItems: NgxGustavguezNavItemModel[] = [
+		new NgxGustavguezNavItemModel("Api", "fas fa-hand-holding-usd", null, [
+			new NgxGustavguezNavItemModel("API Service", "fas fa-home", "api-service")
+		]),
+	]
 
-    onAddToastSuccess() {
-        this.ngxGustavguezToastsService.addSuccess("La noticia se agregó correctamente.");
-    }
+	// Custom events
+	onLogout() {
+		console.log("logout");
+	}
 
-    onAddToastError() {
-        this.ngxGustavguezToastsService.addError("Problema al agregar la noticia.");
-    }
+	onBrandLink() {
+		this.router.navigate(["/"]);
+	}
+
+	onAddToastSuccess() {
+		this.ngxGustavguezToastsService.addSuccess("La noticia se agregó correctamente.");
+	}
+
+	onAddToastError() {
+		this.ngxGustavguezToastsService.addError("Problema al agregar la noticia.");
+	}
 }

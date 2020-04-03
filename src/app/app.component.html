@@ -11,17 +11,21 @@
         brandTitle="Gustavguez lib"
         brandImg="assets/logo.png"
         userAvatar="assets/avatar.png"
-        userName="Gustavo Rodríguez"
+		userName="Gustavo Rodríguez"
+		(onBrandLink)="onBrandLink()"
         [userIsLogged]="true"
         [menuItems]="menuItems">
     </ngx-gustavguez-main-sidebar>
     
-    <!-- ROUTER -->
+	<!-- ROUTER -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+	   <router-outlet></router-outlet>
+    </div>
+
+   <!-- 
         <ngx-gustavguez-page-header text="Dashboard"></ngx-gustavguez-page-header>
 
-        <!-- Main content -->
+         Main content 
         <section class="content">
             <div class="container-fluid">
                 <h5 class="mb-2">Movimientos de hoy (05/03/2020)</h5>
@@ -72,9 +76,11 @@
                 </div>
             </div>
         </section>
-    </div>
+    </div>-->
 </div>
+
+<!--
 <ngx-gustavguez-loader [loading]="true"></ngx-gustavguez-loader>
 
 <ngx-gustavguez-toasts 
-    [brandTitle]="'Gustavguez lib'"></ngx-gustavguez-toasts>
+    [brandTitle]="'Gustavguez lib'"></ngx-gustavguez-toasts>-->

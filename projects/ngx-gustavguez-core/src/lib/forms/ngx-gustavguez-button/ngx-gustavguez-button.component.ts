@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
 	selector: 'ngx-gustavguez-button',
@@ -10,4 +10,12 @@ export class NgxGustavguezButtonComponent {
 	@Input() text: string;
 	@Input() loadingText: string;
 	@Input() loading: string;
+
+	// Output
+	@Output() onClick: EventEmitter<void> = new EventEmitter();
+
+	// Custom events
+	onDoClick(): void {
+		this.onClick.emit();
+	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { NgxGustavguezMainSidebarService } from './ngx-gustavguez-main-sidebar.service';
 import { ArrayUtility } from '../../utilities/array.utility';
@@ -17,6 +17,9 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
 	@Input() userAvatar: string;
 	@Input() userName: string;
 	@Input() menuItems: NgxGustavguezNavItemModel[];
+
+	// Outputs
+	@Output() onBrandLink: EventEmitter<void> = new EventEmitter();
 
 	// Models
 	menuItemsStates: any;
@@ -44,10 +47,14 @@ export class NgxGustavguezMainSidebarComponent implements OnInit {
 		}
 	}
 
-	onBrandLink(event: MouseEvent): void {
+	onBrandLinkClick(event: MouseEvent): void {
 		event.preventDefault();
+
 		// Close sidebar
 		this.ngxGustavguezMainSidebarService.changeState(false);
+
+		// Event emitter
+		this.onBrandLink.emit();
 	}
 
 	onCloseSidebar(): void {
