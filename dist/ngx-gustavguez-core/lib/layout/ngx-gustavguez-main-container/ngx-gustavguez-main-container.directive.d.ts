@@ -4,6 +4,7 @@ export declare class NgxGustavguezMainContainerDirective implements OnInit {
     private ngxGustavguezMainSidebarService;
     hostClasses: string;
     classes: string[];
+    state: boolean;
     constructor(ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService);
     ngOnInit(): void;
     private loadHostClasses;

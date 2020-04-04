@@ -1,6 +1,3 @@
-import { OnInit } from '@angular/core';
-export declare class NgxGustavguezPageHeaderComponent implements OnInit {
+export declare class NgxGustavguezPageHeaderComponent {
     text: string;
-    constructor();
-    ngOnInit(): void;
 }

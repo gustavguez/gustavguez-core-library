@@ -1,7 +1,4 @@
-import { OnInit } from '@angular/core';
-export declare class NgxGustavguezLoaderComponent implements OnInit {
+export declare class NgxGustavguezLoaderComponent {
     loading: boolean;
     loadingText: string;
-    constructor();
-    ngOnInit(): void;
 }

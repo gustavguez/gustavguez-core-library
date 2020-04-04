@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { ApiResponseModel } from "./api-response.model";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApiResponseModel } from './api-response.model';
 export declare class ApiService {
     private httpClient;
     private apiURL;

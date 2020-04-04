@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { FormGroup } from '@angular/forms';
 export declare class FormUtility {
     /**
      * Returns a form data object

@@ -8,11 +8,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 let NgxGustavguezLoaderComponent = class NgxGustavguezLoaderComponent {
-    //Inject services
-    constructor() { }
-    //On component init
-    ngOnInit() {
-    }
 };
 __decorate([
     Input()
@@ -23,20 +18,16 @@ __decorate([
 NgxGustavguezLoaderComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-loader',
-        template: "<div class=\"row m-5 text-center\" *ngIf=\"loading\">\n    <div class=\"col-12\">\n        <span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n        <span class=\"sr-only\">{{ loadingText ? loadingText : \"Cargando...\" }}</span>\n    </div>\n</div>",
+        template: "<ng-container *ngIf=\"loading\">\n\t<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n\t<span class=\"sr-only\">{{ loadingText ? loadingText : \"Cargando...\" }}</span>\n</ng-container>",
         styles: [""]
     })
 ], NgxGustavguezLoaderComponent);
 
 let NgxGustavguezPopupComponent = class NgxGustavguezPopupComponent {
-    //Inject services
     constructor() {
         this.onClose = new EventEmitter();
     }
-    //On component init
-    ngOnInit() {
-    }
-    //Custome events
+    // Custome events
     onClosePopup() {
         this.onClose.emit();
     }
@@ -56,17 +47,12 @@ __decorate([
 NgxGustavguezPopupComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-popup',
-        template: "<!-- Modal -->\n<div \n    [class.show]=\"state\"\n    [class.d-block]=\"state\"\n    class=\"modal fade\">\n    <div class=\"modal-dialog\">\n\n        <div class=\"modal-content\">\n\n            <div class=\"modal-header\">\n                <h5 class=\"modal-title\">{{ titleText }}</h5>\n                \n                <button type=\"button\" class=\"close\" (click)=\"onClosePopup()\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n            </div>\n\n            <div class=\"modal-body\">\n                <ng-content></ng-content>\n            </div>\n\n            <div class=\"modal-footer\">\n                <button \n                    (click)=\"onClosePopup()\"\n                    type=\"button\" \n                    class=\"btn btn-secondary\">{{ closeText ? closeText : \"Cerrar\" }}</button>\n            </div>\n        </div>\n    </div>\n</div>\n<div \n    *ngIf=\"state\"\n    class=\"modal-backdrop fade show\"></div>",
+        template: "<!-- Modal -->\n<div \n    [class.show]=\"state\"\n    [class.d-block]=\"state\"\n    class=\"modal fade\">\n    <div class=\"modal-dialog\">\n\n        <div class=\"modal-content\">\n\n            <div class=\"modal-header\">\n                <h5 class=\"modal-title\">{{ titleText }}</h5>\n                \n                <button type=\"button\" class=\"close\" (click)=\"onClosePopup()\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n            </div>\n\n            <div class=\"modal-body\">\n                <ng-content></ng-content>\n            </div>\n\n            <div class=\"modal-footer\">\n                <button \n                    (click)=\"onClosePopup()\"\n                    type=\"button\" \n                    class=\"btn btn-secondary\">{{ closeText ? closeText : \"Cerrar\" }}</button>\n            </div>\n        </div>\n    </div>\n</div>\n<div \n\t*ngIf=\"state\"\n\t(click)=\"onClosePopup()\"\n    class=\"modal-backdrop fade show\"></div>",
         styles: [""]
     })
 ], NgxGustavguezPopupComponent);
 
 let NgxGustavguezPageHeaderComponent = class NgxGustavguezPageHeaderComponent {
-    //Inject services
-    constructor() { }
-    //On component init
-    ngOnInit() {
-    }
 };
 __decorate([
     Input()
@@ -80,11 +66,6 @@ NgxGustavguezPageHeaderComponent = __decorate([
 ], NgxGustavguezPageHeaderComponent);
 
 let NgxGustavguezCardComponent = class NgxGustavguezCardComponent {
-    //Inject services
-    constructor() { }
-    //On component init
-    ngOnInit() {
-    }
 };
 __decorate([
     Input()
@@ -98,11 +79,6 @@ NgxGustavguezCardComponent = __decorate([
 ], NgxGustavguezCardComponent);
 
 let NgxGustavguezInfoBoxComponent = class NgxGustavguezInfoBoxComponent {
-    //Inject services
-    constructor() { }
-    //On component init
-    ngOnInit() {
-    }
 };
 __decorate([
     Input()
@@ -129,7 +105,7 @@ class StringUtility {
         return Math.random().toString(36).substring(2, 12);
     }
     static padLeft(val, digits) {
-        return val.toString().padStart(digits, "0");
+        return val.toString().padStart(digits, '0');
     }
 }
 
@@ -137,7 +113,7 @@ class NgxGustavguezToastModel {
     constructor(message, status) {
         this.message = message;
         this.status = status;
-        //Generate random id
+        // Generate random id
         this.id = StringUtility.randomString();
     }
 }
@@ -155,18 +131,17 @@ var NgxGustavguezStatusEnum;
 })(NgxGustavguezStatusEnum || (NgxGustavguezStatusEnum = {}));
 
 let NgxGustavguezToastsService = class NgxGustavguezToastsService {
-    //Inject service
     constructor() {
-        //Event emmiters
+        // Event emmiters
         this.onToastAdded = new EventEmitter();
     }
-    //Methods
+    // Methods
     addError(message) {
-        //Open toast
+        // Open toast
         this.onToastAdded.emit(new NgxGustavguezToastModel(message, NgxGustavguezStatusEnum.DANGER));
     }
     addSuccess(message) {
-        //Open toast
+        // Open toast
         this.onToastAdded.emit(new NgxGustavguezToastModel(message, NgxGustavguezStatusEnum.SUCCESS));
     }
 };
@@ -178,16 +153,16 @@ NgxGustavguezToastsService = __decorate([
 ], NgxGustavguezToastsService);
 
 class ArrayUtility {
-    //Suggest current timezone hours
+    // Suggest current timezone hours
     static find(items, id, callback, compareKey) {
-        //Check id key
+        // Check id key
         const key = compareKey ? compareKey : 'id';
-        //Check items
+        // Check items
         if (items instanceof Array) {
             let found = false;
-            //Found it
+            // Found it
             items.every((item, index) => {
-                found = item[key] == id;
+                found = item[key] === id;
                 if (found) {
                     callback(item, index);
                 }
@@ -196,112 +171,110 @@ class ArrayUtility {
         }
     }
     static each(items, callback) {
-        //Array
+        // Array
         if (items instanceof Array) {
             items.forEach((item, index) => {
                 callback(item, index);
             });
         }
-        else if (items && (typeof items === 'object')) {
-            //Object
-            for (let index in items) {
+        else if (items && typeof items === 'object') {
+            // Object
+            for (const index in items) {
                 callback(items[index], index);
             }
         }
     }
     static every(items, callback) {
         if (items instanceof Array) {
-            items.every((item, index) => {
-                return callback(item, index);
-            });
+            items.every((item, index) => callback(item, index));
         }
     }
     static getDisplayKeys(items, idKey, displayKey) {
-        let displayKeys = {};
-        //Default keys
+        const displayKeys = {};
+        // Default keys
         idKey = idKey ? idKey : 'id';
         displayKey = displayKey ? displayKey : 'name';
-        //Each
+        // Each
         ArrayUtility.each(items, (obj) => {
             displayKeys[obj[idKey]] = obj[displayKey];
         });
         return displayKeys;
     }
     static getSelectedKeys(items) {
-        let selected = [];
-        //Iterate
+        const selected = [];
+        // Iterate
         ArrayUtility.each(items, (val, key) => {
-            if (val)
+            if (val) {
                 selected.push(key);
+            }
         });
         return selected;
     }
     static filter(items, callback) {
+        let result = [];
         if (items instanceof Array) {
-            let result = items.filter((item, index) => {
-                return callback(item, index);
-            });
-            return result;
+            result = items.filter((item, index) => callback(item, index));
         }
+        return result;
     }
     static map(items, callback) {
         let result = [];
         if (items instanceof Array) {
-            result = items.map((item, index) => {
-                return callback(item, index);
-            });
+            result = items.map((item, index) => callback(item, index));
         }
         return result;
     }
     static sort(items, compareKey) {
-        let result = items.sort((a, b) => {
-            if (a[compareKey] < b[compareKey])
+        const result = items.sort((itemA, itemB) => {
+            if (itemA[compareKey] < itemB[compareKey]) {
                 return -1;
-            if (a[compareKey] > b[compareKey])
+            }
+            if (itemA[compareKey] > itemB[compareKey]) {
                 return 1;
+            }
             return 0;
         });
         return result;
     }
     static hasValue(items) {
-        return (items instanceof Array && items.length > 0);
+        return items instanceof Array && items.length > 0;
     }
 }
 
 let NgxGustavguezToastsComponent = class NgxGustavguezToastsComponent {
-    //Inject services
+    // Inject services
     constructor(ngxGustavguezToastsService) {
         this.ngxGustavguezToastsService = ngxGustavguezToastsService;
-        //Models
+        // Models
         this.toasts = [];
     }
-    //On component init
+    // On component init
     ngOnInit() {
-        //Watch toast added
+        // Watch toast added
         this.ngxGustavguezToastsService.onToastAdded.subscribe((toast) => {
             this.openToast(toast);
         });
     }
-    //Custom events
+    // Custom events
     onCloseToast(toast) {
         this.closeToast(toast);
     }
-    //Private methods
+    // Private methods
     openToast(toast) {
-        //Before push create timeout
+        // Before push create timeout
         toast.timerInstance = setTimeout(() => {
             this.closeToast(toast);
         }, 3000);
-        //push
+        // push
         this.toasts.unshift(toast);
     }
     closeToast(toast) {
-        //Check
+        // Check
         if (toast instanceof NgxGustavguezToastModel) {
-            ArrayUtility.find(this.toasts, toast.id, (t, index) => {
-                //Clear timer instance
-                clearTimeout(t.timerInstance);
-                //Remove from array
+            ArrayUtility.find(this.toasts, toast.id, (toastFound, index) => {
+                // Clear timer instance
+                clearTimeout(toastFound.timerInstance);
+                // Remove from array
                 this.toasts.splice(index, 1);
             });
         }
@@ -329,26 +302,26 @@ class DateUtility {
     }
     static todayDateString() {
         const today = moment();
-        return today.format("YYYY-MM-DD");
+        return today.format('YYYY-MM-DD');
     }
     static localeString(date) {
-        return date.format("YYYY-MM-DD") + "T" + date.format("HH:mm");
+        return date.format('YYYY-MM-DD') + 'T' + date.format('HH:mm');
     }
     static todayAsPrettyString() {
         const today = moment();
-        return today.format("DD/MM/YYYY");
+        return today.format('DD/MM/YYYY');
     }
     static prettyDate(date, displayHour) {
-        const d = moment(date);
-        let str = d.format("DD/MM/YYYY");
+        const momentDate = moment(date);
+        let str = momentDate.format('DD/MM/YYYY');
         if (displayHour) {
-            str += " " + DateUtility.prettyHour(date);
+            str += ' ' + DateUtility.prettyHour(date);
         }
         return str;
     }
     static prettyHour(date) {
-        const d = moment(date);
-        return d.format("HH:mm");
+        const momentDate = moment(date);
+        return momentDate.format('HH:mm');
     }
 }
 
@@ -358,11 +331,11 @@ class FormUtility {
      * @param json
      */
     static jsonToFormData(json) {
-        let fd = new FormData();
-        for (let key in json) {
+        const fd = new FormData();
+        for (const key in json) {
             if (json[key] instanceof Array) {
-                json[key].forEach((j, index) => {
-                    fd.append(key + '[' + index + ']', j);
+                json[key].forEach((jsonChild, index) => {
+                    fd.append(key + '[' + index + ']', jsonChild);
                 });
             }
             else {
@@ -377,7 +350,7 @@ class FormUtility {
      */
     static needFormData(json) {
         let need = false;
-        for (let key in json) {
+        for (const key in json) {
             if (json[key] instanceof File || json[key] instanceof Blob) {
                 need = true;
                 break;
@@ -390,7 +363,7 @@ class FormUtility {
      * @param formGroup
      */
     static validateAllFormFields(formGroup) {
-        Object.keys(formGroup.controls).forEach(field => {
+        Object.keys(formGroup.controls).forEach((field) => {
             const control = formGroup.get(field);
             if (control instanceof FormControl) {
                 control.markAsTouched({ onlySelf: true });
@@ -407,11 +380,17 @@ class NumberUtility {
         const valStr = val.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         return valStr.substring(0, valStr.length - 3);
     }
+    static valid(val) {
+        return isNaN(Number(val));
+    }
 }
 
 class WindowUtility {
     static isSmallScreen() {
         return window.innerWidth < 768;
+    }
+    static isNotSmallScreen() {
+        return window.innerWidth >= 768;
     }
 }
 
@@ -427,7 +406,7 @@ PrettyDatePipe = __decorate([
 ], PrettyDatePipe);
 
 let PrettyHourPipe = class PrettyHourPipe {
-    transform(value, ...args) {
+    transform(value) {
         return DateUtility.prettyHour(value);
     }
 };
@@ -438,8 +417,8 @@ PrettyHourPipe = __decorate([
 ], PrettyHourPipe);
 
 let PrettyNumberPipe = class PrettyNumberPipe {
-    transform(value, ...args) {
-        return value != undefined ? NumberUtility.format(value) : '';
+    transform(value) {
+        return NumberUtility.valid(value) ? NumberUtility.format(value) : '0';
     }
 };
 PrettyNumberPipe = __decorate([
@@ -450,11 +429,11 @@ PrettyNumberPipe = __decorate([
 
 let NgxGustavguezMainSidebarService = class NgxGustavguezMainSidebarService {
     constructor() {
-        //Properties
+        // Properties
         this.onChangeState = new EventEmitter();
         this.onToggleState = new EventEmitter();
     }
-    //Public methods
+    // Public methods
     changeState(state) {
         this.onChangeState.emit(state);
     }
@@ -465,55 +444,50 @@ let NgxGustavguezMainSidebarService = class NgxGustavguezMainSidebarService {
 NgxGustavguezMainSidebarService.ɵprov = ɵɵdefineInjectable({ factory: function NgxGustavguezMainSidebarService_Factory() { return new NgxGustavguezMainSidebarService(); }, token: NgxGustavguezMainSidebarService, providedIn: "root" });
 NgxGustavguezMainSidebarService = __decorate([
     Injectable({
-        providedIn: "root"
+        providedIn: 'root'
     })
 ], NgxGustavguezMainSidebarService);
 
 let NgxGustavguezMainContainerDirective = class NgxGustavguezMainContainerDirective {
-    //Inject services
+    // Inject services
     constructor(ngxGustavguezMainSidebarService) {
         this.ngxGustavguezMainSidebarService = ngxGustavguezMainSidebarService;
-        //Modes
+        // Modes
         this.classes = [
             'sidebar-mini',
             'layout-fixed',
             'layout-navbar-fixed'
         ];
     }
-    //On component init
+    // On component init
     ngOnInit() {
-        //Set base classes to host classes
+        // Set base classes to host classes
         this.loadHostClasses(false);
-        //Watch sidebarState change
+        // Watch sidebarState change
         this.ngxGustavguezMainSidebarService.onChangeState.subscribe((state) => {
             this.loadHostClasses(state);
         });
         this.ngxGustavguezMainSidebarService.onToggleState.subscribe(() => {
-            this.loadHostClasses();
+            this.loadHostClasses(!this.state);
         });
     }
-    //Private helper methods
+    // Private helper methods
     loadHostClasses(state) {
+        // Control index just for control
         const indexClassCollapse = this.classes.indexOf('sidebar-collapse');
         const indexClassOpen = this.classes.indexOf('sidebar-open');
-        const openState = (state === undefined && indexClassOpen === -1) || state;
-        const collapseState = (state === undefined && indexClassCollapse === -1) || state;
-        //Remove from array
-        if (indexClassCollapse > -1) {
-            this.classes.splice(indexClassCollapse, 1);
-        }
-        if (indexClassOpen > -1) {
-            this.classes.splice(indexClassOpen, 1);
-        }
-        //Check state to add sidebaropen class
-        if (WindowUtility.isSmallScreen() && openState) {
+        // Load state
+        this.state = state;
+        // Check state
+        if (state) {
             this.classes.push('sidebar-open');
-        }
-        //Check to add collapse class
-        if (!WindowUtility.isSmallScreen() && collapseState) {
             this.classes.push('sidebar-collapse');
         }
-        //Load classes
+        else {
+            this.classes.splice(indexClassCollapse, 1);
+            this.classes.splice(indexClassOpen, 1);
+        }
+        // Load classes
         this.hostClasses = this.classes.join(' ');
     }
 };
@@ -530,31 +504,35 @@ NgxGustavguezMainContainerDirective = __decorate([
 ], NgxGustavguezMainContainerDirective);
 
 let NgxGustavguezMainSidebarComponent = class NgxGustavguezMainSidebarComponent {
-    //Inject services
+    // Inject services
     constructor(ngxGustavguezMainSidebarService) {
         this.ngxGustavguezMainSidebarService = ngxGustavguezMainSidebarService;
+        // Outputs
+        this.onBrandLink = new EventEmitter();
     }
-    //On component init
+    // On component init
     ngOnInit() {
-        //Init vars
+        // Init vars
         this.menuItemsStates = {};
     }
-    //Custom events
+    // Custom events
     onMenuItemClick(menuItem) {
-        //Check
+        // Check
         if (ArrayUtility.hasValue(menuItem.childs)) {
-            //Toggle state
-            this.menuItemsStates[menuItem.id] = (menuItem.id in this.menuItemsStates) ? !this.menuItemsStates[menuItem.id] : false;
+            // Toggle state
+            this.menuItemsStates[menuItem.id] = menuItem.id in this.menuItemsStates ? !this.menuItemsStates[menuItem.id] : false;
         }
         else {
-            //Close sidebar
+            // Close sidebar
             this.ngxGustavguezMainSidebarService.changeState(false);
         }
     }
-    onBrandLink(event) {
+    onBrandLinkClick(event) {
         event.preventDefault();
-        //Close sidebar
+        // Close sidebar
         this.ngxGustavguezMainSidebarService.changeState(false);
+        // Event emitter
+        this.onBrandLink.emit();
     }
     onCloseSidebar() {
         this.ngxGustavguezMainSidebarService.changeState(false);
@@ -581,26 +559,26 @@ __decorate([
 __decorate([
     Input()
 ], NgxGustavguezMainSidebarComponent.prototype, "menuItems", void 0);
+__decorate([
+    Output()
+], NgxGustavguezMainSidebarComponent.prototype, "onBrandLink", void 0);
 NgxGustavguezMainSidebarComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-main-sidebar',
-        template: "<aside class=\"main-sidebar sidebar-dark-primary\">\n    <!-- Brand Logo -->\n    <a \n        href=\"#\"\n        class=\"brand-link\"\n        (click)=\"onBrandLink($event)\">\n        <img \n            *ngIf=\"brandImg\"\n            [src]=\"brandImg\" \n            [alt]=\"brandTitle\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">{{ brandTitle }}</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div \n            *ngIf=\"userIsLogged\"\n            class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img \n                    *ngIf=\"userAvatar\"\n                    [src]=\"userAvatar\"\n                    [alt]=\"userName\"\n                    class=\"img-circle elevation-2\">\n            </div>\n            <div class=\"info\">\n                <a class=\"d-block\">{{ userName }}</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul \n                *ngIf=\"menuItems\"\n                class=\"nav nav-pills nav-sidebar flex-column\" \n                data-widget=\"treeview\" \n                role=\"menu\">\n\n                <li class=\"nav-header\">MEN\u00DA</li>\n\n                <li \n                    [class.menu-open]=\"menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined\"\n                    class=\"nav-item has-treeview\"\n                    ngxGustavguezNavItem\n                    [navItem]=\"menuItem\" \n                    [isParent]=\"true\"\n                    [state]=\"menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined\"\n                    (onNavItem)=\"onMenuItemClick($event)\"\n                    *ngFor=\"let menuItem of menuItems\"></li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>\n<div id=\"sidebar-overlay\" (click)=\"onCloseSidebar()\"></div>",
+        template: "<aside class=\"main-sidebar sidebar-dark-primary\">\n    <!-- Brand Logo -->\n    <a \n        href=\"#\"\n        class=\"brand-link\"\n        (click)=\"onBrandLinkClick($event)\">\n        <img \n            *ngIf=\"brandImg\"\n            [src]=\"brandImg\" \n            [alt]=\"brandTitle\"\n            class=\"brand-image img-circle elevation-3\" style=\"opacity: .95\">\n        <span class=\"brand-text font-weight-light\">{{ brandTitle }}</span>\n    </a>\n\n    <!-- Sidebar -->\n    <div class=\"sidebar\">\n        <div \n            *ngIf=\"userIsLogged\"\n            class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\n            <div class=\"image\">\n                <img \n                    *ngIf=\"userAvatar\"\n                    [src]=\"userAvatar\"\n                    [alt]=\"userName\"\n                    class=\"img-circle elevation-2\">\n            </div>\n            <div class=\"info\">\n                <a class=\"d-block\">{{ userName }}</a>\n            </div>\n        </div>\n\n        <!-- Sidebar Menu -->\n        <nav class=\"mt-2\">\n            <ul \n                *ngIf=\"menuItems\"\n                class=\"nav nav-pills nav-sidebar flex-column\" \n                data-widget=\"treeview\" \n                role=\"menu\">\n\n                <li class=\"nav-header\">MEN\u00DA</li>\n\n                <li \n                    [class.menu-open]=\"menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined\"\n                    class=\"nav-item has-treeview\"\n                    ngxGustavguezNavItem\n                    [navItem]=\"menuItem\" \n                    [isParent]=\"true\"\n                    [state]=\"menuItemsStates[menuItem.id] || menuItemsStates[menuItem.id] === undefined\"\n                    (onNavItem)=\"onMenuItemClick($event)\"\n                    *ngFor=\"let menuItem of menuItems\"></li>\n\n            </ul>\n        </nav>\n        <!-- /.sidebar-menu -->\n    </div>\n    <!-- /.sidebar -->\n</aside>\n<div id=\"sidebar-overlay\" (click)=\"onCloseSidebar()\"></div>",
         styles: [".main-sidebar .nav-treeview{background-color:#2d3339}"]
     })
 ], NgxGustavguezMainSidebarComponent);
 
 let NgxGustavguezNavComponent = class NgxGustavguezNavComponent {
-    //Inject services
+    // Inject services
     constructor(ngxGustavguezMainSidebarService) {
         this.ngxGustavguezMainSidebarService = ngxGustavguezMainSidebarService;
-        //Outputs
+        // Outputs
         this.onLogout = new EventEmitter();
         this.onBrand = new EventEmitter();
     }
-    //On component init
-    ngOnInit() {
-    }
-    //Custom events
+    // Custom events
     onToggleMenu(event) {
         event.preventDefault();
         this.ngxGustavguezMainSidebarService.toggleState();
@@ -611,9 +589,9 @@ let NgxGustavguezNavComponent = class NgxGustavguezNavComponent {
     }
     onLogoutClick(event) {
         event.preventDefault();
-        //Emit logout
+        // Emit logout
         this.onLogout.emit();
-        //Close user menu
+        // Close user menu
         this.userMenuState = false;
     }
     onBrandLink(event) {
@@ -662,14 +640,10 @@ class NgxGustavguezNavItemModel {
 }
 
 let NgxGustavguezNavItemComponent = class NgxGustavguezNavItemComponent {
-    //Inject services
     constructor() {
         this.onNavItem = new EventEmitter();
     }
-    //On component init
-    ngOnInit() {
-    }
-    //Custome events
+    // Custome events
     onNavItemClick(event) {
         event.preventDefault();
         this.onNavItem.emit(this.navItem);
@@ -703,136 +677,121 @@ class ApiResponseModel {
         this.data = data;
     }
     hasData() {
-        return (this.data && Object.keys(this.data).length > 0);
+        return this.data && Object.keys(this.data).length > 0;
     }
 }
 
 let ApiService = class ApiService {
-    //Service constructor
+    // Service constructor
     constructor(httpClient) {
         this.httpClient = httpClient;
     }
-    //Setters
+    // Setters
     setApiURL(apiURL) {
         this.apiURL = apiURL;
     }
     setAccessToken(accessToken) {
         this.accessToken = accessToken;
     }
-    //Fetch
+    // Fetch
     fetchData(uri, params) {
-        //Check cache of observables
-        //Get options
+        // Check cache of observables
+        // Get options
         const httpOptions = {
             headers: new HttpHeaders({
-                'Authorization': 'Bearer ' + this.accessToken
+                Authorization: 'Bearer ' + this.accessToken
             }),
             params: params
         };
-        //Do request
+        // Do request
         return this.httpClient
             .get(this.apiURL + uri, httpOptions)
             .pipe(
-        //Map response
-        map((response) => {
-            //Return api response model
-            return this.parseResponse(response);
-        }));
+        // Map response
+        map((response) => this.parseResponse(response)));
     }
-    //Fetch
+    // Fetch
     getObj(uri, id) {
-        //Check cache of observables
-        //Get options
+        // Check cache of observables
+        // Get options
         const httpOptions = {
             headers: new HttpHeaders({
-                'Authorization': 'Bearer ' + this.accessToken
+                Authorization: 'Bearer ' + this.accessToken
             })
         };
-        //Do request
+        // Do request
         return this.httpClient
             .get(this.apiURL + uri + (id ? '/' + id : ''), httpOptions)
             .pipe(
-        //Map response
-        map((response) => {
-            //Return api response model
-            return this.parseResponse(response);
-        }));
+        // Map response
+        map((response) => this.parseResponse(response)));
     }
-    //Update an object using PATCH
+    // Update an object using PATCH
     partialUpdateObj(uri, id, obj) {
-        //Post options
+        // Post options
         const httpOptions = {
             headers: new HttpHeaders({
-                'Authorization': 'Bearer ' + this.accessToken
+                Authorization: 'Bearer ' + this.accessToken
             })
         };
-        //Url
+        // Url
         const url = this.apiURL + uri + '/' + id;
-        //Do request
+        // Do request
         return this.httpClient
             .patch(url, obj, httpOptions)
             .pipe(
-        //Map response
-        map((response) => {
-            //Return api response model
-            return this.parseResponse(response);
-        }));
+        // Map response
+        map((response) => this.parseResponse(response)));
     }
-    //Delete an object using DELETE
+    // Delete an object using DELETE
     deleteObj(uri, id) {
-        //Post options
+        // Post options
         const httpOptions = {
             headers: new HttpHeaders({
                 'Authorization': 'Bearer ' + this.accessToken
             })
         };
-        //Url
+        // Url
         const url = this.apiURL + uri + (id ? '/' + id : '');
-        //Do request
+        // Do request
         return this.httpClient
             .delete(url, httpOptions)
             .pipe(
-        //Map response
-        map((response) => {
-            //Return api response model
-            return true;
-        }));
+        // Map response
+        map(() => true));
     }
-    //Create an object with POST
+    // Create an object with POST
     createObj(uri, obj) {
-        //Post options
+        // Post options
         const httpOptions = {
             headers: new HttpHeaders({
-                'Authorization': 'Bearer ' + this.accessToken
+                Authorization: 'Bearer ' + this.accessToken
             })
         };
-        //Url
+        // Url
         const url = this.apiURL + uri;
-        //check form data
+        // Check form data
         if (FormUtility.needFormData(obj)) {
             obj = FormUtility.jsonToFormData(obj);
         }
-        //Do request
+        // Do request
         return this.httpClient
             .post(url, obj, httpOptions)
             .pipe(
-        //Map response
-        map((response) => {
-            //Return api response model
-            return this.parseResponse(response);
-        }));
+        // Map response
+        map((response) => this.parseResponse(response)));
     }
-    //Parse response
+    // Parse response
     parseResponse(response) {
-        //Current response
-        let resp = new ApiResponseModel();
-        //CHECK RESPONSE
+        // Current response
+        const resp = new ApiResponseModel();
+        // CHECK RESPONSE
         if (response
             && response.data) {
-            //Load data
+            // Load data
             resp.data = response.data;
         }
-        //Return api response model
+        // Return api response model
         return resp;
     }
 };
@@ -842,15 +801,18 @@ ApiService.ctorParameters = () => [
 ApiService.ɵprov = ɵɵdefineInjectable({ factory: function ApiService_Factory() { return new ApiService(ɵɵinject(HttpClient)); }, token: ApiService, providedIn: "root" });
 ApiService = __decorate([
     Injectable({
-        providedIn: "root"
+        providedIn: 'root'
     })
 ], ApiService);
 
 let NgxGustavguezButtonComponent = class NgxGustavguezButtonComponent {
-    //Inject services
-    constructor() { }
-    //On component init
-    ngOnInit() {
+    constructor() {
+        // Output
+        this.onClick = new EventEmitter();
+    }
+    // Custom events
+    onDoClick() {
+        this.onClick.emit();
     }
 };
 __decorate([
@@ -862,20 +824,24 @@ __decorate([
 __decorate([
     Input()
 ], NgxGustavguezButtonComponent.prototype, "loading", void 0);
+__decorate([
+    Input()
+], NgxGustavguezButtonComponent.prototype, "submit", void 0);
+__decorate([
+    Input()
+], NgxGustavguezButtonComponent.prototype, "status", void 0);
+__decorate([
+    Output()
+], NgxGustavguezButtonComponent.prototype, "onClick", void 0);
 NgxGustavguezButtonComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-button',
-        template: "<button \n    type=\"submit\" \n    class=\"btn btn-primary btn-block\">\n    <span *ngIf=\"!loading\">{{ text }}</span>\n\n    <ngx-gustavguez-loader \n        [loadingText]=\"loadingText\"\n        [loading]=\"loading\"></ngx-gustavguez-loader>\n</button>",
+        template: "<button \n    [type]=\"submit ? 'submit' : 'button'\" \n\tclass=\"btn btn-{{ status ? status : 'primary' }} btn-block\"\n\t(click)=\"onDoClick()\">\n    <span *ngIf=\"!loading\">{{ text }}</span>\n\n    <ngx-gustavguez-loader \n        [loadingText]=\"loadingText\"\n        [loading]=\"loading\"></ngx-gustavguez-loader>\n</button>",
         styles: [""]
     })
 ], NgxGustavguezButtonComponent);
 
 let NgxGustavguezInputHolderComponent = class NgxGustavguezInputHolderComponent {
-    //Inject services
-    constructor() { }
-    //On component init
-    ngOnInit() {
-    }
 };
 __decorate([
     Input()
@@ -940,7 +906,7 @@ NgxGustavguezCoreModule = __decorate([
     })
 ], NgxGustavguezCoreModule);
 
-//Structure components
+// Structure components
 
 /**
  * Generated bundle index. Do not edit.

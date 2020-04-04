@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { OnInit, EventEmitter } from '@angular/core';
 import { NgxGustavguezMainSidebarService } from './ngx-gustavguez-main-sidebar.service';
 import { NgxGustavguezNavItemModel } from '../ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.model';
 export declare class NgxGustavguezMainSidebarComponent implements OnInit {
@@ -9,10 +9,11 @@ export declare class NgxGustavguezMainSidebarComponent implements OnInit {
     userAvatar: string;
     userName: string;
     menuItems: NgxGustavguezNavItemModel[];
+    onBrandLink: EventEmitter<void>;
     menuItemsStates: any;
     constructor(ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService);
     ngOnInit(): void;
     onMenuItemClick(menuItem: NgxGustavguezNavItemModel): void;
-    onBrandLink(event: MouseEvent): void;
+    onBrandLinkClick(event: MouseEvent): void;
     onCloseSidebar(): void;
 }

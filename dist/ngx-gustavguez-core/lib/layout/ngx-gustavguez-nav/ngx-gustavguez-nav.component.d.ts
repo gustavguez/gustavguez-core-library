@@ -1,6 +1,6 @@
-import { OnInit, EventEmitter } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { NgxGustavguezMainSidebarService } from '../ngx-gustavguez-main-sidebar/ngx-gustavguez-main-sidebar.service';
-export declare class NgxGustavguezNavComponent implements OnInit {
+export declare class NgxGustavguezNavComponent {
     private ngxGustavguezMainSidebarService;
     brandTitle: string;
     userIsLogged: boolean;
@@ -10,7 +10,6 @@ export declare class NgxGustavguezNavComponent implements OnInit {
     onBrand: EventEmitter<void>;
     userMenuState: boolean;
     constructor(ngxGustavguezMainSidebarService: NgxGustavguezMainSidebarService);
-    ngOnInit(): void;
     onToggleMenu(event: MouseEvent): void;
     onToggleUserMenu(event: MouseEvent): void;
     onLogoutClick(event: MouseEvent): void;

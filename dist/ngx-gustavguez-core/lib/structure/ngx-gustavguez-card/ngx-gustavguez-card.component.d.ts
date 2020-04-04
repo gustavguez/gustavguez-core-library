@@ -1,6 +1,3 @@
-import { OnInit } from '@angular/core';
-export declare class NgxGustavguezCardComponent implements OnInit {
+export declare class NgxGustavguezCardComponent {
     title: string;
-    constructor();
-    ngOnInit(): void;
 }

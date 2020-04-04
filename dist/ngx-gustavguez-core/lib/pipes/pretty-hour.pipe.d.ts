@@ -1,4 +1,4 @@
 import { PipeTransform } from '@angular/core';
 export declare class PrettyHourPipe implements PipeTransform {
-    transform(value: any, ...args: any[]): any;
+    transform(value: any): any;
 }
