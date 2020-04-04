@@ -19,7 +19,11 @@ export class AppComponent {
 	// Models
 	menuItems: NgxGustavguezNavItemModel[] = [
 		new NgxGustavguezNavItemModel("Api", "fas fa-hand-holding-usd", null, [
-			new NgxGustavguezNavItemModel("API Service", "fas fa-home", "api-service")
+			new NgxGustavguezNavItemModel("API Service", "fas fa-home", "api/api-service")
+		]),
+		new NgxGustavguezNavItemModel("Structure", "fas fa-hand-holding-usd", null, [
+			new NgxGustavguezNavItemModel("Loader", "fas fa-home", "structure/loader"),
+			new NgxGustavguezNavItemModel("Card", "fas fa-home", "structure/card"),
 		]),
 	]
 

@@ -1,6 +1,4 @@
-<div class="row m-5 text-center" *ngIf="loading">
-    <div class="col-12">
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        <span class="sr-only">{{ loadingText ? loadingText : "Cargando..." }}</span>
-    </div>
-</div>
+<ng-container *ngIf="loading">
+	<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+	<span class="sr-only">{{ loadingText ? loadingText : "Cargando..." }}</span>
+</ng-container>

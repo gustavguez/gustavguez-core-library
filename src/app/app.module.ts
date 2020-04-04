@@ -9,12 +9,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { NgxGustavguezCoreModule } from 'projects/ngx-gustavguez-core/src/public-api';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoaderComponent } from './structure/loader/loader.component';
+import { CardComponent } from './structure/card/card.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		ApiServiceComponent,
-		DashboardComponent
+		DashboardComponent,
+		LoaderComponent,
+		CardComponent
 	],
 	imports: [
 		BrowserModule,
