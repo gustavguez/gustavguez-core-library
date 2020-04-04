@@ -15,6 +15,7 @@ import { InfoBoxComponent } from './structure/info-box/info-box.component';
 import { PageHeaderComponent } from './structure/page-header/page-header.component';
 import { PopupComponent } from './structure/popup/popup.component';
 import { ToastsComponent } from './structure/toasts/toasts.component';
+import { ButtonComponent } from './forms/button/button.component';
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,8 @@ import { ToastsComponent } from './structure/toasts/toasts.component';
 		InfoBoxComponent,
 		PageHeaderComponent,
 		PopupComponent,
-		ToastsComponent
+		ToastsComponent,
+		ButtonComponent
 	],
 	imports: [
 		BrowserModule,

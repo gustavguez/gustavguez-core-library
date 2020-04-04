@@ -29,6 +29,9 @@ export class AppComponent {
 			new NgxGustavguezNavItemModel("Popup", "fas fa-home", "structure/popup"),
 			new NgxGustavguezNavItemModel("Toasts", "fas fa-home", "structure/toasts"),
 		]),
+		new NgxGustavguezNavItemModel("Forms", "fas fa-hand-holding-usd", null, [
+			new NgxGustavguezNavItemModel("Button", "fas fa-home", "forms/button")
+		]),
 	]
 
 	// Custom events

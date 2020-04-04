@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
+// Components
 import { ApiServiceComponent } from './api/api-service/api-service.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoaderComponent } from './structure/loader/loader.component';
@@ -9,7 +10,9 @@ import { InfoBoxComponent } from './structure/info-box/info-box.component';
 import { PageHeaderComponent } from './structure/page-header/page-header.component';
 import { PopupComponent } from './structure/popup/popup.component';
 import { ToastsComponent } from './structure/toasts/toasts.component';
+import { ButtonComponent } from './forms/button/button.component';
 
+// Routes
 const appRoutes: Routes = [
 	{
 		path: "",
@@ -44,6 +47,11 @@ const appRoutes: Routes = [
 	{
 		path: "structure/toasts",
 		component: ToastsComponent
+	},
+	// FORMS
+	{
+		path: "forms/button",
+		component: ButtonComponent
 	},
 ];
 
