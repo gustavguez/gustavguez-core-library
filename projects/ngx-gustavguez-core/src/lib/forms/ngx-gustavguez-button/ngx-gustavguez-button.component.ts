@@ -1,5 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
+import { NgxGustavguezStatusEnum } from '../../ngx-gustavguez-status.enum';
+
 @Component({
 	selector: 'ngx-gustavguez-button',
 	templateUrl: './ngx-gustavguez-button.component.html',
@@ -10,6 +12,7 @@ export class NgxGustavguezButtonComponent {
 	@Input() text: string;
 	@Input() loadingText: string;
 	@Input() loading: string;
+	@Input() status: NgxGustavguezStatusEnum;
 
 	// Output
 	@Output() onClick: EventEmitter<void> = new EventEmitter();

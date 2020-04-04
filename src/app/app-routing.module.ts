@@ -7,6 +7,8 @@ import { LoaderComponent } from './structure/loader/loader.component';
 import { CardComponent } from './structure/card/card.component';
 import { InfoBoxComponent } from './structure/info-box/info-box.component';
 import { PageHeaderComponent } from './structure/page-header/page-header.component';
+import { PopupComponent } from './structure/popup/popup.component';
+import { ToastsComponent } from './structure/toasts/toasts.component';
 
 const appRoutes: Routes = [
 	{
@@ -34,6 +36,14 @@ const appRoutes: Routes = [
 	{
 		path: "structure/page-header",
 		component: PageHeaderComponent
+	},
+	{
+		path: "structure/popup",
+		component: PopupComponent
+	},
+	{
+		path: "structure/toasts",
+		component: ToastsComponent
 	},
 ];
 

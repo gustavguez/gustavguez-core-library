@@ -13,6 +13,8 @@ import { LoaderComponent } from './structure/loader/loader.component';
 import { CardComponent } from './structure/card/card.component';
 import { InfoBoxComponent } from './structure/info-box/info-box.component';
 import { PageHeaderComponent } from './structure/page-header/page-header.component';
+import { PopupComponent } from './structure/popup/popup.component';
+import { ToastsComponent } from './structure/toasts/toasts.component';
 
 @NgModule({
 	declarations: [
@@ -22,7 +24,9 @@ import { PageHeaderComponent } from './structure/page-header/page-header.compone
 		LoaderComponent,
 		CardComponent,
 		InfoBoxComponent,
-		PageHeaderComponent
+		PageHeaderComponent,
+		PopupComponent,
+		ToastsComponent
 	],
 	imports: [
 		BrowserModule,
