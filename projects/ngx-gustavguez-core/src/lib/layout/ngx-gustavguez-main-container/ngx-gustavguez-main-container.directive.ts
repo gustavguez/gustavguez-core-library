@@ -48,8 +48,9 @@ export class NgxGustavguezMainContainerDirective implements OnInit {
 		if (state) {
 			this.classes.push('sidebar-open');
 			this.classes.push('sidebar-collapse');
-		} else {
+		} else if (indexClassCollapse > -1){
 			this.classes.splice(indexClassCollapse, 1);
+		} else if (indexClassOpen > -1){
 			this.classes.splice(indexClassOpen, 1);
 		}
 

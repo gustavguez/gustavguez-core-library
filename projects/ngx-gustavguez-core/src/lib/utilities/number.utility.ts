@@ -6,6 +6,6 @@ export class NumberUtility {
 	}
 
 	static valid(val: number): boolean {
-		return isNaN(Number(val));
+		return !isNaN(Number(val));
 	}
 }

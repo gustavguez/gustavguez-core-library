@@ -629,7 +629,7 @@
             return valStr.substring(0, valStr.length - 3);
         };
         NumberUtility.valid = function (val) {
-            return isNaN(Number(val));
+            return !isNaN(Number(val));
         };
         return NumberUtility;
     }());
@@ -750,8 +750,10 @@
                 this.classes.push('sidebar-open');
                 this.classes.push('sidebar-collapse');
             }
-            else {
+            else if (indexClassCollapse > -1) {
                 this.classes.splice(indexClassCollapse, 1);
+            }
+            else if (indexClassOpen > -1) {
                 this.classes.splice(indexClassOpen, 1);
             }
             // Load classes
