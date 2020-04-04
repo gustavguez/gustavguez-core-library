@@ -11,6 +11,7 @@ import { PageHeaderComponent } from './structure/page-header/page-header.compone
 import { PopupComponent } from './structure/popup/popup.component';
 import { ToastsComponent } from './structure/toasts/toasts.component';
 import { ButtonComponent } from './forms/button/button.component';
+import { InputHolderComponent } from './forms/input-holder/input-holder.component';
 
 // Routes
 const appRoutes: Routes = [
@@ -53,6 +54,10 @@ const appRoutes: Routes = [
 		path: "forms/button",
 		component: ButtonComponent
 	},
+	{
+		path: "forms/input-holder",
+		component: InputHolderComponent
+	}
 ];
 
 @NgModule({

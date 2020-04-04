@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NgxGustavguezNavItemModel, NgxGustavguezToastsService } from 'projects/ngx-gustavguez-core/src/public-api';
+import { NgxGustavguezNavItemModel } from 'projects/ngx-gustavguez-core/src/public-api';
 
 @Component({
 	selector: 'app-root',
@@ -12,9 +12,7 @@ export class AppComponent {
 
 	// Inject services
 	constructor(
-		private router: Router,
-		private ngxGustavguezToastsService: NgxGustavguezToastsService
-	) { }
+		private router: Router ) { }
 
 	// Models
 	menuItems: NgxGustavguezNavItemModel[] = [
@@ -30,7 +28,8 @@ export class AppComponent {
 			new NgxGustavguezNavItemModel("Toasts", "fas fa-home", "structure/toasts"),
 		]),
 		new NgxGustavguezNavItemModel("Forms", "fas fa-hand-holding-usd", null, [
-			new NgxGustavguezNavItemModel("Button", "fas fa-home", "forms/button")
+			new NgxGustavguezNavItemModel("Button", "fas fa-home", "forms/button"),
+			new NgxGustavguezNavItemModel("Input holder", "fas fa-home", "forms/input-holder")
 		]),
 	]
 
@@ -43,11 +42,4 @@ export class AppComponent {
 		this.router.navigate(["/"]);
 	}
 
-	onAddToastSuccess() {
-		this.ngxGustavguezToastsService.addSuccess("La noticia se agregó correctamente.");
-	}
-
-	onAddToastError() {
-		this.ngxGustavguezToastsService.addError("Problema al agregar la noticia.");
-	}
 }

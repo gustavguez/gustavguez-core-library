@@ -12,6 +12,7 @@ export class NgxGustavguezButtonComponent {
 	@Input() text: string;
 	@Input() loadingText: string;
 	@Input() loading: string;
+	@Input() submit: boolean;
 	@Input() status: NgxGustavguezStatusEnum;
 
 	// Output

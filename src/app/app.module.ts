@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ApiServiceComponent } from './api/api-service/api-service.component';
@@ -16,6 +17,7 @@ import { PageHeaderComponent } from './structure/page-header/page-header.compone
 import { PopupComponent } from './structure/popup/popup.component';
 import { ToastsComponent } from './structure/toasts/toasts.component';
 import { ButtonComponent } from './forms/button/button.component';
+import { InputHolderComponent } from './forms/input-holder/input-holder.component';
 
 @NgModule({
 	declarations: [
@@ -28,13 +30,15 @@ import { ButtonComponent } from './forms/button/button.component';
 		PageHeaderComponent,
 		PopupComponent,
 		ToastsComponent,
-		ButtonComponent
+		ButtonComponent,
+		InputHolderComponent
 	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
 		RouterModule,
+		ReactiveFormsModule,
 		NgxGustavguezCoreModule
 	],
 	providers: [],
