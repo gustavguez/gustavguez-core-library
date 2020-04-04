@@ -7,7 +7,7 @@ import { NumberUtility } from '../utilities/number.utility';
 export class PrettyNumberPipe implements PipeTransform {
 
 	transform(value: any): any {
-		return value ? NumberUtility.format(value) : '';
+		return NumberUtility.valid(value) ? NumberUtility.format(value) : '0';
 	}
 
 }

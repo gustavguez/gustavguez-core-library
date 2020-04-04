@@ -11,6 +11,8 @@ import { NgxGustavguezCoreModule } from 'projects/ngx-gustavguez-core/src/public
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoaderComponent } from './structure/loader/loader.component';
 import { CardComponent } from './structure/card/card.component';
+import { InfoBoxComponent } from './structure/info-box/info-box.component';
+import { PageHeaderComponent } from './structure/page-header/page-header.component';
 
 @NgModule({
 	declarations: [
@@ -18,7 +20,9 @@ import { CardComponent } from './structure/card/card.component';
 		ApiServiceComponent,
 		DashboardComponent,
 		LoaderComponent,
-		CardComponent
+		CardComponent,
+		InfoBoxComponent,
+		PageHeaderComponent
 	],
 	imports: [
 		BrowserModule,
