@@ -1,5 +1,5 @@
 <button 
-    [type]="submit ? 'submit' : 'button'" 
+    [type]="button ? 'button' : 'submit'" 
 	class="btn btn-{{ status ? status : 'primary' }} btn-block"
 	(click)="onDoClick()">
     <span *ngIf="!loading">{{ text }}</span>

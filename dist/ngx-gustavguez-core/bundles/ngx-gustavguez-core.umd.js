@@ -1103,7 +1103,7 @@
         ], NgxGustavguezButtonComponent.prototype, "loading", void 0);
         __decorate([
             core.Input()
-        ], NgxGustavguezButtonComponent.prototype, "submit", void 0);
+        ], NgxGustavguezButtonComponent.prototype, "button", void 0);
         __decorate([
             core.Input()
         ], NgxGustavguezButtonComponent.prototype, "status", void 0);
@@ -1113,7 +1113,7 @@
         NgxGustavguezButtonComponent = __decorate([
             core.Component({
                 selector: 'ngx-gustavguez-button',
-                template: "<button \n    [type]=\"submit ? 'submit' : 'button'\" \n\tclass=\"btn btn-{{ status ? status : 'primary' }} btn-block\"\n\t(click)=\"onDoClick()\">\n    <span *ngIf=\"!loading\">{{ text }}</span>\n\n    <ngx-gustavguez-loader \n        [loadingText]=\"loadingText\"\n        [loading]=\"loading\"></ngx-gustavguez-loader>\n</button>",
+                template: "<button \n    [type]=\"button ? 'button' : 'submit'\" \n\tclass=\"btn btn-{{ status ? status : 'primary' }} btn-block\"\n\t(click)=\"onDoClick()\">\n    <span *ngIf=\"!loading\">{{ text }}</span>\n\n    <ngx-gustavguez-loader \n        [loadingText]=\"loadingText\"\n        [loading]=\"loading\"></ngx-gustavguez-loader>\n</button>",
                 styles: [""]
             })
         ], NgxGustavguezButtonComponent);

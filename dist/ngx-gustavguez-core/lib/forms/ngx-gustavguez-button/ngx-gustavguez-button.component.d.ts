@@ -4,7 +4,7 @@ export declare class NgxGustavguezButtonComponent {
     text: string;
     loadingText: string;
     loading: string;
-    submit: boolean;
+    button: boolean;
     status: NgxGustavguezStatusEnum;
     onClick: EventEmitter<void>;
     onDoClick(): void;
