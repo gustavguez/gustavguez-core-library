@@ -3,11 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormUtility } from 'projects/ngx-gustavguez-core/src/public-api';
 
 @Component({
-	selector: 'app-input-holder',
-	templateUrl: './input-holder.component.html',
-	styleUrls: ['./input-holder.component.scss']
+	selector: 'app-input-text',
+	templateUrl: './input-text.component.html',
+	styleUrls: ['./input-text.component.scss']
 })
-export class InputHolderComponent implements OnInit {
+export class InputTextComponent implements OnInit {
 	// Models
 	form: FormGroup;
 

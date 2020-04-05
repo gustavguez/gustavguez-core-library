@@ -13,6 +13,7 @@ import { ToastsComponent } from './structure/toasts/toasts.component';
 import { ButtonComponent } from './forms/button/button.component';
 import { InputHolderComponent } from './forms/input-holder/input-holder.component';
 import { TableComponent } from './structure/table/table.component';
+import { InputTextComponent } from './forms/input-text/input-text.component';
 
 // Routes
 const appRoutes: Routes = [
@@ -62,6 +63,10 @@ const appRoutes: Routes = [
 	{
 		path: "forms/input-holder",
 		component: InputHolderComponent
+	},
+	{
+		path: "forms/input-text",
+		component: InputTextComponent
 	}
 ];
 

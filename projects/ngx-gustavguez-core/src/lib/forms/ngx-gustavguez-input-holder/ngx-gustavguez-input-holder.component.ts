@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 	styleUrls: ['./ngx-gustavguez-input-holder.component.scss']
 })
 export class NgxGustavguezInputHolderComponent {
-	// Input
+	// Inputs
 	@Input() form: FormGroup;
 	@Input() controlName: string;
 	@Input() requiredErrorText: string;
