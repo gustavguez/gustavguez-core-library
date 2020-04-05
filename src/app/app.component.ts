@@ -26,6 +26,7 @@ export class AppComponent {
 			new NgxGustavguezNavItemModel("Page header", "fas fa-home", "structure/page-header"),
 			new NgxGustavguezNavItemModel("Popup", "fas fa-home", "structure/popup"),
 			new NgxGustavguezNavItemModel("Toasts", "fas fa-home", "structure/toasts"),
+			new NgxGustavguezNavItemModel("Table", "fas fa-home", "structure/table"),
 		]),
 		new NgxGustavguezNavItemModel("Forms", "fas fa-hand-holding-usd", null, [
 			new NgxGustavguezNavItemModel("Button", "fas fa-home", "forms/button"),

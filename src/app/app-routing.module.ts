@@ -12,6 +12,7 @@ import { PopupComponent } from './structure/popup/popup.component';
 import { ToastsComponent } from './structure/toasts/toasts.component';
 import { ButtonComponent } from './forms/button/button.component';
 import { InputHolderComponent } from './forms/input-holder/input-holder.component';
+import { TableComponent } from './structure/table/table.component';
 
 // Routes
 const appRoutes: Routes = [
@@ -48,6 +49,10 @@ const appRoutes: Routes = [
 	{
 		path: "structure/toasts",
 		component: ToastsComponent
+	},
+	{
+		path: "structure/table",
+		component: TableComponent
 	},
 	// FORMS
 	{

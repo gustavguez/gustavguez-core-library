@@ -1,0 +1,20 @@
+<ngx-gustavguez-page-header text="Table"></ngx-gustavguez-page-header>
+
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 col-sm-6 col-12 text-center p-3">
+				<ngx-gustavguez-table
+					(onAction)="onTableAction($event)"
+					[options]="tableOptions"
+					[items]="users"></ngx-gustavguez-table>
+			</div>
+			<div class="col-md-6 col-sm-6 col-12 text-center p-3">
+				<ngx-gustavguez-table
+					(onAction)="onTableAction($event)"
+					[options]="tableOptions2"
+					[items]="users"></ngx-gustavguez-table>
+			</div>
+		</div>
+	</div>
+</section>
