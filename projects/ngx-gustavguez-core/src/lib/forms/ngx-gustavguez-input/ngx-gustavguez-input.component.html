@@ -7,9 +7,10 @@
 			*ngIf="label"
 			[for]="controlId">{{ label }}</label>
 		<input 
-			type="text" 
 			class="form-control"
+			(change)="onEmitChange()"
 			[id]="controlId"
+			[type]="type"
 			[placeholder]="placeholder"
 			[formControlName]="controlName">
 	</ngx-gustavguez-input-holder>

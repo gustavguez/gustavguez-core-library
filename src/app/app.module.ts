@@ -19,7 +19,7 @@ import { ToastsComponent } from './structure/toasts/toasts.component';
 import { ButtonComponent } from './forms/button/button.component';
 import { InputHolderComponent } from './forms/input-holder/input-holder.component';
 import { TableComponent } from './structure/table/table.component';
-import { InputTextComponent } from './forms/input-text/input-text.component';
+import { InputComponent } from './forms/input/input.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +35,7 @@ import { InputTextComponent } from './forms/input-text/input-text.component';
 		ButtonComponent,
 		InputHolderComponent,
 		TableComponent,
-		InputTextComponent
+		InputComponent
 	],
 	imports: [
 		BrowserModule,

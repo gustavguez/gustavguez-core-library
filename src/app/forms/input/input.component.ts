@@ -3,11 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormUtility } from 'projects/ngx-gustavguez-core/src/public-api';
 
 @Component({
-	selector: 'app-input-text',
-	templateUrl: './input-text.component.html',
-	styleUrls: ['./input-text.component.scss']
+	selector: 'app-input',
+	templateUrl: './input.component.html',
+	styleUrls: ['./input.component.scss']
 })
-export class InputTextComponent implements OnInit {
+export class InputComponent implements OnInit {
 	// Models
 	form: FormGroup;
 
@@ -37,5 +37,4 @@ export class InputTextComponent implements OnInit {
 			FormUtility.validateAllFormFields(this.form);
 		}
 	}
-
 }

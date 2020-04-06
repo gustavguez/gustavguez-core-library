@@ -964,37 +964,52 @@ NgxGustavguezInputHolderComponent = __decorate([
     Component({
         selector: 'ngx-gustavguez-input-holder',
         template: "<div class=\"form-group\">\n    <!-- CONTAINER -->\n    <ng-content></ng-content>\n\n    <!-- VALIDATIONS -->\n    <div class=\"text-danger\" *ngIf=\"form\">\n        <small *ngIf=\"\n                form.get(controlName).touched \n                && form.get(controlName).errors\n                && form.get(controlName).errors.required\">\n            {{ requiredErrorText ? requiredErrorText : \"Este campo es requerido\"  }}\n        </small>\n    </div>\n</div>",
+        host: { class: 'w-100' },
         styles: [""]
     })
 ], NgxGustavguezInputHolderComponent);
 
-let NgxGustavguezInputTextComponent = class NgxGustavguezInputTextComponent {
+let NgxGustavguezInputComponent = class NgxGustavguezInputComponent {
+    constructor() {
+        // Outputs
+        this.onChange = new EventEmitter();
+    }
+    // Custom events
+    onEmitChange() {
+        this.onChange.emit(this.form.get(this.controlName).value);
+    }
 };
 __decorate([
     Input()
-], NgxGustavguezInputTextComponent.prototype, "form", void 0);
+], NgxGustavguezInputComponent.prototype, "form", void 0);
 __decorate([
     Input()
-], NgxGustavguezInputTextComponent.prototype, "label", void 0);
+], NgxGustavguezInputComponent.prototype, "label", void 0);
 __decorate([
     Input()
-], NgxGustavguezInputTextComponent.prototype, "placeholder", void 0);
+], NgxGustavguezInputComponent.prototype, "placeholder", void 0);
 __decorate([
     Input()
-], NgxGustavguezInputTextComponent.prototype, "controlId", void 0);
+], NgxGustavguezInputComponent.prototype, "controlId", void 0);
 __decorate([
     Input()
-], NgxGustavguezInputTextComponent.prototype, "controlName", void 0);
+], NgxGustavguezInputComponent.prototype, "controlName", void 0);
 __decorate([
     Input()
-], NgxGustavguezInputTextComponent.prototype, "requiredErrorText", void 0);
-NgxGustavguezInputTextComponent = __decorate([
+], NgxGustavguezInputComponent.prototype, "type", void 0);
+__decorate([
+    Input()
+], NgxGustavguezInputComponent.prototype, "requiredErrorText", void 0);
+__decorate([
+    Output()
+], NgxGustavguezInputComponent.prototype, "onChange", void 0);
+NgxGustavguezInputComponent = __decorate([
     Component({
-        selector: 'ngx-gustavguez-input-text',
-        template: "<div class=\"input-group\" [formGroup]=\"form\">\n\t<ngx-gustavguez-input-holder\n\t\t[form]=\"form\"\n\t\t[controlName]=\"controlName\"\n\t\t[requiredErrorText]=\"requiredErrorText\">\n\t\t<label \n\t\t\t*ngIf=\"label\"\n\t\t\t[for]=\"controlId\">{{ label }}</label>\n\t\t<input \n\t\t\ttype=\"text\" \n\t\t\tclass=\"form-control\"\n\t\t\t[id]=\"controlId\"\n\t\t\t[placeholder]=\"placeholder\"\n\t\t\t[formControlName]=\"controlName\">\n\t</ngx-gustavguez-input-holder>\n</div>",
+        selector: 'ngx-gustavguez-input',
+        template: "<div class=\"input-group\" [formGroup]=\"form\">\n\t<ngx-gustavguez-input-holder\n\t\t[form]=\"form\"\n\t\t[controlName]=\"controlName\"\n\t\t[requiredErrorText]=\"requiredErrorText\">\n\t\t<label \n\t\t\t*ngIf=\"label\"\n\t\t\t[for]=\"controlId\">{{ label }}</label>\n\t\t<input \n\t\t\tclass=\"form-control\"\n\t\t\t(change)=\"onEmitChange()\"\n\t\t\t[id]=\"controlId\"\n\t\t\t[type]=\"type\"\n\t\t\t[placeholder]=\"placeholder\"\n\t\t\t[formControlName]=\"controlName\">\n\t</ngx-gustavguez-input-holder>\n</div>",
         styles: [""]
     })
-], NgxGustavguezInputTextComponent);
+], NgxGustavguezInputComponent);
 
 let NgxGustavguezCoreModule = class NgxGustavguezCoreModule {
 };
@@ -1017,8 +1032,8 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezToastsComponent,
             NgxGustavguezNavItemComponent,
             NgxGustavguezTableComponent,
-            NgxGustavguezInputTextComponent,
             NgxGustavguezSubmitComponent,
+            NgxGustavguezInputComponent,
         ],
         imports: [
             CommonModule,
@@ -1042,7 +1057,7 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezToastsComponent,
             NgxGustavguezNavItemComponent,
             NgxGustavguezTableComponent,
-            NgxGustavguezInputTextComponent,
+            NgxGustavguezInputComponent,
             NgxGustavguezSubmitComponent
         ]
     })
@@ -1054,5 +1069,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputHolderComponent, NgxGustavguezInputTextComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezNavComponent, NgxGustavguezNavItemComponent, NgxGustavguezNavItemModel, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezStatusEnum, NgxGustavguezSubmitComponent, NgxGustavguezTableActionArgument, NgxGustavguezTableActionModel, NgxGustavguezTableComponent, NgxGustavguezTableHeaderModel, NgxGustavguezTableOptionsModel, NgxGustavguezTableShowActionModel, NgxGustavguezToastModel, NgxGustavguezToastsComponent, NgxGustavguezToastsService, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
+export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputComponent, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezNavComponent, NgxGustavguezNavItemComponent, NgxGustavguezNavItemModel, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezStatusEnum, NgxGustavguezSubmitComponent, NgxGustavguezTableActionArgument, NgxGustavguezTableActionModel, NgxGustavguezTableComponent, NgxGustavguezTableHeaderModel, NgxGustavguezTableOptionsModel, NgxGustavguezTableShowActionModel, NgxGustavguezToastModel, NgxGustavguezToastsComponent, NgxGustavguezToastsService, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map
