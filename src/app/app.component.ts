@@ -33,7 +33,8 @@ export class AppComponent {
 			new NgxGustavguezNavItemModel("Input holder", "fas fa-home", "forms/input-holder"),
 			new NgxGustavguezNavItemModel("Input", "fas fa-home", "forms/input"),
 			new NgxGustavguezNavItemModel("Textarea", "fas fa-home", "forms/textarea"),
-			new NgxGustavguezNavItemModel("Select", "fas fa-home", "forms/select")
+			new NgxGustavguezNavItemModel("Select", "fas fa-home", "forms/select"),
+			new NgxGustavguezNavItemModel("Tags", "fas fa-home", "forms/tags")
 		]),
 	]
 

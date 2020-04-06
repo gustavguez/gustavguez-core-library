@@ -13,9 +13,9 @@ export class NgxGustavguezSelectComponent {
 	@Input() controlId: string;
 	@Input() controlName: string;
 	@Input() requiredErrorText: string;
-	
-	@Input() options: string
-	@Input() placeholder: string;;
+
+	@Input() options: string;
+	@Input() placeholder: string;
 	@Input() optionId: string;
 	@Input() optionLabel: string;
 

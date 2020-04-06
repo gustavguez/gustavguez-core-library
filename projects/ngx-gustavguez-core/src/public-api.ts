@@ -47,6 +47,7 @@ export * from './lib/forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-hold
 export * from './lib/forms/ngx-gustavguez-input/ngx-gustavguez-input.component';
 export * from './lib/forms/ngx-gustavguez-textarea/ngx-gustavguez-textarea.component';
 export * from './lib/forms/ngx-gustavguez-select/ngx-gustavguez-select.component';
+export * from './lib/forms/ngx-gustavguez-tags/ngx-gustavguez-tags.component';
 
 // Lib module
 export * from './lib/ngx-gustavguez-status.enum';

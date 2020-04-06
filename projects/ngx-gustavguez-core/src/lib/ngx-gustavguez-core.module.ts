@@ -28,6 +28,7 @@ import { NgxGustavguezSubmitComponent } from './forms/ngx-gustavguez-submit/ngx-
 import { NgxGustavguezInputComponent } from './forms/ngx-gustavguez-input/ngx-gustavguez-input.component';
 import { NgxGustavguezTextareaComponent } from './forms/ngx-gustavguez-textarea/ngx-gustavguez-textarea.component';
 import { NgxGustavguezSelectComponent } from './forms/ngx-gustavguez-select/ngx-gustavguez-select.component';
+import { NgxGustavguezTagsComponent } from './forms/ngx-gustavguez-tags/ngx-gustavguez-tags.component';
 
 @NgModule({
 	declarations: [
@@ -51,6 +52,7 @@ import { NgxGustavguezSelectComponent } from './forms/ngx-gustavguez-select/ngx-
 		NgxGustavguezInputComponent,
 		NgxGustavguezTextareaComponent,
 		NgxGustavguezSelectComponent,
+		NgxGustavguezTagsComponent,
 	],
 	imports: [
 		CommonModule,
@@ -77,7 +79,8 @@ import { NgxGustavguezSelectComponent } from './forms/ngx-gustavguez-select/ngx-
 		NgxGustavguezInputComponent,
 		NgxGustavguezSubmitComponent,
 		NgxGustavguezTextareaComponent,
-		NgxGustavguezSelectComponent
+		NgxGustavguezSelectComponent,
+		NgxGustavguezTagsComponent
 	]
 })
 export class NgxGustavguezCoreModule { }
