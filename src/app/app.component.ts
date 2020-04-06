@@ -31,7 +31,8 @@ export class AppComponent {
 		new NgxGustavguezNavItemModel("Forms", "fas fa-hand-holding-usd", null, [
 			new NgxGustavguezNavItemModel("Button", "fas fa-home", "forms/button"),
 			new NgxGustavguezNavItemModel("Input holder", "fas fa-home", "forms/input-holder"),
-			new NgxGustavguezNavItemModel("Input", "fas fa-home", "forms/input")
+			new NgxGustavguezNavItemModel("Input", "fas fa-home", "forms/input"),
+			new NgxGustavguezNavItemModel("Textarea", "fas fa-home", "forms/textarea")
 		]),
 	]
 

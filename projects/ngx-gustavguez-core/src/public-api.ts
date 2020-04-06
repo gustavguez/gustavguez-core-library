@@ -45,6 +45,7 @@ export * from './lib/forms/ngx-gustavguez-button/ngx-gustavguez-button.component
 export * from './lib/forms/ngx-gustavguez-submit/ngx-gustavguez-submit.component';
 export * from './lib/forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-holder.component';
 export * from './lib/forms/ngx-gustavguez-input/ngx-gustavguez-input.component';
+export * from './lib/forms/ngx-gustavguez-textarea/ngx-gustavguez-textarea.component';
 
 // Lib module
 export * from './lib/ngx-gustavguez-status.enum';

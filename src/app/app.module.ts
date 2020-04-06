@@ -20,6 +20,7 @@ import { ButtonComponent } from './forms/button/button.component';
 import { InputHolderComponent } from './forms/input-holder/input-holder.component';
 import { TableComponent } from './structure/table/table.component';
 import { InputComponent } from './forms/input/input.component';
+import { TextareaComponent } from './forms/textarea/textarea.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +36,8 @@ import { InputComponent } from './forms/input/input.component';
 		ButtonComponent,
 		InputHolderComponent,
 		TableComponent,
-		InputComponent
+		InputComponent,
+		TextareaComponent
 	],
 	imports: [
 		BrowserModule,

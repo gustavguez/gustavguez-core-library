@@ -26,6 +26,7 @@ import { NgxGustavguezNavItemComponent } from './layout/ngx-gustavguez-nav-item/
 import { NgxGustavguezTableComponent } from './structure/ngx-gustavguez-table/ngx-gustavguez-table.component';
 import { NgxGustavguezSubmitComponent } from './forms/ngx-gustavguez-submit/ngx-gustavguez-submit.component';
 import { NgxGustavguezInputComponent } from './forms/ngx-gustavguez-input/ngx-gustavguez-input.component';
+import { NgxGustavguezTextareaComponent } from './forms/ngx-gustavguez-textarea/ngx-gustavguez-textarea.component';
 
 @NgModule({
 	declarations: [
@@ -47,6 +48,7 @@ import { NgxGustavguezInputComponent } from './forms/ngx-gustavguez-input/ngx-gu
 		NgxGustavguezTableComponent,
 		NgxGustavguezSubmitComponent,
 		NgxGustavguezInputComponent,
+		NgxGustavguezTextareaComponent,
 	],
 	imports: [
 		CommonModule,
@@ -71,7 +73,8 @@ import { NgxGustavguezInputComponent } from './forms/ngx-gustavguez-input/ngx-gu
 		NgxGustavguezNavItemComponent,
 		NgxGustavguezTableComponent,
 		NgxGustavguezInputComponent,
-		NgxGustavguezSubmitComponent
+		NgxGustavguezSubmitComponent,
+		NgxGustavguezTextareaComponent
 	]
 })
 export class NgxGustavguezCoreModule { }

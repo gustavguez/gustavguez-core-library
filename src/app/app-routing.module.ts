@@ -14,6 +14,7 @@ import { ButtonComponent } from './forms/button/button.component';
 import { InputHolderComponent } from './forms/input-holder/input-holder.component';
 import { TableComponent } from './structure/table/table.component';
 import { InputComponent } from './forms/input/input.component';
+import { TextareaComponent } from './forms/textarea/textarea.component';
 
 // Routes
 const appRoutes: Routes = [
@@ -67,6 +68,10 @@ const appRoutes: Routes = [
 	{
 		path: "forms/input",
 		component: InputComponent
+	},
+	{
+		path: "forms/textarea",
+		component: TextareaComponent
 	}
 ];
 

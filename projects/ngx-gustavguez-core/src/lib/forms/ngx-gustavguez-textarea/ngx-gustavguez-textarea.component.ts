@@ -2,18 +2,17 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-	selector: 'ngx-gustavguez-input',
-	templateUrl: './ngx-gustavguez-input.component.html',
-	styleUrls: ['./ngx-gustavguez-input.component.scss']
+	selector: 'ngx-gustavguez-textarea',
+	templateUrl: './ngx-gustavguez-textarea.component.html',
+	styleUrls: ['./ngx-gustavguez-textarea.component.scss']
 })
-export class NgxGustavguezInputComponent {
+export class NgxGustavguezTextareaComponent {
 	// Inputs
 	@Input() form: FormGroup;
 	@Input() label: string;
 	@Input() placeholder: string;
 	@Input() controlId: string;
 	@Input() controlName: string;
-	@Input() type: string;
 	@Input() requiredErrorText: string;
 
 	// Outputs
