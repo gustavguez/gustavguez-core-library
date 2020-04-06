@@ -42,6 +42,7 @@ export * from './lib/api/api.service';
 
 // Forms
 export * from './lib/forms/ngx-gustavguez-button/ngx-gustavguez-button.component';
+export * from './lib/forms/ngx-gustavguez-submit/ngx-gustavguez-submit.component';
 export * from './lib/forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-holder.component';
 export * from './lib/forms/ngx-gustavguez-input-text/ngx-gustavguez-input-text.component';
 

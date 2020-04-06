@@ -3,11 +3,11 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { NgxGustavguezStatusEnum } from '../../ngx-gustavguez-status.enum';
 
 @Component({
-	selector: 'ngx-gustavguez-button',
-	templateUrl: './ngx-gustavguez-button.component.html',
-	styleUrls: ['./ngx-gustavguez-button.component.scss']
+	selector: 'ngx-gustavguez-submit',
+	templateUrl: './ngx-gustavguez-submit.component.html',
+	styleUrls: ['./ngx-gustavguez-submit.component.scss']
 })
-export class NgxGustavguezButtonComponent {
+export class NgxGustavguezSubmitComponent {
 	// Input
 	@Input() text: string;
 	@Input() loadingText: string;

@@ -25,6 +25,7 @@ import { NgxGustavguezToastsComponent } from './structure/ngx-gustavguez-toasts/
 import { NgxGustavguezNavItemComponent } from './layout/ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.component';
 import { NgxGustavguezTableComponent } from './structure/ngx-gustavguez-table/ngx-gustavguez-table.component';
 import { NgxGustavguezInputTextComponent } from './forms/ngx-gustavguez-input-text/ngx-gustavguez-input-text.component';
+import { NgxGustavguezSubmitComponent } from './forms/ngx-gustavguez-submit/ngx-gustavguez-submit.component';
 
 @NgModule({
 	declarations: [
@@ -45,6 +46,7 @@ import { NgxGustavguezInputTextComponent } from './forms/ngx-gustavguez-input-te
 		NgxGustavguezNavItemComponent,
 		NgxGustavguezTableComponent,
 		NgxGustavguezInputTextComponent,
+		NgxGustavguezSubmitComponent,
 	],
 	imports: [
 		CommonModule,
@@ -68,7 +70,8 @@ import { NgxGustavguezInputTextComponent } from './forms/ngx-gustavguez-input-te
 		NgxGustavguezToastsComponent,
 		NgxGustavguezNavItemComponent,
 		NgxGustavguezTableComponent,
-		NgxGustavguezInputTextComponent
+		NgxGustavguezInputTextComponent,
+		NgxGustavguezSubmitComponent
 	]
 })
 export class NgxGustavguezCoreModule { }
