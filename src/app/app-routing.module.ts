@@ -15,6 +15,7 @@ import { InputHolderComponent } from './forms/input-holder/input-holder.componen
 import { TableComponent } from './structure/table/table.component';
 import { InputComponent } from './forms/input/input.component';
 import { TextareaComponent } from './forms/textarea/textarea.component';
+import { SelectComponent } from './forms/select/select.component';
 
 // Routes
 const appRoutes: Routes = [
@@ -72,6 +73,10 @@ const appRoutes: Routes = [
 	{
 		path: "forms/textarea",
 		component: TextareaComponent
+	},
+	{
+		path: "forms/select",
+		component: SelectComponent
 	}
 ];
 
