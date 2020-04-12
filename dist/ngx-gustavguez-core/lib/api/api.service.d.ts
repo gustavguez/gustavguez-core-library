@@ -6,6 +6,7 @@ export declare class ApiService {
     private httpClient;
     private apiURL;
     private accessToken;
+    private previousApiResponseStrategy;
     private activeApiResponseStrategy;
     private apiResponseStrategies;
     constructor(httpClient: HttpClient);
@@ -13,6 +14,7 @@ export declare class ApiService {
     setAccessToken(accessToken: string): void;
     addApiResponseStrategy(strategy: ApiResponseStrategyInterface): void;
     changeApiResponseStrategy(strategyName: string): boolean;
+    restoreApiResponseStrategy(): void;
     fetchData(uri: string, params?: any): Observable<ApiResponseModel>;
     getObj(uri: string, id?: any): Observable<ApiResponseModel>;
     partialUpdateObj(uri: string, id: number, obj: any): Observable<ApiResponseModel>;

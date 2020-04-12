@@ -896,9 +896,17 @@ var ApiService = /** @class */ (function () {
     ApiService.prototype.changeApiResponseStrategy = function (strategyName) {
         var _this = this;
         var hasChanged = false;
+        // Check current are equal
+        if (this.activeApiResponseStrategy.getName() === strategyName) {
+            return hasChanged;
+        }
+        // Find strategy
         ArrayUtility.every(this.apiResponseStrategies, function (strategy) {
             // Check name
             if (strategy.getName() === strategyName) {
+                // Save previous
+                _this.previousApiResponseStrategy = _this.activeApiResponseStrategy;
+                // Load new stategy
                 _this.activeApiResponseStrategy = strategy;
                 // Mark has changed
                 hasChanged = true;
@@ -906,6 +914,14 @@ var ApiService = /** @class */ (function () {
             return !hasChanged;
         });
         return hasChanged;
+    };
+    // Restore prev active stategy
+    ApiService.prototype.restoreApiResponseStrategy = function () {
+        // Check prev are not empty and is different
+        if (this.previousApiResponseStrategy !== undefined
+            && this.previousApiResponseStrategy.getName() !== this.activeApiResponseStrategy.getName()) {
+            this.activeApiResponseStrategy = this.previousApiResponseStrategy;
+        }
     };
     // Fetch
     ApiService.prototype.fetchData = function (uri, params) {

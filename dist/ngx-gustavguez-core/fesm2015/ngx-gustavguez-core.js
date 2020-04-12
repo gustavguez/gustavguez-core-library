@@ -820,9 +820,17 @@ let ApiService = class ApiService {
     // Change active strategy
     changeApiResponseStrategy(strategyName) {
         let hasChanged = false;
+        // Check current are equal
+        if (this.activeApiResponseStrategy.getName() === strategyName) {
+            return hasChanged;
+        }
+        // Find strategy
         ArrayUtility.every(this.apiResponseStrategies, (strategy) => {
             // Check name
             if (strategy.getName() === strategyName) {
+                // Save previous
+                this.previousApiResponseStrategy = this.activeApiResponseStrategy;
+                // Load new stategy
                 this.activeApiResponseStrategy = strategy;
                 // Mark has changed
                 hasChanged = true;
@@ -830,6 +838,14 @@ let ApiService = class ApiService {
             return !hasChanged;
         });
         return hasChanged;
+    }
+    // Restore prev active stategy
+    restoreApiResponseStrategy() {
+        // Check prev are not empty and is different
+        if (this.previousApiResponseStrategy !== undefined
+            && this.previousApiResponseStrategy.getName() !== this.activeApiResponseStrategy.getName()) {
+            this.activeApiResponseStrategy = this.previousApiResponseStrategy;
+        }
     }
     // Fetch
     fetchData(uri, params) {

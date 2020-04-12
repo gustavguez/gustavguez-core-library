@@ -18,6 +18,7 @@ export class ApiService {
 	// Models
 	private apiURL: string;
 	private accessToken: string;
+	private previousApiResponseStrategy: ApiResponseStrategyInterface;
 	private activeApiResponseStrategy: ApiResponseStrategyInterface;
 	private apiResponseStrategies: ApiResponseStrategyInterface[];
 
@@ -54,9 +55,19 @@ export class ApiService {
 	public changeApiResponseStrategy(strategyName: string): boolean {
 		let hasChanged: boolean = false;
 
+		// Check current are equal
+		if (this.activeApiResponseStrategy.getName() === strategyName) {
+			return hasChanged;
+		}
+
+		// Find strategy
 		ArrayUtility.every(this.apiResponseStrategies, (strategy: ApiResponseStrategyInterface) => {
 			// Check name
 			if (strategy.getName() === strategyName) {
+				// Save previous
+				this.previousApiResponseStrategy = this.activeApiResponseStrategy;
+
+				// Load new stategy
 				this.activeApiResponseStrategy = strategy;
 
 				// Mark has changed
@@ -65,6 +76,15 @@ export class ApiService {
 			return !hasChanged;
 		});
 		return hasChanged;
+	}
+
+	// Restore prev active stategy
+	public restoreApiResponseStrategy(): void {
+		// Check prev are not empty and is different
+		if (this.previousApiResponseStrategy !== undefined
+			&& this.previousApiResponseStrategy.getName() !== this.activeApiResponseStrategy.getName()) {
+			this.activeApiResponseStrategy = this.previousApiResponseStrategy;
+		}
 	}
 
 	// Fetch
