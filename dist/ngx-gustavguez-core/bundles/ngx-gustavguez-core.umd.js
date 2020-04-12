@@ -1029,12 +1029,51 @@
         return NgxGustavguezNavItemComponent;
     }());
 
+    var ApiRootResponseStrategyModel = /** @class */ (function () {
+        function ApiRootResponseStrategyModel() {
+        }
+        ApiRootResponseStrategyModel.prototype.getName = function () {
+            return 'root';
+        };
+        ApiRootResponseStrategyModel.prototype.parseJSON = function (json) {
+            // Init data
+            var data = null;
+            // Check key data in json
+            if (json) {
+                data = json;
+            }
+            return data;
+        };
+        return ApiRootResponseStrategyModel;
+    }());
+
+    var ApiDataResponseStrategyModel = /** @class */ (function () {
+        function ApiDataResponseStrategyModel() {
+        }
+        ApiDataResponseStrategyModel.prototype.getName = function () {
+            return 'data';
+        };
+        ApiDataResponseStrategyModel.prototype.parseJSON = function (json) {
+            // Init data
+            var data = null;
+            // Check key data in json
+            if (json && json.data) {
+                data = json.data;
+            }
+            return data;
+        };
+        return ApiDataResponseStrategyModel;
+    }());
+
     var ApiResponseModel = /** @class */ (function () {
         function ApiResponseModel(data) {
             this.data = data;
         }
-        ApiResponseModel.prototype.hasData = function () {
-            return this.data && Object.keys(this.data).length > 0;
+        ApiResponseModel.prototype.hasSingreResult = function () {
+            return this.data && this.data.id;
+        };
+        ApiResponseModel.prototype.hasCollectionResult = function () {
+            return ArrayUtility.hasValue(this.data);
         };
         return ApiResponseModel;
     }());
@@ -1043,6 +1082,13 @@
         // Service constructor
         function ApiService(httpClient) {
             this.httpClient = httpClient;
+            // Load data strategy by default
+            this.apiResponseStrategies = [
+                new ApiDataResponseStrategyModel(),
+                new ApiRootResponseStrategyModel()
+            ];
+            // Set as active
+            this.activeApiResponseStrategy = this.apiResponseStrategies[0];
         }
         // Setters
         ApiService.prototype.setApiURL = function (apiURL) {
@@ -1050,6 +1096,27 @@
         };
         ApiService.prototype.setAccessToken = function (accessToken) {
             this.accessToken = accessToken;
+        };
+        // Add strategy method
+        ApiService.prototype.addApiResponseStrategy = function (strategy) {
+            if (strategy.getName()) {
+                this.apiResponseStrategies.push(strategy);
+            }
+        };
+        // Change active strategy
+        ApiService.prototype.changeApiResponseStrategy = function (strategyName) {
+            var _this = this;
+            var hasChanged = false;
+            ArrayUtility.every(this.apiResponseStrategies, function (strategy) {
+                // Check name
+                if (strategy.getName() === strategyName) {
+                    _this.activeApiResponseStrategy = strategy;
+                    // Mark has changed
+                    hasChanged = true;
+                }
+                return !hasChanged;
+            });
+            return hasChanged;
         };
         // Fetch
         ApiService.prototype.fetchData = function (uri, params) {
@@ -1148,11 +1215,7 @@
             // Current response
             var resp = new ApiResponseModel();
             // CHECK RESPONSE
-            if (response
-                && response.data) {
-                // Load data
-                resp.data = response.data;
-            }
+            resp.data = this.activeApiResponseStrategy.parseJSON(response);
             // Return api response model
             return resp;
         };
@@ -1302,6 +1365,123 @@
         return NgxGustavguezInputComponent;
     }());
 
+    var NgxGustavguezTextareaComponent = /** @class */ (function () {
+        function NgxGustavguezTextareaComponent() {
+            // Outputs
+            this.onChange = new core.EventEmitter();
+        }
+        // Custom events
+        NgxGustavguezTextareaComponent.prototype.onEmitChange = function () {
+            this.onChange.emit(this.form.get(this.controlName).value);
+        };
+        __decorate([
+            core.Input()
+        ], NgxGustavguezTextareaComponent.prototype, "form", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezTextareaComponent.prototype, "label", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezTextareaComponent.prototype, "placeholder", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezTextareaComponent.prototype, "controlId", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezTextareaComponent.prototype, "controlName", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezTextareaComponent.prototype, "requiredErrorText", void 0);
+        __decorate([
+            core.Output()
+        ], NgxGustavguezTextareaComponent.prototype, "onChange", void 0);
+        NgxGustavguezTextareaComponent = __decorate([
+            core.Component({
+                selector: 'ngx-gustavguez-textarea',
+                template: "<div class=\"input-group\" [formGroup]=\"form\">\n\t<ngx-gustavguez-input-holder\n\t\t[form]=\"form\"\n\t\t[controlName]=\"controlName\"\n\t\t[requiredErrorText]=\"requiredErrorText\">\n\t\t<label \n\t\t\t*ngIf=\"label\"\n\t\t\t[for]=\"controlId\">{{ label }}</label>\n\t\t<textarea \n\t\t\tclass=\"form-control\"\n\t\t\t(change)=\"onEmitChange()\"\n\t\t\t[id]=\"controlId\"\n\t\t\t[placeholder]=\"placeholder\"\n\t\t\t[formControlName]=\"controlName\"></textarea>\n\t</ngx-gustavguez-input-holder>\n</div>",
+                styles: [""]
+            })
+        ], NgxGustavguezTextareaComponent);
+        return NgxGustavguezTextareaComponent;
+    }());
+
+    var NgxGustavguezSelectComponent = /** @class */ (function () {
+        function NgxGustavguezSelectComponent() {
+            // Outputs
+            this.onChange = new core.EventEmitter();
+        }
+        // Custom events
+        NgxGustavguezSelectComponent.prototype.onEmitChange = function () {
+            this.onChange.emit(this.form.get(this.controlName).value);
+        };
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "form", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "label", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "controlId", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "controlName", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "requiredErrorText", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "options", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "placeholder", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "optionId", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezSelectComponent.prototype, "optionLabel", void 0);
+        __decorate([
+            core.Output()
+        ], NgxGustavguezSelectComponent.prototype, "onChange", void 0);
+        NgxGustavguezSelectComponent = __decorate([
+            core.Component({
+                selector: 'ngx-gustavguez-select',
+                template: "<div class=\"input-group\" [formGroup]=\"form\">\n\t<ngx-gustavguez-input-holder\n\t\t[form]=\"form\"\n\t\t[controlName]=\"controlName\"\n\t\t[requiredErrorText]=\"requiredErrorText\">\n\t\t<label \n\t\t\t*ngIf=\"label\"\n\t\t\t[for]=\"controlId\">{{ label }}</label>\n\t\t<select \n\t\t\tclass=\"custom-select\"\n\t\t\t(change)=\"onEmitChange()\"\n\t\t\t[id]=\"controlId\"\n\t\t\t[formControlName]=\"controlName\">\n\t\t\t<option \n\t\t\t\t[value]=\"null\" \n\t\t\t\tdisabled \n\t\t\t\tselected>{{ placeholder }}</option>\n\t\t\t<option \n\t\t\t\t*ngFor=\"let option of options\"\n\t\t\t\t[value]=\"option[optionId]\">{{ option[optionLabel] }}</option>\n\t\t</select>\n\t</ngx-gustavguez-input-holder>\n</div>",
+                styles: [""]
+            })
+        ], NgxGustavguezSelectComponent);
+        return NgxGustavguezSelectComponent;
+    }());
+
+    var NgxGustavguezTagsComponent = /** @class */ (function () {
+        function NgxGustavguezTagsComponent() {
+            // Outputs
+            this.onSelect = new core.EventEmitter();
+        }
+        // Custom events
+        NgxGustavguezTagsComponent.prototype.onEmitSelect = function (option) {
+            this.onSelect.emit(option);
+        };
+        __decorate([
+            core.Input()
+        ], NgxGustavguezTagsComponent.prototype, "options", void 0);
+        __decorate([
+            core.Input()
+        ], NgxGustavguezTagsComponent.prototype, "optionLabel", void 0);
+        __decorate([
+            core.Output()
+        ], NgxGustavguezTagsComponent.prototype, "onSelect", void 0);
+        NgxGustavguezTagsComponent = __decorate([
+            core.Component({
+                selector: 'ngx-gustavguez-tags',
+                template: "<div class=\"input-group pb-2\">\n\t<button \n\t\ttype=\"button\" \n\t\tclass=\"btn btn-danger btn-sm ml-1\"\n\t\t(click)=\"onEmitSelect(option)\"\n\t\t*ngFor=\"let option of options\">\n\t\t{{ option[optionLabel] }}\n\t</button>\n</div>",
+                styles: [""]
+            })
+        ], NgxGustavguezTagsComponent);
+        return NgxGustavguezTagsComponent;
+    }());
+
     var NgxGustavguezCoreModule = /** @class */ (function () {
         function NgxGustavguezCoreModule() {
         }
@@ -1326,6 +1506,9 @@
                     NgxGustavguezTableComponent,
                     NgxGustavguezSubmitComponent,
                     NgxGustavguezInputComponent,
+                    NgxGustavguezTextareaComponent,
+                    NgxGustavguezSelectComponent,
+                    NgxGustavguezTagsComponent,
                 ],
                 imports: [
                     common.CommonModule,
@@ -1350,14 +1533,19 @@
                     NgxGustavguezNavItemComponent,
                     NgxGustavguezTableComponent,
                     NgxGustavguezInputComponent,
-                    NgxGustavguezSubmitComponent
+                    NgxGustavguezSubmitComponent,
+                    NgxGustavguezTextareaComponent,
+                    NgxGustavguezSelectComponent,
+                    NgxGustavguezTagsComponent
                 ]
             })
         ], NgxGustavguezCoreModule);
         return NgxGustavguezCoreModule;
     }());
 
+    exports.ApiDataResponseStrategyModel = ApiDataResponseStrategyModel;
     exports.ApiResponseModel = ApiResponseModel;
+    exports.ApiRootResponseStrategyModel = ApiRootResponseStrategyModel;
     exports.ApiService = ApiService;
     exports.ArrayUtility = ArrayUtility;
     exports.DateUtility = DateUtility;
@@ -1377,6 +1565,7 @@
     exports.NgxGustavguezNavItemModel = NgxGustavguezNavItemModel;
     exports.NgxGustavguezPageHeaderComponent = NgxGustavguezPageHeaderComponent;
     exports.NgxGustavguezPopupComponent = NgxGustavguezPopupComponent;
+    exports.NgxGustavguezSelectComponent = NgxGustavguezSelectComponent;
     exports.NgxGustavguezSubmitComponent = NgxGustavguezSubmitComponent;
     exports.NgxGustavguezTableActionArgument = NgxGustavguezTableActionArgument;
     exports.NgxGustavguezTableActionModel = NgxGustavguezTableActionModel;
@@ -1384,6 +1573,8 @@
     exports.NgxGustavguezTableHeaderModel = NgxGustavguezTableHeaderModel;
     exports.NgxGustavguezTableOptionsModel = NgxGustavguezTableOptionsModel;
     exports.NgxGustavguezTableShowActionModel = NgxGustavguezTableShowActionModel;
+    exports.NgxGustavguezTagsComponent = NgxGustavguezTagsComponent;
+    exports.NgxGustavguezTextareaComponent = NgxGustavguezTextareaComponent;
     exports.NgxGustavguezToastModel = NgxGustavguezToastModel;
     exports.NgxGustavguezToastsComponent = NgxGustavguezToastsComponent;
     exports.NgxGustavguezToastsService = NgxGustavguezToastsService;

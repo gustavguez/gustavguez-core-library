@@ -27,6 +27,9 @@ export * from './lib/layout/ngx-gustavguez-main-sidebar/ngx-gustavguez-main-side
 export * from './lib/layout/ngx-gustavguez-nav/ngx-gustavguez-nav.component';
 export * from './lib/layout/ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.model';
 export * from './lib/layout/ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.component';
+export * from './lib/api/api-response-strategies/api-root-response-strategy.model';
+export * from './lib/api/api-response-strategies/api-data-response-strategy.model';
+export * from './lib/api/api-response-strategies/api-response-strategy.interface';
 export * from './lib/api/api-response.model';
 export * from './lib/api/json-model.interface';
 export * from './lib/api/api.service';
@@ -34,5 +37,8 @@ export * from './lib/forms/ngx-gustavguez-button/ngx-gustavguez-button.component
 export * from './lib/forms/ngx-gustavguez-submit/ngx-gustavguez-submit.component';
 export * from './lib/forms/ngx-gustavguez-input-holder/ngx-gustavguez-input-holder.component';
 export * from './lib/forms/ngx-gustavguez-input/ngx-gustavguez-input.component';
+export * from './lib/forms/ngx-gustavguez-textarea/ngx-gustavguez-textarea.component';
+export * from './lib/forms/ngx-gustavguez-select/ngx-gustavguez-select.component';
+export * from './lib/forms/ngx-gustavguez-tags/ngx-gustavguez-tags.component';
 export * from './lib/ngx-gustavguez-status.enum';
 export * from './lib/ngx-gustavguez-core.module';

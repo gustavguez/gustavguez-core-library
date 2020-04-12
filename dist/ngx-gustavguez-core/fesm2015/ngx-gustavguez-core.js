@@ -750,12 +750,45 @@ NgxGustavguezNavItemComponent = __decorate([
     })
 ], NgxGustavguezNavItemComponent);
 
+class ApiRootResponseStrategyModel {
+    getName() {
+        return 'root';
+    }
+    parseJSON(json) {
+        // Init data
+        let data = null;
+        // Check key data in json
+        if (json) {
+            data = json;
+        }
+        return data;
+    }
+}
+
+class ApiDataResponseStrategyModel {
+    getName() {
+        return 'data';
+    }
+    parseJSON(json) {
+        // Init data
+        let data = null;
+        // Check key data in json
+        if (json && json.data) {
+            data = json.data;
+        }
+        return data;
+    }
+}
+
 class ApiResponseModel {
     constructor(data) {
         this.data = data;
     }
-    hasData() {
-        return this.data && Object.keys(this.data).length > 0;
+    hasSingreResult() {
+        return this.data && this.data.id;
+    }
+    hasCollectionResult() {
+        return ArrayUtility.hasValue(this.data);
     }
 }
 
@@ -763,6 +796,13 @@ let ApiService = class ApiService {
     // Service constructor
     constructor(httpClient) {
         this.httpClient = httpClient;
+        // Load data strategy by default
+        this.apiResponseStrategies = [
+            new ApiDataResponseStrategyModel(),
+            new ApiRootResponseStrategyModel()
+        ];
+        // Set as active
+        this.activeApiResponseStrategy = this.apiResponseStrategies[0];
     }
     // Setters
     setApiURL(apiURL) {
@@ -770,6 +810,26 @@ let ApiService = class ApiService {
     }
     setAccessToken(accessToken) {
         this.accessToken = accessToken;
+    }
+    // Add strategy method
+    addApiResponseStrategy(strategy) {
+        if (strategy.getName()) {
+            this.apiResponseStrategies.push(strategy);
+        }
+    }
+    // Change active strategy
+    changeApiResponseStrategy(strategyName) {
+        let hasChanged = false;
+        ArrayUtility.every(this.apiResponseStrategies, (strategy) => {
+            // Check name
+            if (strategy.getName() === strategyName) {
+                this.activeApiResponseStrategy = strategy;
+                // Mark has changed
+                hasChanged = true;
+            }
+            return !hasChanged;
+        });
+        return hasChanged;
     }
     // Fetch
     fetchData(uri, params) {
@@ -864,11 +924,7 @@ let ApiService = class ApiService {
         // Current response
         const resp = new ApiResponseModel();
         // CHECK RESPONSE
-        if (response
-            && response.data) {
-            // Load data
-            resp.data = response.data;
-        }
+        resp.data = this.activeApiResponseStrategy.parseJSON(response);
         // Return api response model
         return resp;
     }
@@ -1011,6 +1067,120 @@ NgxGustavguezInputComponent = __decorate([
     })
 ], NgxGustavguezInputComponent);
 
+let NgxGustavguezTextareaComponent = class NgxGustavguezTextareaComponent {
+    constructor() {
+        // Outputs
+        this.onChange = new EventEmitter();
+    }
+    // Custom events
+    onEmitChange() {
+        this.onChange.emit(this.form.get(this.controlName).value);
+    }
+};
+__decorate([
+    Input()
+], NgxGustavguezTextareaComponent.prototype, "form", void 0);
+__decorate([
+    Input()
+], NgxGustavguezTextareaComponent.prototype, "label", void 0);
+__decorate([
+    Input()
+], NgxGustavguezTextareaComponent.prototype, "placeholder", void 0);
+__decorate([
+    Input()
+], NgxGustavguezTextareaComponent.prototype, "controlId", void 0);
+__decorate([
+    Input()
+], NgxGustavguezTextareaComponent.prototype, "controlName", void 0);
+__decorate([
+    Input()
+], NgxGustavguezTextareaComponent.prototype, "requiredErrorText", void 0);
+__decorate([
+    Output()
+], NgxGustavguezTextareaComponent.prototype, "onChange", void 0);
+NgxGustavguezTextareaComponent = __decorate([
+    Component({
+        selector: 'ngx-gustavguez-textarea',
+        template: "<div class=\"input-group\" [formGroup]=\"form\">\n\t<ngx-gustavguez-input-holder\n\t\t[form]=\"form\"\n\t\t[controlName]=\"controlName\"\n\t\t[requiredErrorText]=\"requiredErrorText\">\n\t\t<label \n\t\t\t*ngIf=\"label\"\n\t\t\t[for]=\"controlId\">{{ label }}</label>\n\t\t<textarea \n\t\t\tclass=\"form-control\"\n\t\t\t(change)=\"onEmitChange()\"\n\t\t\t[id]=\"controlId\"\n\t\t\t[placeholder]=\"placeholder\"\n\t\t\t[formControlName]=\"controlName\"></textarea>\n\t</ngx-gustavguez-input-holder>\n</div>",
+        styles: [""]
+    })
+], NgxGustavguezTextareaComponent);
+
+let NgxGustavguezSelectComponent = class NgxGustavguezSelectComponent {
+    constructor() {
+        // Outputs
+        this.onChange = new EventEmitter();
+    }
+    // Custom events
+    onEmitChange() {
+        this.onChange.emit(this.form.get(this.controlName).value);
+    }
+};
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "form", void 0);
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "label", void 0);
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "controlId", void 0);
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "controlName", void 0);
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "requiredErrorText", void 0);
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "options", void 0);
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "placeholder", void 0);
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "optionId", void 0);
+__decorate([
+    Input()
+], NgxGustavguezSelectComponent.prototype, "optionLabel", void 0);
+__decorate([
+    Output()
+], NgxGustavguezSelectComponent.prototype, "onChange", void 0);
+NgxGustavguezSelectComponent = __decorate([
+    Component({
+        selector: 'ngx-gustavguez-select',
+        template: "<div class=\"input-group\" [formGroup]=\"form\">\n\t<ngx-gustavguez-input-holder\n\t\t[form]=\"form\"\n\t\t[controlName]=\"controlName\"\n\t\t[requiredErrorText]=\"requiredErrorText\">\n\t\t<label \n\t\t\t*ngIf=\"label\"\n\t\t\t[for]=\"controlId\">{{ label }}</label>\n\t\t<select \n\t\t\tclass=\"custom-select\"\n\t\t\t(change)=\"onEmitChange()\"\n\t\t\t[id]=\"controlId\"\n\t\t\t[formControlName]=\"controlName\">\n\t\t\t<option \n\t\t\t\t[value]=\"null\" \n\t\t\t\tdisabled \n\t\t\t\tselected>{{ placeholder }}</option>\n\t\t\t<option \n\t\t\t\t*ngFor=\"let option of options\"\n\t\t\t\t[value]=\"option[optionId]\">{{ option[optionLabel] }}</option>\n\t\t</select>\n\t</ngx-gustavguez-input-holder>\n</div>",
+        styles: [""]
+    })
+], NgxGustavguezSelectComponent);
+
+let NgxGustavguezTagsComponent = class NgxGustavguezTagsComponent {
+    constructor() {
+        // Outputs
+        this.onSelect = new EventEmitter();
+    }
+    // Custom events
+    onEmitSelect(option) {
+        this.onSelect.emit(option);
+    }
+};
+__decorate([
+    Input()
+], NgxGustavguezTagsComponent.prototype, "options", void 0);
+__decorate([
+    Input()
+], NgxGustavguezTagsComponent.prototype, "optionLabel", void 0);
+__decorate([
+    Output()
+], NgxGustavguezTagsComponent.prototype, "onSelect", void 0);
+NgxGustavguezTagsComponent = __decorate([
+    Component({
+        selector: 'ngx-gustavguez-tags',
+        template: "<div class=\"input-group pb-2\">\n\t<button \n\t\ttype=\"button\" \n\t\tclass=\"btn btn-danger btn-sm ml-1\"\n\t\t(click)=\"onEmitSelect(option)\"\n\t\t*ngFor=\"let option of options\">\n\t\t{{ option[optionLabel] }}\n\t</button>\n</div>",
+        styles: [""]
+    })
+], NgxGustavguezTagsComponent);
+
 let NgxGustavguezCoreModule = class NgxGustavguezCoreModule {
 };
 NgxGustavguezCoreModule = __decorate([
@@ -1034,6 +1204,9 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezTableComponent,
             NgxGustavguezSubmitComponent,
             NgxGustavguezInputComponent,
+            NgxGustavguezTextareaComponent,
+            NgxGustavguezSelectComponent,
+            NgxGustavguezTagsComponent,
         ],
         imports: [
             CommonModule,
@@ -1058,7 +1231,10 @@ NgxGustavguezCoreModule = __decorate([
             NgxGustavguezNavItemComponent,
             NgxGustavguezTableComponent,
             NgxGustavguezInputComponent,
-            NgxGustavguezSubmitComponent
+            NgxGustavguezSubmitComponent,
+            NgxGustavguezTextareaComponent,
+            NgxGustavguezSelectComponent,
+            NgxGustavguezTagsComponent
         ]
     })
 ], NgxGustavguezCoreModule);
@@ -1069,5 +1245,5 @@ NgxGustavguezCoreModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ApiResponseModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputComponent, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezNavComponent, NgxGustavguezNavItemComponent, NgxGustavguezNavItemModel, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezStatusEnum, NgxGustavguezSubmitComponent, NgxGustavguezTableActionArgument, NgxGustavguezTableActionModel, NgxGustavguezTableComponent, NgxGustavguezTableHeaderModel, NgxGustavguezTableOptionsModel, NgxGustavguezTableShowActionModel, NgxGustavguezToastModel, NgxGustavguezToastsComponent, NgxGustavguezToastsService, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
+export { ApiDataResponseStrategyModel, ApiResponseModel, ApiRootResponseStrategyModel, ApiService, ArrayUtility, DateUtility, FormUtility, NgxGustavguezButtonComponent, NgxGustavguezCardComponent, NgxGustavguezCoreModule, NgxGustavguezInfoBoxComponent, NgxGustavguezInputComponent, NgxGustavguezInputHolderComponent, NgxGustavguezLoaderComponent, NgxGustavguezMainContainerDirective, NgxGustavguezMainSidebarComponent, NgxGustavguezMainSidebarService, NgxGustavguezNavComponent, NgxGustavguezNavItemComponent, NgxGustavguezNavItemModel, NgxGustavguezPageHeaderComponent, NgxGustavguezPopupComponent, NgxGustavguezSelectComponent, NgxGustavguezStatusEnum, NgxGustavguezSubmitComponent, NgxGustavguezTableActionArgument, NgxGustavguezTableActionModel, NgxGustavguezTableComponent, NgxGustavguezTableHeaderModel, NgxGustavguezTableOptionsModel, NgxGustavguezTableShowActionModel, NgxGustavguezTagsComponent, NgxGustavguezTextareaComponent, NgxGustavguezToastModel, NgxGustavguezToastsComponent, NgxGustavguezToastsService, NumberUtility, PrettyDatePipe, PrettyHourPipe, PrettyNumberPipe, StringUtility, WindowUtility };
 //# sourceMappingURL=ngx-gustavguez-core.js.map

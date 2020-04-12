@@ -36,6 +36,9 @@ export * from './lib/layout/ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.mode
 export * from './lib/layout/ngx-gustavguez-nav-item/ngx-gustavguez-nav-item.component';
 
 // Api
+export * from './lib/api/api-response-strategies/api-root-response-strategy.model';
+export * from './lib/api/api-response-strategies/api-data-response-strategy.model';
+export * from './lib/api/api-response-strategies/api-response-strategy.interface';
 export * from './lib/api/api-response.model';
 export * from './lib/api/json-model.interface';
 export * from './lib/api/api.service';

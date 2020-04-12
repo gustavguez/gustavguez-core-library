@@ -20,6 +20,7 @@ export class ApiServiceComponent implements OnInit {
 	ngOnInit(): void {
 		//Set api url
 		this.apiService.setApiURL("https://jsonplaceholder.typicode.com");
+		this.apiService.changeApiResponseStrategy('root');
 	}
 
 	// Custom events

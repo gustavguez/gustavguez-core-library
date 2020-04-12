@@ -4,7 +4,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { FormUtility } from '../utilities/form.utility';
+import { ArrayUtility } from '../utilities/array.utility';
 import { ApiResponseModel } from './api-response.model';
+import { ApiResponseStrategyInterface } from './api-response-strategies/api-response-strategy.interface';
+import { ApiDataResponseStrategyModel } from './api-response-strategies/api-data-response-strategy.model';
+import { ApiRootResponseStrategyModel } from './api-response-strategies/api-root-response-strategy.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,10 +18,21 @@ export class ApiService {
 	// Models
 	private apiURL: string;
 	private accessToken: string;
+	private activeApiResponseStrategy: ApiResponseStrategyInterface;
+	private apiResponseStrategies: ApiResponseStrategyInterface[];
 
 	// Service constructor
 	constructor(
-		private httpClient: HttpClient) { }
+		private httpClient: HttpClient) {
+		// Load data strategy by default
+		this.apiResponseStrategies = [
+			new ApiDataResponseStrategyModel(),
+			new ApiRootResponseStrategyModel()
+		];
+
+		// Set as active
+		this.activeApiResponseStrategy = this.apiResponseStrategies[0];
+	}
 
 	// Setters
 	public setApiURL(apiURL: string): void {
@@ -26,6 +41,30 @@ export class ApiService {
 
 	public setAccessToken(accessToken: string): void {
 		this.accessToken = accessToken;
+	}
+
+	// Add strategy method
+	public addApiResponseStrategy(strategy: ApiResponseStrategyInterface): void {
+		if (strategy.getName()) {
+			this.apiResponseStrategies.push(strategy);
+		}
+	}
+
+	// Change active strategy
+	public changeApiResponseStrategy(strategyName: string): boolean {
+		let hasChanged: boolean = false;
+
+		ArrayUtility.every(this.apiResponseStrategies, (strategy: ApiResponseStrategyInterface) => {
+			// Check name
+			if (strategy.getName() === strategyName) {
+				this.activeApiResponseStrategy = strategy;
+
+				// Mark has changed
+				hasChanged = true;
+			}
+			return !hasChanged;
+		});
+		return hasChanged;
 	}
 
 	// Fetch
@@ -143,12 +182,7 @@ export class ApiService {
 		const resp: ApiResponseModel = new ApiResponseModel();
 
 		// CHECK RESPONSE
-		if (response
-			&& response.data) {
-
-			// Load data
-			resp.data = response.data;
-		}
+		resp.data = this.activeApiResponseStrategy.parseJSON(response);
 
 		// Return api response model
 		return resp;
