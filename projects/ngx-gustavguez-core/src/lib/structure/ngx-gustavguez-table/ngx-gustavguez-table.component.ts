@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 
 import { NgxGustavguezTableOptionsModel } from './ngx-gustavguez-table-options.model';
 import { NgxGustavguezTableActionArgument } from './ngx-gustavguez-table-action.argument';
@@ -13,6 +13,7 @@ export class NgxGustavguezTableComponent {
 	// Inputs
 	@Input() options: NgxGustavguezTableOptionsModel;
 	@Input() items: any[];
+	@Input() customTdTpl: TemplateRef<any>;
 
 	// Output
 	@Output() onAction: EventEmitter<NgxGustavguezTableActionArgument> = new EventEmitter();

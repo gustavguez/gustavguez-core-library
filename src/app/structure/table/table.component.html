@@ -7,7 +7,17 @@
 				<ngx-gustavguez-table
 					(onAction)="onTableAction($event)"
 					[options]="tableOptions"
+					[customTdTpl]="customTdTpl"
 					[items]="users"></ngx-gustavguez-table>
+
+				<ng-template #customTdTpl let-value="value" let-field="field">
+					<span [ngSwitch]="field">
+						<ng-container *ngSwitchCase="'name'">
+							<strong>{{ value }}</strong>
+						</ng-container>
+						<ng-container *ngSwitchDefault>{{ value }}</ng-container>
+					</span>
+				</ng-template>
 			</div>
 			<div class="col-md-6 col-sm-6 col-12 text-center p-3">
 				<ngx-gustavguez-table
