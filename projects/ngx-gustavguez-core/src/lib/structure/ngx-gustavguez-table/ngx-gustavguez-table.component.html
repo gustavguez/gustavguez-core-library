@@ -12,7 +12,7 @@
 			<td 
 				class="align-middle"
 				*ngFor="let field of options.fields">
-				<ng-container *ngTemplateOutlet="customTdTpl ? customTdTpl : defaultTdTpl; context: { field: field, value: item[field] }"></ng-container>
+				<ng-container *ngTemplateOutlet="customTdTpl ? customTdTpl : defaultTdTpl; context: { field: field, model: item }"></ng-container>
 			</td>
 			<td 
 				class="align-middle"
@@ -33,6 +33,6 @@
 </table>
 
 <!-- TEMPLATES -->
-<ng-template #defaultTdTpl let-value="value" let-field="field">
-	{{ value }}
+<ng-template #defaultTdTpl let-model="model" let-field="field">
+	{{ model[field] }}
 </ng-template>
